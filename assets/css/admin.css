@@ -1,0 +1,336 @@
+/* ================================
+   S2N HUB ADMIN MEMBER DIRECTORY
+================================ */
+
+:root {
+  --admin-bg: #080b14;
+  --admin-panel: #101624;
+  --admin-panel-light: #151d2e;
+  --admin-border: rgba(110, 145, 210, 0.14);
+
+  --admin-blue: #4c8dff;
+  --admin-cyan: #35d9ff;
+  --admin-green: #39e6a5;
+  --admin-purple: #a78bfa;
+
+  --admin-text: #edf3ff;
+  --admin-muted: #8290a8;
+}
+
+body {
+  background: var(--admin-bg);
+  color: var(--admin-text);
+  font-family: "Kanit", sans-serif;
+}
+
+.admin-container {
+  width: 100%;
+  min-height: 100vh;
+  padding: 30px;
+  background:
+    radial-gradient(
+      circle at 85% 0%,
+      rgba(42, 100, 220, 0.09),
+      transparent 35%
+    ),
+    var(--admin-bg);
+}
+
+/* HEADER */
+
+.admin-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid var(--admin-border);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #2878ff, #35d9ff);
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  box-shadow: 0 0 25px rgba(53, 145, 255, 0.2);
+}
+
+.brand-info h1 {
+  margin: 0;
+  font-size: 21px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.brand-info span {
+  color: var(--admin-cyan);
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+.back-btn {
+  padding: 10px 16px;
+  border: 1px solid var(--admin-border);
+  border-radius: 10px;
+  color: var(--admin-muted);
+  text-decoration: none;
+  font-size: 13px;
+  transition: 0.2s;
+}
+
+.back-btn:hover {
+  color: var(--admin-text);
+  border-color: var(--admin-blue);
+  background: rgba(76, 141, 255, 0.08);
+}
+
+/* PAGE HEADING */
+
+.admin-content {
+  max-width: 1250px;
+  margin: 0 auto;
+}
+
+.page-heading {
+  padding: 35px 0 28px;
+}
+
+.eyebrow {
+  color: var(--admin-cyan);
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+
+.page-heading h2 {
+  margin: 5px 0;
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.page-heading p {
+  margin: 0;
+  color: var(--admin-muted);
+  font-size: 13px;
+}
+
+/* MEMBER SECTION */
+
+.member-section {
+  margin-bottom: 25px;
+  overflow: hidden;
+  border: 1px solid var(--admin-border);
+  border-radius: 16px;
+  background: var(--admin-panel);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 22px;
+  border-bottom: 1px solid var(--admin-border);
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.section-title h3 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.status-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+}
+
+.user-dot {
+  background: var(--admin-blue);
+  box-shadow: 0 0 12px rgba(76, 141, 255, 0.7);
+}
+
+.admin-dot {
+  background: var(--admin-purple);
+  box-shadow: 0 0 12px rgba(167, 139, 250, 0.7);
+}
+
+.member-count {
+  padding: 5px 12px;
+  border: 1px solid rgba(76, 141, 255, 0.2);
+  border-radius: 20px;
+  background: rgba(76, 141, 255, 0.08);
+  color: var(--admin-blue);
+  font-size: 12px;
+}
+
+.admin-count {
+  border-color: rgba(167, 139, 250, 0.2);
+  background: rgba(167, 139, 250, 0.08);
+  color: var(--admin-purple);
+}
+
+/* TABLE */
+
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 550px;
+}
+
+thead {
+  background: rgba(255, 255, 255, 0.015);
+}
+
+th {
+  padding: 15px 22px;
+  color: var(--admin-muted);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-align: left;
+}
+
+td {
+  padding: 16px 22px;
+  border-top: 1px solid rgba(110, 145, 210, 0.08);
+  color: #dce6f8;
+  font-size: 13px;
+}
+
+tbody tr {
+  transition: background 0.2s;
+}
+
+tbody tr:hover {
+  background: rgba(76, 141, 255, 0.045);
+}
+
+td:first-child {
+  color: var(--admin-muted);
+  width: 60px;
+}
+
+.username-cell {
+  color: var(--admin-cyan);
+  font-weight: 500;
+}
+
+.role-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  letter-spacing: 0.3px;
+}
+
+.role-user {
+  color: var(--admin-blue);
+  background: rgba(76, 141, 255, 0.1);
+  border: 1px solid rgba(76, 141, 255, 0.15);
+}
+
+.role-admin {
+  color: var(--admin-purple);
+  background: rgba(167, 139, 250, 0.1);
+  border: 1px solid rgba(167, 139, 250, 0.15);
+}
+
+.loading-message,
+.empty-message {
+  padding: 30px;
+  text-align: center;
+  color: var(--admin-muted);
+}
+
+.page-message {
+  margin: 15px 0;
+  color: #ff7b88;
+  font-size: 13px;
+  text-align: center;
+}
+
+/* FOOTER */
+
+.admin-footer {
+  margin-top: 35px;
+  padding: 20px 0;
+  border-top: 1px solid var(--admin-border);
+  color: var(--admin-muted);
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-align: center;
+}
+
+.admin-footer span {
+  color: var(--admin-cyan);
+  margin: 0 6px;
+}
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+  .admin-container {
+    padding: 18px 12px;
+  }
+
+  .admin-header {
+    padding-bottom: 18px;
+  }
+
+  .brand-logo {
+    width: 43px;
+    height: 43px;
+    border-radius: 11px;
+    font-size: 17px;
+  }
+
+  .brand-info h1 {
+    font-size: 17px;
+  }
+
+  .back-btn {
+    padding: 8px 10px;
+    font-size: 11px;
+  }
+
+  .page-heading {
+    padding: 28px 5px 22px;
+  }
+
+  .page-heading h2 {
+    font-size: 25px;
+  }
+
+  .section-header {
+    padding: 16px;
+  }
+
+  th,
+  td {
+    padding: 13px 15px;
+  }
+}

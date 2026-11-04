@@ -1,0 +1,301 @@
+/* =========================================
+   S2N HUB AUTHENTICATION
+   SECOND TO NONE ESPORTS
+========================================= */
+:root {
+    --bg-main: #080d18;
+    --bg-card: #0e1728;
+    --bg-input: #09111f;
+    --cyan: #00e5ff;
+    --cyan-dark: #00a8c7;
+    --text-main: #f1f5f9;
+    --text-muted: #7f91aa;
+    --border: rgba(0, 229, 255, 0.15);
+    --danger: #ff4757;
+}
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--bg-main);
+    color: var(--text-main);
+    min-height: 100vh;
+}
+/* BACKGROUND */
+.auth-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background:
+        radial-gradient(
+            circle at 50% 20%,
+            rgba(0, 229, 255, 0.08),
+            transparent 40%
+        ),
+        linear-gradient(
+            135deg,
+            #080d18,
+            #0b1424,
+            #080d18
+        );
+}
+/* AUTH CARD */
+.auth-card {
+    width: 100%;
+    max-width: 420px;
+    padding: 38px 32px;
+    background: rgba(14, 23, 40, 0.96);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    box-shadow:
+        0 0 40px rgba(0, 229, 255, 0.04),
+        0 20px 60px rgba(0, 0, 0, 0.35);
+}
+/* LOGO */
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 22px;
+}
+.clan-logo {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+}
+.logo-placeholder {
+    width: 90px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    color: var(--cyan);
+    border: 2px solid var(--cyan);
+    border-radius: 14px;
+    background: rgba(0, 229, 255, 0.05);
+    box-shadow:
+        0 0 20px rgba(0, 229, 255, 0.12);
+}
+/* BRAND */
+.brand {
+    text-align: center;
+    margin-bottom: 34px;
+}
+.brand h1 {
+    font-size: 25px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: var(--text-main);
+}
+.brand p {
+    margin-top: 9px;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--cyan);
+}
+/* FORM */
+.input-group {
+    margin-bottom: 22px;
+}
+.input-group label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    color: var(--text-muted);
+}
+.input-group input {
+    width: 100%;
+    height: 50px;
+    padding: 0 15px;
+    color: var(--text-main);
+    font-size: 14px;
+    background: var(--bg-input);
+    border: 1px solid #1d2b40;
+    border-radius: 8px;
+    outline: none;
+    transition: 0.2s;
+}
+.input-group input::placeholder {
+    color: #53647c;
+}
+.input-group input:focus {
+    border-color: var(--cyan);
+    box-shadow:
+        0 0 0 3px rgba(0, 229, 255, 0.07);
+}
+/* PASSWORD */
+.password-wrapper {
+    position: relative;
+}
+.password-wrapper input {
+    padding-right: 75px;
+}
+.toggle-password {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    color: var(--cyan);
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+/* LOGIN BUTTON */
+.login-button {
+    width: 100%;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 8px;
+    background: var(--cyan);
+    color: #06101b;
+    font-size: 13px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.login-button span {
+    font-size: 20px;
+}
+.login-button:hover {
+    background: #70f4ff;
+    box-shadow:
+        0 0 25px rgba(0, 229, 255, 0.2);
+}
+.login-button:active {
+    transform: scale(0.98);
+}
+/* MESSAGE */
+.login-message {
+    margin-top: 14px;
+    font-size: 12px;
+    text-align: center;
+    color: var(--danger);
+}
+/* REGISTER */
+.auth-footer {
+    margin-top: 30px;
+    padding-top: 25px;
+    text-align: center;
+    border-top: 1px solid #1d2b40;
+}
+.auth-footer p {
+    margin-bottom: 10px;
+    color: var(--text-muted);
+    font-size: 10px;
+    letter-spacing: 2px;
+}
+.auth-footer a {
+    color: var(--cyan);
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    text-decoration: none;
+}
+.auth-footer a:hover {
+    color: #70f4ff;
+}
+/* COPYRIGHT */
+.copyright {
+    margin-top: 28px;
+    text-align: center;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    color: #52647d;
+}
+.copyright span {
+    display: block;
+    margin-top: 6px;
+}
+/* MOBILE */
+@media (max-width: 480px) {
+    .auth-container {
+        padding: 16px;
+    }
+    .auth-card {
+        padding: 32px 22px;
+        border-radius: 14px;
+    }
+    .brand h1 {
+        font-size: 22px;
+    }
+    .clan-logo,
+    .logo-placeholder {
+        width: 80px;
+        height: 80px;
+    }
+}
+/* LANDSCAPE MOBILE */
+@media (max-height: 600px) {
+    .auth-container {
+        align-items: flex-start;
+    }
+    .auth-card {
+        margin: 10px auto;
+    }
+}
+
+
+/* =========================================
+   S2N HUB REGISTER
+========================================= */
+.register-card {
+    max-width: 440px;
+}
+/* REGISTER INPUT SPACING */
+.register-card .input-group {
+    margin-bottom: 18px;
+}
+.register-card .brand {
+    margin-bottom: 28px;
+}
+/* REGISTER BUTTON */
+.register-card .login-button {
+    margin-top: 8px;
+    font-size: 12px;
+}
+/* PASSWORD MATCH */
+.input-group input.password-error {
+    border-color: var(--danger);
+    box-shadow:
+        0 0 0 3px rgba(255, 71, 87, 0.07);
+}
+.input-group input.password-success {
+    border-color: #00d68f;
+}
+/* REGISTER MESSAGE */
+.register-card .login-message {
+    min-height: 16px;
+    line-height: 1.6;
+}
+/* MOBILE REGISTER */
+@media (max-width: 480px) {
+    .register-card {
+        padding: 28px 20px;
+    }
+    .register-card .brand h1 {
+        font-size: 21px;
+    }
+    .register-card .input-group {
+        margin-bottom: 16px;
+    }
+}

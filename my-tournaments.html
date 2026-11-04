@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Tournaments | S2N HUB</title>
+
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="stylesheet" href="assets/css/tournament.css">
+  <link rel="stylesheet" href="assets/css/my-tournaments.css">
+</head>
+<body>
+
+  <main class="my-tournaments-page">
+
+    <header class="my-tournaments-header">
+      <div>
+        <span class="section-eyebrow">S2N COMPETITIVE SYSTEM</span>
+        <h1>My Tournaments</h1>
+        <p>ติดตามรายการแข่งขันและสถานะการสมัครของคุณ</p>
+      </div>
+
+      <a href="tournaments.html" class="back-tournaments-btn">
+        + Browse Tournaments
+      </a>
+    </header>
+
+    <section class="my-tournament-stats">
+      <div class="my-stat-card">
+        <span>ทั้งหมด</span>
+        <strong id="total-count">0</strong>
+      </div>
+
+      <div class="my-stat-card pending">
+        <span>รอตรวจสอบ</span>
+        <strong id="pending-count">0</strong>
+      </div>
+
+      <div class="my-stat-card approved">
+        <span>อนุมัติแล้ว</span>
+        <strong id="approved-count">0</strong>
+      </div>
+
+      <div class="my-stat-card rejected">
+        <span>ไม่ผ่าน</span>
+        <strong id="rejected-count">0</strong>
+      </div>
+    </section>
+
+    <section class="my-tournament-content">
+
+      <div class="my-tournament-toolbar">
+        <div>
+          <h2>My Applications</h2>
+          <p>รายการสมัครแข่งขันของสมาชิก</p>
+        </div>
+
+        <div class="my-tournament-filters">
+          <select id="status-filter">
+            <option value="ALL">ทุกสถานะ</option>
+            <option value="PENDING">รอตรวจสอบ</option>
+            <option value="APPROVED">อนุมัติแล้ว</option>
+            <option value="REJECTED">ไม่ผ่าน</option>
+          </select>
+
+          <input
+            type="search"
+            id="search-input"
+            placeholder="ค้นหารายการแข่งขัน..."
+          >
+        </div>
+      </div>
+
+      <div id="applications-container" class="applications-list">
+        <!-- Render by JavaScript -->
+      </div>
+
+      <div id="empty-state" class="empty-state hidden">
+        <div class="empty-icon">S2N</div>
+        <h3>ไม่พบรายการสมัคร</h3>
+        <p>ลองเปลี่ยนตัวกรองหรือสมัครรายการแข่งขันใหม่</p>
+        <a href="tournaments.html">Explore Tournaments</a>
+      </div>
+
+    </section>
+
+    <div class="preview-notice">
+      <span>PREVIEW MODE</span>
+      ข้อมูลในหน้านี้เป็นข้อมูลจำลอง ระบบสมัครแข่งขันจริงจะเชื่อมต่อ Supabase ในขั้นตอนถัดไป
+    </div>
+
+  </main>
+
+  <script src="assets/js/my-tournaments.js"></script>
+</body>
+</html>

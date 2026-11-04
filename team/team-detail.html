@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Team Profile | S2N HUB</title>
+
+  <link rel="stylesheet" href="../assets/css/global.css">
+  <link rel="stylesheet" href="../assets/css/team.css">
+  <link rel="stylesheet" href="../assets/css/team-detail.css">
+</head>
+<body>
+
+  <main class="team-page team-detail-page">
+
+    <header class="team-detail-topbar">
+      <a href="my-team.html" class="team-back-btn">
+        ← MY TEAMS
+      </a>
+
+      <span class="team-eyebrow">
+        S2N // TEAM MANAGEMENT SYSTEM
+      </span>
+    </header>
+
+    <section class="team-profile-banner">
+
+      <div class="team-profile-identity">
+        <div class="team-profile-logo" id="team-logo">
+          S2N
+        </div>
+
+        <div class="team-profile-title">
+          <span class="team-profile-tag" id="team-tag">
+            TAG // S2N
+          </span>
+
+          <h1 id="team-name">S2N ALPHA</h1>
+
+          <p id="team-game">PUBG MOBILE COMPETITIVE TEAM</p>
+
+          <div class="team-profile-id" id="team-id">
+            TEAM ID: S2N-TEAM-001
+          </div>
+        </div>
+      </div>
+
+      <div class="team-profile-actions">
+        <button id="edit-team-btn" class="team-action-btn">
+          EDIT TEAM
+        </button>
+
+        <button id="leave-team-btn" class="team-action-btn danger">
+          LEAVE TEAM
+        </button>
+      </div>
+
+    </section>
+
+    <section class="team-detail-stats">
+
+      <div class="team-detail-stat">
+        <span>MAIN ROSTER</span>
+        <strong id="main-count">4</strong>
+      </div>
+
+      <div class="team-detail-stat">
+        <span>SUBSTITUTE</span>
+        <strong id="sub-count">1</strong>
+      </div>
+
+      <div class="team-detail-stat">
+        <span>TEAM LEADER</span>
+        <strong id="leader-stat">S2N_JP</strong>
+      </div>
+
+      <div class="team-detail-stat">
+        <span>TEAM STATUS</span>
+        <strong class="team-status-active">ACTIVE</strong>
+      </div>
+
+    </section>
+
+    <section class="team-detail-layout">
+
+      <div class="team-detail-main">
+
+        <section class="team-detail-panel">
+
+          <div class="team-detail-panel-header">
+            <div>
+              <span class="team-panel-eyebrow">01 // ROSTER</span>
+              <h2>Team Lineup</h2>
+            </div>
+
+            <span class="roster-count" id="roster-total">
+              05 PLAYERS
+            </span>
+          </div>
+
+          <div id="team-roster" class="team-detail-roster">
+            <!-- Render by JavaScript -->
+          </div>
+
+        </section>
+
+        <section class="team-detail-panel">
+
+          <div class="team-detail-panel-header">
+            <div>
+              <span class="team-panel-eyebrow">02 // IDENTITY</span>
+              <h2>Team Information</h2>
+            </div>
+          </div>
+
+          <div class="team-information-grid">
+
+            <div class="team-information-item">
+              <span>TEAM NAME</span>
+              <strong id="info-team-name">S2N ALPHA</strong>
+            </div>
+
+            <div class="team-information-item">
+              <span>TEAM TAG</span>
+              <strong id="info-team-tag">S2N</strong>
+            </div>
+
+            <div class="team-information-item">
+              <span>GAME</span>
+              <strong id="info-team-game">PUBG MOBILE</strong>
+            </div>
+
+            <div class="team-information-item">
+              <span>CREATED DATE</span>
+              <strong id="info-created-date">28 OCT 2026</strong>
+            </div>
+
+          </div>
+
+          <div class="team-description-box">
+            <span>TEAM DESCRIPTION</span>
+            <p id="team-description">
+              Competitive PUBG Mobile team under S2N HUB.
+            </p>
+          </div>
+
+        </section>
+
+      </div>
+
+      <aside class="team-detail-sidebar">
+
+        <section class="team-detail-panel">
+
+          <div class="team-detail-panel-header">
+            <div>
+              <span class="team-panel-eyebrow">03 // MANAGEMENT</span>
+              <h2>Team Control</h2>
+            </div>
+          </div>
+
+          <div class="team-management-list">
+
+            <button id="copy-team-id-btn" class="team-management-btn">
+              <span class="management-icon">ID</span>
+              <span>
+                <strong>Copy Team ID</strong>
+                <small>Copy team identifier</small>
+              </span>
+              <span class="management-arrow">→</span>
+            </button>
+
+            <button id="copy-team-name-btn" class="team-management-btn">
+              <span class="management-icon">TAG</span>
+              <span>
+                <strong>Copy Team Name</strong>
+                <small>Copy team identity</small>
+              </span>
+              <span class="management-arrow">→</span>
+            </button>
+
+          </div>
+
+          <div id="team-detail-message" class="team-detail-message"></div>
+
+        </section>
+
+        <section class="team-detail-panel team-security-panel">
+
+          <span class="team-panel-eyebrow">SYSTEM STATUS</span>
+
+          <h3>PREVIEW MODE</h3>
+
+          <p>
+            Team management functions are currently running
+            in demonstration mode.
+          </p>
+
+          <div class="team-security-status">
+            <span class="status-dot"></span>
+            MOCK DATA ACTIVE
+          </div>
+
+        </section>
+
+      </aside>
+
+    </section>
+
+    <div class="team-preview-notice">
+      <span>PREVIEW MODE</span>
+      การแก้ไขทีมและการออกจากทีมยังเป็นการจำลองในหน้าเว็บเท่านั้น
+    </div>
+
+  </main>
+
+  <script src="../assets/js/team-detail.js"></script>
+</body>
+</html>

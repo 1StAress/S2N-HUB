@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>My Teams | S2N HUB</title>
+
+  <link rel="stylesheet" href="../assets/css/global.css">
+  <link rel="stylesheet" href="../assets/css/team.css">
+</head>
+<body>
+
+  <main class="team-page">
+
+    <header class="team-header">
+      <div>
+        <span class="team-eyebrow">S2N COMPETITIVE SYSTEM</span>
+        <h1>My Teams</h1>
+        <p>จัดการทีมและรายชื่อผู้เล่นของคุณ</p>
+      </div>
+
+      <a href="create-team.html" class="team-submit-btn">
+        + CREATE TEAM
+      </a>
+    </header>
+
+    <section class="my-team-overview">
+
+      <div class="my-team-overview-card">
+        <span>MY TEAMS</span>
+        <strong id="my-team-count">0</strong>
+      </div>
+
+      <div class="my-team-overview-card">
+        <span>MAIN ROSTER</span>
+        <strong id="main-roster-count">0</strong>
+      </div>
+
+      <div class="my-team-overview-card">
+        <span>SUBSTITUTE</span>
+        <strong id="sub-roster-count">0</strong>
+      </div>
+
+    </section>
+
+    <section class="my-team-section">
+
+      <div class="my-team-section-header">
+        <div>
+          <h2>Team Directory</h2>
+          <p>รายชื่อทีมที่คุณเป็นสมาชิก</p>
+        </div>
+
+        <input
+          type="search"
+          id="team-search"
+          placeholder="ค้นหาชื่อทีม..."
+        >
+      </div>
+
+      <div id="my-team-list" class="my-team-grid">
+        <!-- Render by JavaScript -->
+      </div>
+
+      <div id="my-team-empty" class="my-team-empty hidden">
+        <div class="my-team-empty-logo">S2N</div>
+        <h3>ยังไม่มีทีม</h3>
+        <p>สร้างทีมใหม่หรือเข้าร่วมทีมเพื่อเริ่มต้นการแข่งขัน</p>
+
+        <a href="create-team.html" class="team-submit-btn">
+          CREATE YOUR TEAM
+        </a>
+      </div>
+
+    </section>
+
+    <div class="team-preview-notice">
+      <span>PREVIEW MODE</span>
+      ข้อมูลทีมในหน้านี้เป็นข้อมูลตัวอย่าง ยังไม่ได้เชื่อมต่อ Supabase
+    </div>
+
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../assets/js/supabase.js"></script>
+<script src="../assets/js/my-team.js"></script>
+</body>
+</html>

@@ -1,0 +1,414 @@
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080d18">
+  <title>S2N HUB | Member Management</title>
+  <!-- CSS: ใช้ ../ เพราะไฟล์อยู่ในโฟลเดอร์ admin -->
+<link rel="stylesheet" href="../assets/css/global.css">
+
+<link rel="stylesheet" href="../assets/css/members.css">
+
+
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+</head>
+<body class="members-page admin-page">
+  <div class="members-shell">
+    <!-- ======================================
+         HEADER
+    ======================================= -->
+    <header class="members-header">
+      <a href="../dashboard.html" class="members-brand">
+        <div class="members-brand-mark">
+          S2N
+        </div>
+        <div class="members-brand-text">
+          <strong>S2N HUB</strong>
+          <span>MEMBER MANAGEMENT SYSTEM</span>
+        </div>
+      </a>
+      <div class="members-header-actions">
+        <a href="../dashboard.html" class="members-nav-link">
+          DASHBOARD
+        </a>
+        <button
+          type="button"
+          id="logout-btn"
+          class="members-logout-btn"
+        >
+          LOGOUT ↗
+        </button>
+      </div>
+    </header>
+    <!-- ======================================
+         PAGE TITLE
+    ======================================= -->
+    <section class="members-hero">
+      <div>
+        <span class="members-eyebrow">
+          S2N HUB / ADMINISTRATION
+        </span>
+        <h1>
+          MEMBER <span>MANAGEMENT</span>
+        </h1>
+        <p>
+          จัดการข้อมูลสมาชิกและบัญชีผู้ใช้งานของ S2N HUB
+        </p>
+      </div>
+      <div class="members-system-status">
+        <span class="members-status-dot"></span>
+        SYSTEM ONLINE
+      </div>
+    </section>
+    <!-- ======================================
+         MESSAGE
+    ======================================= -->
+    <div
+      id="members-message"
+      class="members-message"
+      role="status"
+      aria-live="polite"
+    ></div>
+    <!-- ======================================
+         STATISTICS
+    ======================================= -->
+    <section class="members-stats">
+      <article class="members-stat-card">
+        <span class="members-stat-label">
+          TOTAL MEMBERS
+        </span>
+        <strong id="total-members">
+          00
+        </strong>
+        <span class="members-stat-description">
+          Registered accounts
+        </span>
+      </article>
+      <article class="members-stat-card members-stat-admin">
+        <span class="members-stat-label">
+          ADMINISTRATORS
+        </span>
+        <strong id="total-admins">
+          00
+        </strong>
+        <span class="members-stat-description">
+          System administrators
+        </span>
+      </article>
+      <article class="members-stat-card members-stat-regular">
+        <span class="members-stat-label">
+          REGULAR MEMBERS
+        </span>
+        <strong id="total-regular">
+          00
+        </strong>
+        <span class="members-stat-description">
+          Standard accounts
+        </span>
+      </article>
+    </section>
+    <!-- ======================================
+         MEMBER DATABASE
+    ======================================= -->
+    <section class="members-database">
+      <div class="members-database-header">
+        <div>
+          <span class="members-eyebrow">
+            DATABASE / USERS
+          </span>
+          <h2>
+            MEMBER ROSTER
+          </h2>
+          <p>
+            รายชื่อสมาชิกทั้งหมดในระบบ
+          </p>
+        </div>
+        <button
+          type="button"
+          id="refresh-members"
+          class="members-refresh-btn"
+        >
+          ↻ REFRESH
+        </button>
+      </div>
+      <!-- SEARCH TOOLBAR -->
+      <div class="members-toolbar">
+        <div class="members-search-wrap">
+          <span class="members-search-icon">
+            ⌕
+          </span>
+          <input
+            type="search"
+            id="member-search"
+            placeholder="ค้นหา Username หรือ PUBG Name..."
+            autocomplete="off"
+            aria-label="ค้นหาสมาชิก"
+          >
+        </div>
+        <span
+          id="members-result-count"
+          class="members-result-count"
+        >
+          0 RECORDS
+        </span>
+      </div>
+      <!-- MEMBER TABLE -->
+      <div class="members-table-wrap">
+        <table class="members-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>USERNAME</th>
+              <th>PUBG NAME</th>
+              <th>ROLE</th>
+              <th>ACCOUNT ID</th>
+              <th>ACTION</th>
+            </tr>
+          </thead>
+          <tbody id="members-table-body">
+            <tr>
+              <td colspan="6" class="members-loading">
+                LOADING MEMBER DATABASE...
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="members-database-footer">
+        <span>
+          S2N HUB / MEMBER DATABASE
+        </span>
+        <span>
+          SECURE ADMIN ACCESS
+        </span>
+      </div>
+    </section>
+    <!-- ======================================
+         FOOTER
+    ======================================= -->
+    <footer class="members-footer">
+      S2N HUB © MEMBER MANAGEMENT SYSTEM
+    </footer>
+  </div>
+  <!-- ======================================
+       EDIT MEMBER MODAL
+  ======================================= -->
+  <div
+    id="edit-modal"
+    class="members-modal"
+    aria-hidden="true"
+  >
+    <div class="members-modal-backdrop"></div>
+    <div
+      class="members-modal-content"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="edit-modal-title"
+    >
+      <div class="members-modal-header">
+        <div>
+          <span class="members-eyebrow">
+            MEMBER / PROFILE
+          </span>
+          <h2 id="edit-modal-title">
+            EDIT MEMBER
+          </h2>
+          <p>
+            แก้ไข PUBG Name ของสมาชิก
+          </p>
+        </div>
+        <button
+          type="button"
+          id="close-edit-modal"
+          class="members-modal-close"
+          aria-label="Close"
+        >
+          &times;
+        </button>
+      </div>
+      <form id="edit-member-form">
+        <input
+          type="hidden"
+          id="edit-user-id"
+        >
+        <div class="members-form-field">
+          <label for="edit-username">
+            USERNAME
+          </label>
+          <input
+            type="text"
+            id="edit-username"
+            disabled
+          >
+        </div>
+        <div class="members-form-field">
+          <label for="edit-pubg-name">
+            PUBG NAME
+          </label>
+          <input
+            type="text"
+            id="edit-pubg-name"
+            maxlength="40"
+            required
+            autocomplete="off"
+          >
+        </div>
+        <div class="members-modal-actions">
+          <button
+            type="button"
+            id="cancel-edit"
+            class="members-modal-cancel"
+          >
+            CANCEL
+          </button>
+          <button
+            type="submit"
+            id="save-member-btn"
+            class="members-modal-submit"
+          >
+            SAVE CHANGES
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- ======================================
+       RESET PASSWORD MODAL
+  ======================================= -->
+  <div
+    id="reset-password-modal"
+    class="members-modal"
+    aria-hidden="true"
+  >
+    <div
+      class="members-modal-backdrop"
+      id="reset-password-backdrop"
+    ></div>
+    <div
+      class="members-modal-content reset-password-content"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="reset-password-title"
+    >
+      <div class="members-modal-header">
+        <div>
+          <span class="reset-password-eyebrow">
+            S2N HUB / SECURITY
+          </span>
+          <h2 id="reset-password-title">
+            RESET PASSWORD
+          </h2>
+          <p>
+            กำหนดรหัสผ่านใหม่ให้สมาชิก
+          </p>
+        </div>
+        <button
+          type="button"
+          id="close-reset-password-modal"
+          class="members-modal-close"
+          aria-label="Close"
+        >
+          &times;
+        </button>
+      </div>
+      <form id="reset-password-form">
+        <div class="reset-password-user">
+          <span>
+            USERNAME
+          </span>
+          <strong id="reset-password-username">
+            UNKNOWN
+          </strong>
+        </div>
+        <input
+          type="hidden"
+          id="reset-password-target-username"
+        >
+        <div class="reset-password-field">
+          <label for="reset-new-password">
+            NEW PASSWORD
+          </label>
+          <div class="reset-password-input-wrap">
+            <input
+              type="password"
+              id="reset-new-password"
+              minlength="8"
+              maxlength="72"
+              autocomplete="new-password"
+              placeholder="อย่างน้อย 8 ตัวอักษร"
+              required
+            >
+            <button
+              type="button"
+              class="reset-password-toggle"
+              data-toggle-password="reset-new-password"
+            >
+              SHOW
+            </button>
+          </div>
+        </div>
+        <div class="reset-password-field">
+          <label for="reset-confirm-password">
+            CONFIRM PASSWORD
+          </label>
+          <div class="reset-password-input-wrap">
+            <input
+              type="password"
+              id="reset-confirm-password"
+              minlength="8"
+              maxlength="72"
+              autocomplete="new-password"
+              placeholder="กรอกรหัสผ่านอีกครั้ง"
+              required
+            >
+            <button
+              type="button"
+              class="reset-password-toggle"
+              data-toggle-password="reset-confirm-password"
+            >
+              SHOW
+            </button>
+          </div>
+        </div>
+        <div
+          id="reset-password-message"
+          class="reset-password-message"
+          aria-live="polite"
+        ></div>
+        <div class="reset-password-actions">
+          <button
+            type="button"
+            id="cancel-reset-password"
+            class="reset-password-cancel"
+          >
+            CANCEL
+          </button>
+          <button
+            type="submit"
+            id="submit-reset-password"
+            class="reset-password-submit"
+          >
+            RESET PASSWORD
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- ======================================
+       SUPABASE
+       Correct relative paths
+  ======================================= -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../assets/js/supabase.js"></script>
+  <script src="../assets/js/members.js"></script>
+</body>
+</html>

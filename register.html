@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#080d18">
+
+    <title>S2N HUB | Register</title>
+
+    <link rel="stylesheet"
+          href="assets/css/auth.css">
+</head>
+
+<body>
+    <main class="auth-container">
+        <section class="auth-card register-card">
+
+            <!-- CLAN LOGO -->
+            <div class="logo-container">
+                <img
+                    src="assets/images/logo/s2n-logo.png"
+                    alt="S2N Clan Logo"
+                    class="clan-logo"
+                    onerror="this.style.display='none';
+                    document.getElementById('logo-placeholder')
+                    .style.display='flex';"
+                >
+
+                <div id="logo-placeholder"
+                     class="logo-placeholder">
+                    S2N
+                </div>
+            </div>
+
+            <!-- BRAND -->
+            <div class="brand">
+                <h1>SECOND TO NONE</h1>
+                <p>S2N HUB MEMBER REGISTRATION</p>
+            </div>
+
+            <!-- REGISTER FORM -->
+            <form id="register-form">
+
+                <!-- USERNAME -->
+                <div class="input-group">
+                    <label for="username">
+                        USERNAME
+                    </label>
+
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        placeholder="Create your username"
+                        autocomplete="username"
+                        minlength="3"
+                        maxlength="20"
+                        pattern="[a-zA-Z0-9_]+"
+                        required
+                    >
+                </div>
+
+              
+                <!-- PUBG NAME -->
+                <div class="input-group">
+                    <label for="pubg-name">
+                        PUBG NAME
+                    </label>
+
+                    <input
+                        type="text"
+                        id="pubg-name"
+                        name="pubgName"
+                        placeholder="Enter your PUBG name"
+                        maxlength="30"
+                        required
+                    >
+                </div>
+
+                <!-- PASSWORD -->
+                <div class="input-group">
+                    <label for="password">
+                        PASSWORD
+                    </label>
+
+                    <div class="password-wrapper">
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Create your password"
+                            autocomplete="new-password"
+                            minlength="8"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="toggle-password"
+                            data-target="password">
+                            SHOW
+                        </button>
+                    </div>
+                </div>
+
+                <!-- CONFIRM PASSWORD -->
+                <div class="input-group">
+                    <label for="confirm-password">
+                        CONFIRM PASSWORD
+                    </label>
+
+                    <div class="password-wrapper">
+                        <input
+                            type="password"
+                            id="confirm-password"
+                            name="confirmPassword"
+                            placeholder="Confirm your password"
+                            autocomplete="new-password"
+                            minlength="8"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="toggle-password"
+                            data-target="confirm-password">
+                            SHOW
+                        </button>
+                    </div>
+                </div>
+
+                <!-- SUBMIT -->
+                <button
+                    type="submit"
+                    class="login-button">
+
+                    CREATE ACCOUNT
+                    <span>→</span>
+
+                </button>
+
+                <p
+                    id="register-message"
+                    class="login-message"
+                    aria-live="polite">
+                </p>
+
+            </form>
+
+            <!-- LOGIN LINK -->
+            <div class="auth-footer">
+                <p>
+                    ALREADY HAVE AN ACCOUNT?
+                </p>
+
+                <a href="login.html">
+                    BACK TO LOGIN
+                </a>
+            </div>
+
+            <!-- FOOTER -->
+            <div class="copyright">
+                SECOND TO NONE ESPORTS
+                <span>© S2N HUB</span>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- SUPABASE -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="assets/js/supabase.js"></script>
+
+    <!-- REGISTER -->
+    <script src="assets/js/register.js"></script>
+
+</body>
+</html>

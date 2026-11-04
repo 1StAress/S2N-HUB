@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080d18">
+
+  <title>S2N HUB | Dashboard</title>
+
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="stylesheet" href="assets/css/dashboard.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Orbitron:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet">
+</head>
+
+<body class="dashboard-page">
+
+  <div class="dash-bg-grid"></div>
+  <div class="dash-glow"></div>
+
+  <main class="dashboard-container">
+
+    <!-- HEADER -->
+    <header class="dash-header">
+
+      <a href="dashboard.html" class="dash-brand">
+        <img
+          src="assets/images/logo/s2n-logo.png"
+          alt="S2N"
+          class="dash-logo"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
+        >
+
+        <div class="dash-logo-fallback">S2N</div>
+
+        <div class="brand-info">
+          <span class="brand-name">SECOND TO NONE</span>
+          <span class="brand-sub">CLAN HUB / HOME</span>
+        </div>
+      </a>
+
+      <div class="dash-header-right">
+
+        <div class="online-status">
+          <span class="status-dot"></span>
+          CLAN SYSTEM
+        </div>
+
+        <button class="logout-btn" id="logout-btn" type="button">
+          LOGOUT ↗
+        </button>
+
+      </div>
+
+    </header>
+
+<!-- NAVIGATION -->
+<nav class="dash-navigation" id="dash-navigation">
+  
+  <a href="dashboard.html" class="dash-nav-link active">
+    <span class="material-symbols-rounded">dashboard</span>
+    <span>Dashboard</span>
+  </a>
+  
+  <a href="tournament.html" class="dash-nav-link">
+    <span class="material-symbols-rounded">emoji_events</span>
+    <span>Tournament</span>
+  </a>
+  
+  <!-- ADMIN ONLY: Members Management -->
+  <a href="admin/members.html" class="dash-nav-link admin-only hidden">
+    <span class="material-symbols-rounded">groups</span>
+    <span>Members</span>
+  </a>
+  
+  <a href="team/my-team.html" class="dash-nav-link">
+    <span class="material-symbols-rounded">shield</span>
+    <span>Team</span>
+  </a>
+  
+  <a href="profile.html" class="dash-nav-link">
+    <span class="material-symbols-rounded">person</span>
+    <span>Profile</span>
+  </a>
+  
+  <!-- ADMIN ONLY -->
+  <a href="admin/index.html" class="dash-nav-link admin-only hidden">
+    <span class="material-symbols-rounded">admin_panel_settings</span>
+    <span>Admin</span>
+  </a>
+  
+</nav>
+
+    <!-- WELCOME -->
+    <section class="welcome-section">
+
+      <div class="welcome-content">
+
+        <div class="section-label">
+          <span class="label-line"></span>
+          CLAN DASHBOARD
+        </div>
+
+        <h1>
+          WELCOME TO
+          <span>SECOND TO NONE</span>
+        </h1>
+
+        <p class="welcome-description">
+          One Clan. One Identity. No Limits.
+        </p>
+
+      </div>
+
+      <div class="welcome-side">
+
+        <span class="side-label">LOCAL TIME</span>
+
+        <div id="dash-clock" class="dash-clock">
+          00:00:00
+        </div>
+
+        <div id="dash-date" class="dash-date">
+          ---
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- PROFILE -->
+    <section class="profile-panel">
+
+      <div class="profile-left">
+
+        <div class="profile-avatar">
+          <span>S2N</span>
+          <span class="avatar-online"></span>
+        </div>
+
+        <div class="profile-info">
+
+          <div class="profile-role">
+            <span class="role-dot"></span>
+            <span id="profile-role">MEMBER</span>
+          </div>
+
+          <h2 id="profile-username">
+            PLAYER NAME
+          </h2>
+
+          <div class="pubg-name">
+            PUBG NAME:
+            <span id="profile-pubg-name">
+              PUBG PLAYER
+            </span>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="profile-right">
+
+        <div class="profile-stat">
+          <span class="stat-label">CLAN</span>
+          <strong>S2N</strong>
+        </div>
+
+        <div class="profile-stat">
+          <span class="stat-label">STATUS</span>
+          <strong class="stat-active">ACTIVE</strong>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- TOURNAMENT ANNOUNCEMENT -->
+    <section class="announcement-panel tournament-announcement">
+
+      <div class="announcement-icon">
+        <span class="material-symbols-rounded">
+          emoji_events
+        </span>
+      </div>
+
+      <div class="announcement-content">
+
+        <div class="announcement-heading">
+
+          <span class="section-label">
+            TOURNAMENT ANNOUNCEMENT
+          </span>
+
+          <span class="announcement-tag tournament-tag">
+            COMPETITIVE
+          </span>
+
+        </div>
+
+        <div id="tournament-announcement-content">
+
+          <h3 id="announcement-title">
+            S2N TOURNAMENT
+          </h3>
+
+          <p id="announcement-description">
+            กำลังโหลดประกาศการแข่งขัน...
+          </p>
+
+        </div>
+
+        <div class="announcement-meta" id="announcement-meta">
+          <span id="announcement-status">
+            ---
+          </span>
+
+          <span id="announcement-date">
+            ---
+          </span>
+        </div>
+
+        <div class="announcement-actions">
+
+          <a href="tournament.html" class="announcement-button">
+            <span class="material-symbols-rounded">
+              arrow_forward
+            </span>
+
+            ดูรายการแข่งขัน
+          </a>
+
+          <a
+            href="tournament.html"
+            class="announcement-button admin-only hidden"
+            id="admin-create-tournament"
+          >
+            <span class="material-symbols-rounded">
+              add
+            </span>
+
+            สร้างรายการแข่งขัน
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- CLAN ANNOUNCEMENT -->
+    <section class="announcement-panel clan-announcement">
+
+      <div class="announcement-icon">
+        !
+      </div>
+
+      <div class="announcement-content">
+
+        <div class="announcement-heading">
+
+          <span class="section-label">
+            CLAN ANNOUNCEMENT
+          </span>
+
+          <span class="announcement-tag">
+            SYSTEM
+          </span>
+
+        </div>
+
+        <h3 id="clan-announcement-title">
+          WELCOME TO S2N HUB
+        </h3>
+
+        <p id="clan-announcement-description">
+          ยินดีต้อนรับสมาชิกทุกคนเข้าสู่ระบบ S2N HUB
+          พื้นที่สำหรับสมาชิกแคลนและการแข่งขัน
+        </p>
+
+      </div>
+
+    </section>
+
+    <!-- ROSTER -->
+    <section class="roster-section">
+
+      <div class="section-heading">
+
+        <div>
+
+          <div class="section-label">
+            <span class="label-line"></span>
+            CLAN ROSTER
+          </div>
+
+          <h2>
+            MEMBER <span>ROSTER</span>
+          </h2>
+
+        </div>
+
+        <div class="roster-count">
+
+          <span class="count-dot"></span>
+
+          <strong id="roster-count">00</strong>
+
+          <span>MEMBERS</span>
+
+        </div>
+
+      </div>
+
+      <div class="roster-table-wrap">
+
+        <table class="roster-table">
+
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>PLAYER</th>
+              <th>PUBG NAME</th>
+              <th>ROLE</th>
+              <th>STATUS</th>
+            </tr>
+          </thead>
+
+          <tbody id="roster-body">
+
+            <tr>
+              <td colspan="5">
+                กำลังโหลดข้อมูลสมาชิก...
+              </td>
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+      <div class="roster-footer">
+
+        <span>
+          SECOND TO NONE / OFFICIAL ROSTER
+        </span>
+
+        <span>
+          DATA: SUPABASE
+        </span>
+
+      </div>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="dash-footer">
+
+      <span>
+        © 2026 SECOND TO NONE
+      </span>
+
+      <span>
+        S2N HUB / V1.1
+      </span>
+
+    </footer>
+
+  </main>
+
+  <!-- SUPABASE -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script src="assets/js/supabase.js"></script>
+
+  <script src="assets/js/dashboard.js"></script>
+
+</body>
+</html>

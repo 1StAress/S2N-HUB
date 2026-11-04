@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080d18">
+
+  <title>S2N HUB | Tournament Detail</title>
+
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="stylesheet" href="assets/css/tournament.css">
+  <link rel="stylesheet" href="assets/css/tournament-detail.css">
+</head>
+
+<body class="tournament-detail-page">
+
+  <div class="detail-bg-grid"></div>
+  <div class="detail-glow"></div>
+
+  <main class="detail-container">
+
+    <!-- HEADER -->
+    <header class="detail-header">
+
+      <a href="dashboard.html" class="detail-brand">
+        <img
+          src="assets/images/logo/s2n-logo.png"
+          alt="S2N"
+          class="detail-logo"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
+        >
+
+        <div class="detail-logo-fallback">S2N</div>
+
+        <div class="brand-info">
+          <span class="brand-name">SECOND TO NONE</span>
+          <span class="brand-sub">TOURNAMENT SYSTEM</span>
+        </div>
+      </a>
+
+      <div class="detail-header-actions">
+
+        <a href="tournaments.html" class="detail-back-btn">
+          ← TOURNAMENT BOARD
+        </a>
+
+        <a href="my-tournaments.html" class="detail-my-btn">
+          MY REGISTRATIONS
+        </a>
+
+      </div>
+
+    </header>
+
+    <!-- BREADCRUMB -->
+    <div class="detail-breadcrumb">
+      <a href="dashboard.html">CLAN HOME</a>
+      <span>/</span>
+      <a href="tournaments.html">TOURNAMENTS</a>
+      <span>/</span>
+      <span>DETAILS</span>
+    </div>
+
+    <!-- TOURNAMENT HERO -->
+    <section class="detail-hero">
+
+      <div class="detail-hero-content">
+
+        <div class="detail-organizer">
+          SECOND TO NONE / OFFICIAL COMPETITION
+        </div>
+
+        <div class="detail-status" id="detail-status">
+          REGISTRATION OPEN
+        </div>
+
+        <h1 id="detail-title">
+          S2N CHAMPIONS CUP
+        </h1>
+
+        <p id="detail-subtitle">
+          SEASON 01
+        </p>
+
+        <div class="detail-hero-meta">
+
+          <div class="hero-meta-item">
+            <span>GAME</span>
+            <strong>PUBG MOBILE</strong>
+          </div>
+
+          <div class="hero-meta-item">
+            <span>MODE</span>
+            <strong id="detail-mode">SQUAD</strong>
+          </div>
+
+          <div class="hero-meta-item">
+            <span>MAP</span>
+            <strong id="detail-map">ERANGEL</strong>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="detail-hero-side">
+
+        <span class="detail-prize-label">
+          TOTAL PRIZE POOL
+        </span>
+
+        <strong id="detail-prize">
+          ฿5,000
+        </strong>
+
+        <span class="detail-prize-sub">
+          OFFICIAL PRIZE
+        </span>
+
+      </div>
+
+    </section>
+
+    <!-- SUMMARY -->
+    <section class="detail-summary">
+
+      <div class="summary-card">
+        <span class="summary-label">MATCH DATE</span>
+        <strong id="detail-date">15 DEC 2026</strong>
+      </div>
+
+      <div class="summary-card">
+        <span class="summary-label">TEAM LIMIT</span>
+        <strong id="detail-team-limit">16 TEAMS</strong>
+      </div>
+
+      <div class="summary-card">
+        <span class="summary-label">REGISTERED</span>
+        <strong id="detail-registered">08 / 16</strong>
+      </div>
+
+      <div class="summary-card">
+        <span class="summary-label">COUNTDOWN</span>
+        <strong id="detail-countdown">---</strong>
+      </div>
+
+    </section>
+
+    <!-- TABS -->
+    <section class="detail-tabs-section">
+
+      <div class="detail-tabs">
+
+        <button
+          class="detail-tab active"
+          data-tab="overview"
+        >
+          OVERVIEW
+        </button>
+
+        <button
+          class="detail-tab"
+          data-tab="teams"
+        >
+          TEAMS
+        </button>
+
+        <button
+          class="detail-tab"
+          data-tab="matches"
+        >
+          MATCHES
+        </button>
+
+        <button
+          class="detail-tab"
+          data-tab="results"
+        >
+          RESULTS
+        </button>
+
+      </div>
+
+      <!-- OVERVIEW -->
+      <div class="detail-tab-content active" id="tab-overview">
+
+        <div class="overview-grid">
+
+          <div class="overview-main">
+
+            <div class="detail-section-heading">
+              <span class="section-label">
+                <span class="label-line"></span>
+                COMPETITION INFORMATION
+              </span>
+
+              <h2>TOURNAMENT <span>OVERVIEW</span></h2>
+            </div>
+
+            <div class="overview-description">
+              <p id="detail-description">
+                การแข่งขัน PUBG Mobile แบบ Squad
+                เพื่อค้นหาทีมที่แข็งแกร่งที่สุดใน S2N HUB
+              </p>
+            </div>
+
+            <div class="rules-panel">
+
+              <div class="rules-heading">
+                <span class="rules-icon">!</span>
+                <h3>COMPETITION RULES</h3>
+              </div>
+
+              <ul>
+                <li>ผู้สมัครต้องเป็นสมาชิกที่ลงทะเบียนใน S2N HUB</li>
+                <li>ทีมต้องมีสมาชิกตามจำนวนที่กำหนด</li>
+                <li>ห้ามใช้โปรแกรมโกงหรือเครื่องมือที่ผิดกติกา</li>
+                <li>ผู้เข้าแข่งขันต้องปฏิบัติตามกฎของผู้จัด</li>
+                <li>การสมัครต้องได้รับการอนุมัติก่อนเข้าร่วม</li>
+              </ul>
+
+            </div>
+
+          </div>
+
+          <aside class="overview-side">
+
+            <div class="registration-panel">
+
+              <div class="registration-panel-heading">
+                <span>REGISTRATION</span>
+                <span class="registration-live-dot"></span>
+              </div>
+
+              <h3>JOIN THE BATTLE</h3>
+
+              <p>
+                สมัครเข้าร่วมการแข่งขัน
+                และรอการอนุมัติจากผู้ดูแลระบบ
+              </p>
+
+              <div class="registration-progress">
+
+                <div class="registration-progress-heading">
+                  <span>TEAM SLOTS</span>
+
+                  <strong id="detail-progress-text">
+                    8 / 16
+                  </strong>
+                </div>
+
+                <div class="registration-progress-track">
+                  <div
+                    id="detail-progress-fill"
+                    class="registration-progress-fill"
+                    style="width: 50%"
+                  ></div>
+                </div>
+
+              </div>
+
+              <button
+                id="register-tournament-btn"
+                class="register-tournament-btn"
+                type="button"
+              >
+                REGISTER NOW ↗
+              </button>
+
+              <span class="registration-note">
+                PREVIEW MODE / NOT CONNECTED
+              </span>
+
+            </div>
+
+          </aside>
+
+        </div>
+
+      </div>
+
+      <!-- TEAMS -->
+      <div class="detail-tab-content" id="tab-teams">
+
+        <div class="detail-section-heading">
+          <span class="section-label">
+            <span class="label-line"></span>
+            COMPETITOR DIRECTORY
+          </span>
+
+          <h2>REGISTERED <span>TEAMS</span></h2>
+        </div>
+
+        <div class="detail-table-wrap">
+
+          <table class="detail-table">
+
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>TEAM</th>
+                <th>CAPTAIN</th>
+                <th>PLAYERS</th>
+                <th>STATUS</th>
+              </tr>
+            </thead>
+
+            <tbody id="detail-teams-body">
+              <!-- JS -->
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+      <!-- MATCHES -->
+      <div class="detail-tab-content" id="tab-matches">
+
+        <div class="detail-section-heading">
+          <span class="section-label">
+            <span class="label-line"></span>
+            MATCH SCHEDULE
+          </span>
+
+          <h2>UPCOMING <span>MATCHES</span></h2>
+        </div>
+
+        <div id="detail-matches-list" class="matches-list">
+          <!-- JS -->
+        </div>
+
+      </div>
+
+      <!-- RESULTS -->
+      <div class="detail-tab-content" id="tab-results">
+
+        <div class="detail-section-heading">
+          <span class="section-label">
+            <span class="label-line"></span>
+            COMPETITION RESULTS
+          </span>
+
+          <h2>FINAL <span>RESULTS</span></h2>
+        </div>
+
+        <div class="detail-table-wrap">
+
+          <table class="detail-table">
+
+            <thead>
+              <tr>
+                <th>RANK</th>
+                <th>TEAM</th>
+                <th>PLACE POINTS</th>
+                <th>KILL POINTS</th>
+                <th>TOTAL</th>
+              </tr>
+            </thead>
+
+            <tbody id="detail-results-body">
+              <!-- JS -->
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="detail-footer">
+      <span>© 2026 SECOND TO NONE</span>
+      <span>S2N HUB / COMPETITIVE DIVISION</span>
+    </footer>
+
+  </main>
+
+  <script src="assets/js/tournament-detail.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>S2N HUB | Admin Members</title>
+
+  <link rel="stylesheet" href="../assets/css/global.css">
+  <link rel="stylesheet" href="../assets/css/admin.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div class="admin-container">
+
+    <header class="admin-header">
+      <div class="brand">
+        <div class="brand-logo">S2N</div>
+        <div class="brand-info">
+          <h1>S2N HUB</h1>
+          <span>ADMIN CONTROL</span>
+        </div>
+      </div>
+
+      <a href="../dashboard.html" class="back-btn">
+        ← กลับหน้าหลัก
+      </a>
+    </header>
+
+    <main class="admin-content">
+
+      <section class="page-heading">
+        <div>
+          <span class="eyebrow">MEMBER DIRECTORY</span>
+          <h2>รายชื่อสมาชิก</h2>
+          <p>ตรวจสอบรายชื่อผู้ใช้งานและผู้ดูแลระบบ</p>
+        </div>
+      </section>
+
+      <!-- USERS -->
+      <section class="member-section">
+        <div class="section-header">
+          <div class="section-title">
+            <span class="status-dot user-dot"></span>
+            <h3>ผู้ใช้งาน</h3>
+          </div>
+
+          <span class="member-count" id="user-count">0 คน</span>
+        </div>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>USERNAME</th>
+                <th>ชื่อผู้ใช้งาน</th>
+                <th>ROLE</th>
+              </tr>
+            </thead>
+
+            <tbody id="user-list">
+              <tr>
+                <td colspan="4" class="loading-message">
+                  กำลังโหลดข้อมูล...
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ADMINS -->
+      <section class="member-section admin-section">
+        <div class="section-header">
+          <div class="section-title">
+            <span class="status-dot admin-dot"></span>
+            <h3>แอดมิน</h3>
+          </div>
+
+          <span class="member-count admin-count" id="admin-count">0 คน</span>
+        </div>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>USERNAME</th>
+                <th>ชื่อผู้ใช้งาน</th>
+                <th>ROLE</th>
+              </tr>
+            </thead>
+
+            <tbody id="admin-list">
+              <tr>
+                <td colspan="4" class="loading-message">
+                  กำลังโหลดข้อมูล...
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <div id="page-message" class="page-message"></div>
+
+    </main>
+
+    <footer class="admin-footer">
+      S2N HUB <span>•</span> MEMBER DIRECTORY
+    </footer>
+
+  </div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../assets/js/supabase.js"></script>
+<script src="../assets/js/admin.js"></script>
+
+</body>
+</html>

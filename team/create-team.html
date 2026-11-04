@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Team | S2N HUB</title>
+
+  <link rel="stylesheet" href="../assets/css/global.css">
+  <link rel="stylesheet" href="../assets/css/team.css">
+</head>
+<body>
+
+  <main class="team-page">
+
+    <header class="team-header">
+      <div>
+        <span class="team-eyebrow">S2N COMPETITIVE SYSTEM</span>
+        <h1>Create Your Team</h1>
+        <p>สร้างทีมของคุณเพื่อเข้าสู่การแข่งขัน</p>
+      </div>
+
+      <a href="my-team.html" class="team-back-btn">
+        My Teams
+      </a>
+    </header>
+
+    <form id="create-team-form" class="team-form">
+
+      <section class="team-form-section">
+        <div class="team-section-heading">
+          <span class="team-section-number">01</span>
+          <div>
+            <h2>Team Identity</h2>
+            <p>ข้อมูลพื้นฐานของทีม</p>
+          </div>
+        </div>
+
+        <div class="team-form-grid">
+
+          <div class="team-field full-width">
+            <label for="team-name">Team Name</label>
+            <input
+              type="text"
+              id="team-name"
+              name="teamName"
+              placeholder="เช่น S2N ALPHA"
+              maxlength="24"
+              required
+            >
+          </div>
+
+          <div class="team-field">
+            <label for="team-tag">Team Tag</label>
+            <input
+              type="text"
+              id="team-tag"
+              name="teamTag"
+              placeholder="S2N"
+              maxlength="6"
+              required
+            >
+          </div>
+
+          <div class="team-field">
+            <label for="team-game">Game</label>
+            <select id="team-game" name="game" required>
+              <option value="PUBG MOBILE">PUBG MOBILE</option>
+            </select>
+          </div>
+
+          <div class="team-field full-width">
+            <label for="team-description">Team Description</label>
+            <textarea
+              id="team-description"
+              name="description"
+              rows="4"
+              maxlength="300"
+              placeholder="รายละเอียดทีม / สไตล์การเล่น / เป้าหมาย"
+            ></textarea>
+          </div>
+
+        </div>
+      </section>
+
+      <section class="team-form-section">
+        <div class="team-section-heading">
+          <span class="team-section-number">02</span>
+          <div>
+            <h2>Team Roster</h2>
+            <p>กำหนดรายชื่อผู้เล่นในทีม</p>
+          </div>
+        </div>
+
+        <div class="team-roster-list">
+
+          <div class="team-player-row leader-row">
+            <div class="player-role">IGL</div>
+
+            <div class="team-field">
+              <label for="leader-name">Team Leader</label>
+              <input
+                type="text"
+                id="leader-name"
+                name="leader"
+                placeholder="PUBG Name"
+                required
+              >
+            </div>
+
+            <span class="player-role-badge">LEADER</span>
+          </div>
+
+          <div class="team-player-row">
+            <div class="player-role">01</div>
+
+            <div class="team-field">
+              <label for="player-1">Main Player 01</label>
+              <input
+                type="text"
+                id="player-1"
+                name="player1"
+                placeholder="PUBG Name"
+                required
+              >
+            </div>
+
+            <span class="player-role-badge">MAIN</span>
+          </div>
+
+          <div class="team-player-row">
+            <div class="player-role">02</div>
+
+            <div class="team-field">
+              <label for="player-2">Main Player 02</label>
+              <input
+                type="text"
+                id="player-2"
+                name="player2"
+                placeholder="PUBG Name"
+                required
+              >
+            </div>
+
+            <span class="player-role-badge">MAIN</span>
+          </div>
+
+          <div class="team-player-row">
+            <div class="player-role">03</div>
+
+            <div class="team-field">
+              <label for="player-3">Main Player 03</label>
+              <input
+                type="text"
+                id="player-3"
+                name="player3"
+                placeholder="PUBG Name"
+                required
+              >
+            </div>
+
+            <span class="player-role-badge">MAIN</span>
+          </div>
+
+          <div class="team-player-row substitute-row">
+            <div class="player-role">SUB</div>
+
+            <div class="team-field">
+              <label for="substitute">Substitute Player</label>
+              <input
+                type="text"
+                id="substitute"
+                name="substitute"
+                placeholder="PUBG Name (Optional)"
+              >
+            </div>
+
+            <span class="player-role-badge">RESERVE</span>
+          </div>
+
+        </div>
+      </section>
+
+      <section class="team-form-section">
+        <div class="team-section-heading">
+          <span class="team-section-number">03</span>
+          <div>
+            <h2>Confirmation</h2>
+            <p>ตรวจสอบข้อมูลก่อนสร้างทีม</p>
+          </div>
+        </div>
+
+        <label class="team-confirm-checkbox">
+          <input type="checkbox" id="confirm-team" required>
+          <span>
+            ยืนยันว่ารายชื่อผู้เล่นและข้อมูลทีมถูกต้อง
+          </span>
+        </label>
+
+        <div id="team-message" class="team-message"></div>
+
+        <div class="team-form-actions">
+          <a href="my-team.html" class="team-cancel-btn">
+            Cancel
+          </a>
+
+          <button type="submit" class="team-submit-btn">
+            CREATE TEAM
+          </button>
+        </div>
+      </section>
+
+    </form>
+
+  </main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../assets/js/supabase.js"></script>
+<script src="../assets/js/team-create.js"></script>
+</body>
+</html>
