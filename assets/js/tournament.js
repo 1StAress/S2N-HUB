@@ -354,7 +354,7 @@
 
             renderStats();
             renderTournaments();
-            renderMyRegistrations();
+            await renderMyRegistrations();
 
         } catch (error) {
             console.error("[Tournament] Load error:", error);
@@ -613,90 +613,166 @@ const totalPrize = Number(latestTournament?.prize_pool || 0);
        MY REGISTRATIONS
     ========================================== */
 
-    function renderMyRegistrations() {
-        const container =
-            $("#my-registrations-list") ||
-            $("#my-registrations") ||
-            $("#my-registration-list") ||
-            $("#my-entries-list");
+    
+async function renderMyRegistrations() {
+    const container =
+        $("#my-registrations-list") ||
+        $("#my-registrations") ||
+        $("#my-registration-list") ||
+        $("#my-entries-list");
 
-        if (!container) {
-            console.warn(
-                "[Tournament] My registrations container not found."
-            );
-            return;
-        }
+    if (!container) return;
 
-        if (!state.user) {
-            container.innerHTML = `
-                <div class="empty-state">
-                    กรุณาเข้าสู่ระบบ
-                </div>
-            `;
+    if (!state.user) {
+        container.innerHTML = `
+            <div class="empty-state">
+                กรุณาเข้าสู่ระบบ
+            </div>
+        `;
+        return;
+    }
 
-            return;
-        }
+    const myEntries = state.entries.filter(entry =>
+        entry.applicant_id === state.user.id
+    );
 
-        const myEntries = state.entries.filter(entry =>
-            entry.applicant_id === state.user.id
+    if (!myEntries.length) {
+        container.innerHTML = `
+            <div class="empty-state">
+                <span class="material-symbols-rounded">
+                    emoji_events
+                </span>
+                <p>คุณยังไม่ได้สมัครการแข่งขัน</p>
+            </div>
+        `;
+        return;
+    }
+
+    const randomApprovedEntries = myEntries.filter(entry => {
+        const tournament = state.tournaments.find(item =>
+            item.id === entry.tournament_id
         );
 
-        if (!myEntries.length) {
-            container.innerHTML = `
-                <div class="empty-state">
-                    <span class="material-symbols-rounded">
-                        emoji_events
-                    </span>
-                    <p>คุณยังไม่ได้สมัครการแข่งขัน</p>
-                </div>
-            `;
+        return tournament?.match_type === "random" &&
+            entry.status === "approved";
+    });
 
-            return;
-        }
+    let assignmentMap = {};
 
-        container.innerHTML = myEntries.map(entry => {
-            const tournament = state.tournaments.find(item =>
-                item.id === entry.tournament_id
+    if (randomApprovedEntries.length) {
+        const entryIds = randomApprovedEntries.map(entry =>
+            entry.id
+        );
+
+        const {
+            data: assignments,
+            error
+        } = await supabase
+            .from("s2n_tournament_random_assignments")
+            .select(`
+                entry_id,
+                slot_number,
+                slot_name
+            `)
+            .in("entry_id", entryIds);
+
+        if (error) {
+            console.error(
+                "[Tournament] Slot lookup error:",
+                error
             );
+        } else {
+            (assignments || []).forEach(item => {
+                assignmentMap[item.entry_id] = item;
+            });
+        }
+    }
 
-            const tournamentName =
-                tournament?.tournament_name || "การแข่งขัน";
+    container.innerHTML = myEntries.map(entry => {
+        const tournament = state.tournaments.find(item =>
+            item.id === entry.tournament_id
+        );
 
-            const status = entry.status || "pending";
+        const tournamentName =
+            tournament?.tournament_name || "การแข่งขัน";
 
-            const teamName = entry.team
-                ? `${entry.team.team_tag || "TEAM"} - ${entry.team.team_name || "Unknown Team"}`
-                : "สมัครรายบุคคล";
+        const status = entry.status || "pending";
 
-            return `
-                <article class="registration-item">
+        const teamName = entry.team
+            ? `${entry.team.team_tag || "TEAM"} - ${
+                entry.team.team_name || "Unknown Team"
+            }`
+            : "สมัครรายบุคคล";
 
-                    <div class="registration-item-info">
-                        <h3>
-                            ${escapeHTML(tournamentName)}
-                        </h3>
+        const assignment = assignmentMap[entry.id];
 
-                        <p>
-                            ${escapeHTML(teamName)}
-                        </p>
+        let slotHTML = "";
 
-                        <small>
-                            สมัครเมื่อ: ${formatDate(entry.registered_at)}
-                        </small>
+        if (tournament?.match_type === "random") {
+            if (status !== "approved") {
+                slotHTML = `
+                    <div class="my-slot-status">
+                        ⏳ รอ Admin อนุมัติ
                     </div>
-
-                    <div class="registration-item-right">
-                        <span class="status-badge status-${escapeHTML(status)}">
-                            ${escapeHTML(
-                                statusLabels[status] || status
+                `;
+            } else if (!assignment) {
+                slotHTML = `
+                    <div class="my-slot-status">
+                        🎲 รอสุ่ม Slot
+                    </div>
+                `;
+            } else {
+                slotHTML = `
+                    <div class="my-slot-status assigned">
+                        <span>
+                            🎯 คุณอยู่ ${escapeHTML(
+                                assignment.slot_name ||
+                                `SLOT ${assignment.slot_number}`
                             )}
                         </span>
-                    </div>
 
-                </article>
-            `;
-        }).join("");
-    }
+                        <small>
+                            หมายเลข Slot:
+                            ${Number(assignment.slot_number)}
+                        </small>
+                    </div>
+                `;
+            }
+        }
+
+        return `
+            <article class="registration-item">
+
+                <div class="registration-item-info">
+                    <h3>
+                        ${escapeHTML(tournamentName)}
+                    </h3>
+
+                    <p>
+                        ${escapeHTML(teamName)}
+                    </p>
+
+                    <small>
+                        สมัครเมื่อ:
+                        ${formatDate(entry.registered_at)}
+                    </small>
+
+                    ${slotHTML}
+                </div>
+
+                <div class="registration-item-right">
+                    <span class="status-badge status-${escapeHTML(status)}">
+                        ${escapeHTML(
+                            statusLabels[status] || status
+                        )}
+                    </span>
+                </div>
+
+            </article>
+        `;
+    }).join("");
+}
+
 
     /* ==========================================
        RANDOM SETTINGS
