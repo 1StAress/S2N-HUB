@@ -1781,3 +1781,68 @@ body.dashboard-page::after {
   
   text-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
 }
+
+
+/* ==========================================
+   S2N HUB DASHBOARD - FINAL RED THEME
+========================================== */
+
+/* Navigation active */
+.dash-nav-link.active {
+    color: #ff303f;
+    background: linear-gradient(
+        135deg,
+        rgba(229, 9, 20, 0.14),
+        rgba(229, 9, 20, 0.03)
+    );
+    border-color: rgba(229, 9, 20, 0.4);
+}
+
+/* Navigation hover */
+.dash-nav-link:hover {
+    border-color: rgba(229, 9, 20, 0.2);
+}
+
+/* Profile avatar */
+.profile-avatar {
+    border-color: rgba(229, 9, 20, 0.45);
+    background: linear-gradient(145deg, #222, #100607);
+}
+
+/* Announcement */
+.announcement-button {
+    color: #ff303f;
+    border-color: rgba(229, 9, 20, 0.3);
+}
+
+.announcement-button:hover {
+    background: rgba(229, 9, 20, 0.12);
+    border-color: #e50914;
+}
+
+/* Table */
+.roster-table thead {
+    background: rgba(229, 9, 20, 0.06);
+}
+
+.roster-table tbody tr:hover {
+    background: rgba(229, 9, 20, 0.04);
+}
+
+/* Avatar initials */
+.profile-avatar-initials {
+    color: #fff;
+    background: linear-gradient(135deg, #171717, #450000);
+    border-color: #e50914;
+    text-shadow: 0 0 10px rgba(229, 9, 20, 0.5);
+}
+
+/* Global accent */
+body.dashboard-page {
+    accent-color: #e50914;
+}
+
+::selection {
+    color: #fff;
+    background: #850008;
+}

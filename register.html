@@ -2,33 +2,31 @@
 <html lang="th">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#080d18">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#080808">
 
     <title>S2N HUB | Register</title>
 
+    <link rel="stylesheet" href="assets/css/auth.css">
+
     <link rel="stylesheet"
-          href="assets/css/auth.css">
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
 </head>
 
 <body>
     <main class="auth-container">
         <section class="auth-card register-card">
 
-            <!-- CLAN LOGO -->
+            <!-- LOGO -->
             <div class="logo-container">
                 <img
-                    src="assets/images/logo/s2n-logo.png"
+                    src="assets/images/s2n-logo.png"
                     alt="S2N Clan Logo"
                     class="clan-logo"
-                    onerror="this.style.display='none';
-                    document.getElementById('logo-placeholder')
-                    .style.display='flex';"
+                    onerror="this.style.display='none'; document.getElementById('logo-placeholder').style.display='flex';"
                 >
 
-                <div id="logo-placeholder"
-                     class="logo-placeholder">
+                <div id="logo-placeholder" class="logo-placeholder">
                     S2N
                 </div>
             </div>
@@ -44,9 +42,7 @@
 
                 <!-- USERNAME -->
                 <div class="input-group">
-                    <label for="username">
-                        USERNAME
-                    </label>
+                    <label for="username">USERNAME</label>
 
                     <input
                         type="text"
@@ -62,29 +58,27 @@
                 </div>
 
               
-             
 
                 <!-- PASSWORD -->
                 <div class="input-group">
-                    <label for="password">
-                        PASSWORD
-                    </label>
+                    <label for="password">PASSWORD</label>
 
                     <div class="password-wrapper">
-                    <input
-    type="password"
-    id="confirm-password"
-    name="confirmPassword"
-    placeholder="Confirm your password"
-    autocomplete="new-password"
-    minlength="6"
-    required
->
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Create your password"
+                            autocomplete="new-password"
+                            minlength="6"
+                            required
+                        >
 
                         <button
                             type="button"
                             class="toggle-password"
-                            data-target="password">
+                            data-target="password"
+                        >
                             SHOW
                         </button>
                     </div>
@@ -103,14 +97,15 @@
                             name="confirmPassword"
                             placeholder="Confirm your password"
                             autocomplete="new-password"
-                            minlength="8"
+                            minlength="6"
                             required
                         >
 
                         <button
                             type="button"
                             class="toggle-password"
-                            data-target="confirm-password">
+                            data-target="confirm-password"
+                        >
                             SHOW
                         </button>
                     </div>
@@ -119,26 +114,26 @@
                 <!-- SUBMIT -->
                 <button
                     type="submit"
-                    class="login-button">
-
+                    class="login-button"
+                >
                     CREATE ACCOUNT
-                    <span>→</span>
-
+                    <span class="material-symbols-outlined">
+                        arrow_forward
+                    </span>
                 </button>
 
+                <!-- MESSAGE -->
                 <p
                     id="register-message"
                     class="login-message"
-                    aria-live="polite">
-                </p>
+                    aria-live="polite"
+                ></p>
 
             </form>
 
             <!-- LOGIN LINK -->
             <div class="auth-footer">
-                <p>
-                    ALREADY HAVE AN ACCOUNT?
-                </p>
+                <p>ALREADY HAVE AN ACCOUNT?</p>
 
                 <a href="login.html">
                     BACK TO LOGIN

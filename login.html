@@ -2,18 +2,16 @@
 <html lang="th">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <meta name="theme-color" content="#080d18">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#080808">
 
     <title>S2N HUB | Login</title>
 
-   <link rel="stylesheet" href="assets/css/gobal.css">
+    <link rel="stylesheet" href="assets/css/global.css">
+    <link rel="stylesheet" href="assets/css/auth.css">
 
     <link rel="stylesheet"
-          href="assets/css/auth.css">
-       
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
 </head>
 
 <body>
@@ -22,17 +20,20 @@
 
         <section class="auth-card">
 
-            <!-- CLAN LOGO -->
-           <div class="logo-container">
-    <img src="assets/images/s2n-logo.png"
-     alt="S2N Clan Logo"
-     class="clan-logo"
-     onerror="this.style.display='none'; document.getElementById('logo-placeholder').style.display='flex';">
+            <!-- LOGO -->
+            <div class="logo-container">
 
+                <img
+                    src="assets/images/s2n-logo.png"
+                    alt="S2N Clan Logo"
+                    class="clan-logo"
+                    onerror="this.style.display='none'; document.getElementById('logo-placeholder').style.display='flex';"
+                >
 
-               <div id="logo-placeholder" class="logo-placeholder">
-    S2N
-</div>
+                <div id="logo-placeholder" class="logo-placeholder">
+                    S2N
+                </div>
+
             </div>
 
             <!-- BRAND -->
@@ -45,9 +46,7 @@
             <form id="login-form">
 
                 <div class="input-group">
-                    <label for="username">
-                        USERNAME
-                    </label>
+                    <label for="username">USERNAME</label>
 
                     <input
                         type="text"
@@ -60,9 +59,7 @@
                 </div>
 
                 <div class="input-group">
-                    <label for="password">
-                        PASSWORD
-                    </label>
+                    <label for="password">PASSWORD</label>
 
                     <div class="password-wrapper">
 
@@ -91,22 +88,23 @@
                     class="login-button"
                 >
                     LOGIN
-                    <span>→</span>
+                    <span class="material-symbols-outlined">
+                        arrow_forward
+                    </span>
                 </button>
 
-                <p id="login-message"
-                   class="login-message"
-                   aria-live="polite">
-                </p>
+                <p
+                    id="login-message"
+                    class="login-message"
+                    aria-live="polite"
+                ></p>
 
             </form>
 
             <!-- REGISTER -->
             <div class="auth-footer">
 
-                <p>
-                    NEW PLAYER?
-                </p>
+                <p>NEW PLAYER?</p>
 
                 <a href="register.html">
                     CREATE ACCOUNT
@@ -124,9 +122,11 @@
 
     </main>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="assets/js/supabase.js"></script>
-<script src="assets/js/auth.js"></script>
+    <!-- SUPABASE -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="assets/js/supabase.js"></script>
+    <script src="assets/js/auth.js"></script>
 
 </body>
 </html>

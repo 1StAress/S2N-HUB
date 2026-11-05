@@ -1,25 +1,28 @@
 /* =========================================
-S2N HUB AUTHENTICATION
-SECOND TO NONE ESPORTS
-BLACK / SILVER / RED THEME
+   S2N HUB AUTHENTICATION
+   SECOND TO NONE ESPORTS
+   BLACK / SILVER / RED THEME
 ========================================= */
 
 :root {
-–bg-main: #050505;
-–bg-card: #111111;
-–bg-input: #090909;
+    --bg-main: #050505;
+    --bg-card: #111111;
+    --bg-input: #090909;
 
---red: #E50914;
---red-light: #FF3344;
---red-dark: #8B0000;
---silver: #BFC3C8;
---silver-light: #F5F5F5;
---text-main: #F5F5F5;
---text-muted: #858585;
---border: rgba(229, 9, 20, 0.20);
---border-silver: rgba(191, 195, 200, 0.15);
---danger: #FF4757;
+    --red: #E50914;
+    --red-light: #FF3344;
+    --red-dark: #8B0000;
 
+    --silver: #BFC3C8;
+    --silver-light: #F5F5F5;
+
+    --text-main: #F5F5F5;
+    --text-muted: #858585;
+
+    --border: rgba(229, 9, 20, 0.20);
+    --border-silver: rgba(191, 195, 200, 0.15);
+
+    --danger: #FF4757;
 }
 
 /* RESET */
@@ -28,530 +31,504 @@ BLACK / SILVER / RED THEME
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    }
+}
 
 html {
-scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
 
 body {
-font-family: Arial, Helvetica, sans-serif;
-background: var(–bg-main);
-color: var(–text-main);
-min-height: 100vh;
--webkit-font-smoothing: antialiased;
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--bg-main);
+    color: var(--text-main);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
 }
 
-/* =========================================
-BACKGROUND
-========================================= */
+/* BACKGROUND */
 
 .auth-container {
-min-height: 100vh;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
 
-display: flex;
-align-items: center;
-justify-content: center;
-padding: 24px;
-background:
-    radial-gradient(
-        circle at 50% 20%,
-        rgba(229, 9, 20, 0.08),
-        transparent 40%
-    ),
-    linear-gradient(
-        135deg,
-        #050505,
-        #111111,
-        #050505
-    );
-position: relative;
-overflow: hidden;
+    background:
+        radial-gradient(
+            circle at 50% 20%,
+            rgba(229, 9, 20, 0.08),
+            transparent 40%
+        ),
+        linear-gradient(
+            135deg,
+            #050505,
+            #111111,
+            #050505
+        );
 
+    position: relative;
+    overflow: hidden;
 }
-
-/* SUBTLE RED AMBIENT */
 
 .auth-container::before {
-content: “”;
+    content: "";
 
-position: absolute;
-width: 320px;
-height: 320px;
-top: -100px;
-left: -100px;
-border-radius: 50%;
-background: rgba(229, 9, 20, 0.08);
-filter: blur(100px);
-pointer-events: none;
+    position: absolute;
+    width: 320px;
+    height: 320px;
+    top: -100px;
+    left: -100px;
 
+    border-radius: 50%;
+    background: rgba(229, 9, 20, 0.08);
+    filter: blur(100px);
+
+    pointer-events: none;
 }
 
-/* =========================================
-AUTH CARD
-========================================= */
+/* AUTH CARD */
 
 .auth-card {
-position: relative;
-z-index: 1;
+    position: relative;
+    z-index: 1;
 
-width: 100%;
-max-width: 420px;
-padding: 38px 32px;
-background: rgba(17, 17, 17, 0.96);
-border: 1px solid var(--border);
-border-radius: 18px;
-box-shadow:
-    0 0 40px rgba(229, 9, 20, 0.04),
-    0 20px 60px rgba(0, 0, 0, 0.50);
-backdrop-filter: blur(12px);
--webkit-backdrop-filter: blur(12px);
+    width: 100%;
+    max-width: 420px;
+    padding: 38px 32px;
 
+    background: rgba(17, 17, 17, 0.96);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+
+    box-shadow:
+        0 0 40px rgba(229, 9, 20, 0.04),
+        0 20px 60px rgba(0, 0, 0, 0.50);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
 }
 
-/* =========================================
-LOGO — NO FRAME / RED SPARK
-========================================= */
+/* LOGO */
 
 .logo-container {
-position: relative;
+    position: relative;
 
-width: 125px;
-height: 125px;
-display: flex;
-justify-content: center;
-align-items: center;
-margin: 0 auto 22px;
-background: transparent;
-border: none;
-box-shadow: none;
+    width: 150px;
+    height: 125px;
 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin: 0 auto 22px;
+
+    background: transparent;
+    border: none;
+    box-shadow: none;
 }
-
-/* LOGO IMAGE */
 
 .clan-logo {
-width: 100%;
-height: 100%;
+    width: 100%;
+    height: 100%;
 
-object-fit: contain;
-background: transparent;
-border: none;
-border-radius: 0;
-filter:
-    drop-shadow(0 0 5px rgba(229, 9, 20, 0.25))
-    drop-shadow(0 0 12px rgba(191, 195, 200, 0.08));
-animation: authLogoSpark 4s ease-in-out infinite;
+    object-fit: contain;
 
+    background: transparent;
+    border: none;
+    border-radius: 0;
+
+    filter:
+        drop-shadow(0 0 5px rgba(229, 9, 20, 0.25))
+        drop-shadow(0 0 12px rgba(191, 195, 200, 0.08));
+
+    animation: authLogoSpark 4s ease-in-out infinite;
 }
-
-/* SPARK ANIMATION */
 
 @keyframes authLogoSpark {
-0%, 100% {
-filter:
-drop-shadow(0 0 5px rgba(229, 9, 20, 0.25))
-drop-shadow(0 0 12px rgba(191, 195, 200, 0.08));
-}
+    0%, 100% {
+        filter:
+            drop-shadow(0 0 5px rgba(229, 9, 20, 0.25))
+            drop-shadow(0 0 12px rgba(191, 195, 200, 0.08));
+    }
 
-50% {
-    filter:
-        drop-shadow(0 0 9px rgba(255, 51, 68, 0.65))
-        drop-shadow(0 0 25px rgba(229, 9, 20, 0.25))
-        drop-shadow(0 0 35px rgba(191, 195, 200, 0.12));
+    50% {
+        filter:
+            drop-shadow(0 0 9px rgba(255, 51, 68, 0.65))
+            drop-shadow(0 0 25px rgba(229, 9, 20, 0.25))
+            drop-shadow(0 0 35px rgba(191, 195, 200, 0.12));
+    }
 }
-
-}
-
-/* LOGO FALLBACK */
 
 .logo-placeholder {
-display: none;
+    display: none;
 
-width: 100%;
-height: 100%;
-align-items: center;
-justify-content: center;
-font-size: 36px;
-font-weight: 900;
-letter-spacing: 4px;
-color: var(--red);
-background: transparent;
-border: none;
-border-radius: 0;
-text-shadow:
-    0 0 12px rgba(229, 9, 20, 0.5);
+    width: 100%;
+    height: 100%;
 
+    align-items: center;
+    justify-content: center;
+
+    font-size: 36px;
+    font-weight: 900;
+    letter-spacing: 4px;
+
+    color: var(--red);
+    background: transparent;
+
+    border: none;
+    border-radius: 0;
+
+    text-shadow: 0 0 12px rgba(229, 9, 20, 0.5);
 }
 
-/* =========================================
-BRAND
-========================================= */
+/* BRAND */
 
 .brand {
-text-align: center;
-margin-bottom: 34px;
+    text-align: center;
+    margin-bottom: 34px;
 }
 
 .brand h1 {
-font-size: 25px;
-font-weight: 900;
-letter-spacing: 2px;
-
-color: var(--text-main);
-
+    font-size: 25px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: var(--text-main);
 }
 
 .brand p {
-margin-top: 9px;
+    margin-top: 9px;
 
-font-size: 10px;
-letter-spacing: 3px;
-color: var(--red);
+    font-size: 10px;
+    letter-spacing: 3px;
 
+    color: var(--red);
 }
 
-/* =========================================
-FORM
-========================================= */
+/* FORM */
 
 .input-group {
-margin-bottom: 22px;
+    margin-bottom: 22px;
 }
 
 .input-group label {
-display: block;
+    display: block;
 
-margin-bottom: 10px;
-font-size: 11px;
-font-weight: bold;
-letter-spacing: 1.5px;
-color: var(--silver);
+    margin-bottom: 10px;
 
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+
+    color: var(--silver);
 }
 
 .input-group input {
-width: 100%;
-height: 50px;
+    width: 100%;
+    height: 50px;
 
-padding: 0 15px;
-color: var(--text-main);
-font-size: 14px;
-background: var(--bg-input);
-border: 1px solid #292929;
-border-radius: 8px;
-outline: none;
-transition:
-    border-color 0.25s ease,
-    box-shadow 0.25s ease,
-    background 0.25s ease;
+    padding: 0 15px;
 
+    color: var(--text-main);
+    font-size: 14px;
+
+    background: var(--bg-input);
+
+    border: 1px solid #292929;
+    border-radius: 8px;
+
+    outline: none;
+
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease;
 }
 
 .input-group input::placeholder {
-color: #626262;
+    color: #626262;
 }
 
 .input-group input:focus {
-border-color: var(–red);
+    border-color: var(--red);
+    background: #0D0D0D;
 
-background: #0D0D0D;
-box-shadow:
-    0 0 0 3px rgba(229, 9, 20, 0.08),
-    0 0 15px rgba(229, 9, 20, 0.05);
-
+    box-shadow:
+        0 0 0 3px rgba(229, 9, 20, 0.08),
+        0 0 15px rgba(229, 9, 20, 0.05);
 }
 
-/* =========================================
-PASSWORD
-========================================= */
+/* PASSWORD */
 
 .password-wrapper {
-position: relative;
+    position: relative;
 }
 
 .password-wrapper input {
-padding-right: 75px;
+    padding-right: 75px;
 }
 
 .toggle-password {
-position: absolute;
+    position: absolute;
 
-top: 50%;
-right: 12px;
-transform: translateY(-50%);
-border: none;
-background: transparent;
-color: var(--silver);
-font-size: 10px;
-font-weight: bold;
-letter-spacing: 1px;
-cursor: pointer;
-transition: color 0.2s ease;
+    top: 50%;
+    right: 12px;
 
+    transform: translateY(-50%);
+
+    border: none;
+    background: transparent;
+
+    color: var(--silver);
+
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    transition: color 0.2s ease;
 }
 
 .toggle-password:hover {
-color: var(–red-light);
+    color: var(--red-light);
 }
 
-/* =========================================
-LOGIN / REGISTER BUTTON
-========================================= */
+/* LOGIN / REGISTER BUTTON */
 
 .login-button {
-width: 100%;
-height: 52px;
+    width: 100%;
+    height: 52px;
 
-display: flex;
-align-items: center;
-justify-content: center;
-gap: 12px;
-margin-top: 10px;
-border: 1px solid rgba(255, 51, 68, 0.65);
-border-radius: 8px;
-background:
-    linear-gradient(
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    margin-top: 10px;
+
+    border: 1px solid rgba(255, 51, 68, 0.65);
+    border-radius: 8px;
+
+    background: linear-gradient(
         135deg,
         #FF3344,
         #E50914 55%,
         #8B0000
     );
-color: #FFFFFF;
-font-size: 13px;
-font-weight: 900;
-letter-spacing: 2px;
-cursor: pointer;
-transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease,
-    filter 0.25s ease;
 
+    color: #FFFFFF;
+
+    font-size: 13px;
+    font-weight: 900;
+    letter-spacing: 2px;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        filter 0.25s ease;
 }
 
 .login-button span {
-font-size: 20px;
+    font-size: 20px;
 }
 
 .login-button:hover {
-filter: brightness(1.1);
+    filter: brightness(1.1);
 
-box-shadow:
-    0 8px 25px rgba(229, 9, 20, 0.20),
-    0 0 35px rgba(229, 9, 20, 0.08);
-transform: translateY(-2px);
+    box-shadow:
+        0 8px 25px rgba(229, 9, 20, 0.20),
+        0 0 35px rgba(229, 9, 20, 0.08);
 
+    transform: translateY(-2px);
 }
 
 .login-button:active {
-transform: scale(0.98);
+    transform: scale(0.98);
 }
 
 .login-button:disabled {
-opacity: 0.6;
-cursor: not-allowed;
-transform: none;
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
 }
 
-/* =========================================
-MESSAGE
-========================================= */
+/* MESSAGE */
 
 .login-message {
-margin-top: 14px;
+    margin-top: 14px;
 
-font-size: 12px;
-line-height: 1.6;
-text-align: center;
-color: var(--danger);
+    font-size: 12px;
+    line-height: 1.6;
+    text-align: center;
 
+    color: var(--danger);
 }
 
-/* =========================================
-REGISTER FOOTER
-========================================= */
+/* AUTH FOOTER */
 
 .auth-footer {
-margin-top: 30px;
-padding-top: 25px;
+    margin-top: 30px;
+    padding-top: 25px;
 
-text-align: center;
-border-top: 1px solid #292929;
+    text-align: center;
 
+    border-top: 1px solid #292929;
 }
 
 .auth-footer p {
-margin-bottom: 10px;
+    margin-bottom: 10px;
 
-color: var(--text-muted);
-font-size: 10px;
-letter-spacing: 2px;
+    color: var(--text-muted);
 
+    font-size: 10px;
+    letter-spacing: 2px;
 }
 
 .auth-footer a {
-color: var(–silver);
+    color: var(--silver);
 
-font-size: 12px;
-font-weight: bold;
-letter-spacing: 1.5px;
-text-decoration: none;
-transition: color 0.2s ease;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
 
+    text-decoration: none;
+
+    transition: color 0.2s ease;
 }
 
 .auth-footer a:hover {
-color: var(–red-light);
+    color: var(--red-light);
 }
 
-/* =========================================
-COPYRIGHT
-========================================= */
+/* COPYRIGHT */
 
 .copyright {
-margin-top: 28px;
+    margin-top: 28px;
 
-text-align: center;
-font-size: 9px;
-letter-spacing: 1.5px;
-color: #626262;
+    text-align: center;
 
+    font-size: 9px;
+    letter-spacing: 1.5px;
+
+    color: #626262;
 }
 
 .copyright span {
-display: block;
-margin-top: 6px;
+    display: block;
+    margin-top: 6px;
 }
 
-/* =========================================
-REGISTER
-========================================= */
+/* REGISTER */
 
 .register-card {
-max-width: 440px;
+    max-width: 440px;
 }
 
 .register-card .input-group {
-margin-bottom: 18px;
+    margin-bottom: 18px;
 }
 
 .register-card .brand {
-margin-bottom: 28px;
+    margin-bottom: 28px;
 }
 
 .register-card .login-button {
-margin-top: 8px;
-font-size: 12px;
+    margin-top: 8px;
+    font-size: 12px;
 }
 
 /* PASSWORD MATCH */
 
 .input-group input.password-error {
-border-color: var(–danger);
+    border-color: var(--danger);
 
-box-shadow:
-    0 0 0 3px rgba(255, 71, 87, 0.07);
-
+    box-shadow:
+        0 0 0 3px rgba(255, 71, 87, 0.07);
 }
 
 .input-group input.password-success {
-border-color: #00D68F;
+    border-color: #00D68F;
 }
 
 /* REGISTER MESSAGE */
 
 .register-card .login-message {
-min-height: 16px;
-line-height: 1.6;
+    min-height: 16px;
+    line-height: 1.6;
 }
 
-/* =========================================
-MOBILE
-========================================= */
+/* MOBILE */
 
 @media (max-width: 480px) {
-.auth-container {
-padding: 16px;
+    .auth-container {
+        padding: 16px;
+    }
+
+    .auth-card {
+        padding: 32px 22px;
+        border-radius: 14px;
+    }
+
+    .brand h1 {
+        font-size: 22px;
+    }
+
+    .logo-container {
+        width: 105px;
+        height: 105px;
+        margin-bottom: 20px;
+    }
+
+    .clan-logo,
+    .logo-placeholder {
+        width: 100%;
+        height: 100%;
+    }
+
+    .register-card {
+        padding: 28px 20px;
+    }
+
+    .register-card .brand h1 {
+        font-size: 21px;
+    }
+
+    .register-card .input-group {
+        margin-bottom: 16px;
+    }
 }
 
-.auth-card {
-    padding: 32px 22px;
-    border-radius: 14px;
-}
-.brand h1 {
-    font-size: 22px;
-}
-.logo-container {
-    width: 105px;
-    height: 105px;
-    margin-bottom: 20px;
-}
-.clan-logo,
-.logo-placeholder {
-    width: 100%;
-    height: 100%;
-}
-.register-card {
-    padding: 28px 20px;
-}
-.register-card .brand h1 {
-    font-size: 21px;
-}
-.register-card .input-group {
-    margin-bottom: 16px;
-}
-
-}
-
-/* =========================================
-LANDSCAPE MOBILE
-========================================= */
+/* LANDSCAPE MOBILE */
 
 @media (max-height: 600px) {
-.auth-container {
-align-items: flex-start;
+    .auth-container {
+        align-items: flex-start;
+    }
+
+    .auth-card {
+        margin: 10px auto;
+    }
 }
 
-.auth-card {
-    margin: 10px auto;
-}
-
-}
-
-/* =========================================
-REDUCED MOTION
-========================================= */
+/* REDUCED MOTION */
 
 @media (prefers-reduced-motion: reduce) {
-*,
-*::before,
-*::after {
-animation-duration: 0.01ms !important;
-animation-iteration-count: 1 !important;
-transition-duration: 0.01ms !important;
-scroll-behavior: auto !important;
-}
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
 }
 
-/* =========================================
-S2N HUB SECURITY VISIBILITY
-========================================= */
+/* SECURITY VISIBILITY */
 
 .hidden,
 [hidden] {
-display: none !important;
-}
-
-.logo-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.clan-logo {
-    display: block;
-    width: 150px;
-    height: auto;
-    object-fit: contain;
-    background: transparent;
+    display: none !important;
 }

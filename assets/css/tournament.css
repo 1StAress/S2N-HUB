@@ -1954,3 +1954,355 @@ body.modal-open .modal-box {
         flex: 1;
     }
 }
+
+
+/* ==========================================
+   S2N HUB TOURNAMENT - RED ESPORTS THEME
+========================================== */
+
+.tournament-page {
+    background: #050505;
+    color: #f5f5f5;
+}
+
+/* Main colors */
+.tournament-eyebrow,
+.section-label {
+    color: #a3a3a3;
+}
+
+.tournament-header h1 span,
+.hero-content h2 span {
+    color: #e50914;
+}
+
+/* Hero */
+.tournament-hero {
+    border-color: rgba(229, 9, 20, 0.35);
+    background:
+        radial-gradient(
+            ellipse at 80% 50%,
+            rgba(229, 9, 20, 0.16),
+            transparent 45%
+        ),
+        linear-gradient(110deg, #151515, #080808 70%, #180707);
+}
+
+.hero-tag {
+    color: #ff5964;
+    border-color: #5a171c;
+    background: #1b0b0d;
+}
+
+.live-dot {
+    background: #e50914;
+    box-shadow: 0 0 12px #e50914;
+}
+
+.hero-ring {
+    border-color: rgba(229, 9, 20, 0.2);
+}
+
+.ring-two {
+    border-color: rgba(229, 9, 20, 0.25);
+}
+
+.hero-cross {
+    color: rgba(229, 9, 20, 0.08);
+}
+
+/* Buttons */
+.btn-primary,
+.btn-register,
+.btn-admin {
+    background: linear-gradient(135deg, #e50914, #850008);
+    border-color: #e50914;
+    color: #fff;
+    box-shadow: 0 5px 20px rgba(229, 9, 20, 0.12);
+}
+
+.btn-primary:hover,
+.btn-register:hover,
+.btn-admin:hover {
+    background: linear-gradient(135deg, #ff2633, #a3000a);
+    border-color: #ff3344;
+    box-shadow: 0 7px 24px rgba(229, 9, 20, 0.25);
+}
+
+.btn-outline {
+    color: #d0d0d0;
+    background: #111;
+    border-color: #333;
+}
+
+.btn-outline:hover {
+    border-color: #e50914;
+    color: #fff;
+}
+
+.role-badge {
+    color: #e50914;
+    border-color: #48151a;
+    background: #160a0b;
+}
+
+/* Tournament cards */
+.tournament-card {
+    background: linear-gradient(145deg, #141414, #090909);
+    border-color: #292929;
+}
+
+.tournament-card:hover {
+    border-color: #e50914;
+    box-shadow: 0 8px 30px rgba(229, 9, 20, 0.08);
+}
+
+.card-game {
+    color: #e50914;
+}
+
+.card-metrics {
+    border-color: #292929;
+}
+
+.metric strong {
+    color: #e5e5e5;
+}
+
+.card-dates .material-symbols-rounded {
+    color: #e50914;
+}
+
+/* Status */
+.status-upcoming {
+    color: #d0d0d0;
+    border-color: #454545;
+    background: #191919;
+}
+
+.status-registration {
+    color: #ff5964;
+    border-color: #6b1b22;
+    background: #1d0b0d;
+}
+
+.status-ongoing {
+    color: #f0f0f0;
+    border-color: #e50914;
+    background: #25090b;
+}
+
+.status-completed {
+    color: #a3a3a3;
+    border-color: #383838;
+    background: #171717;
+}
+
+.status-pending {
+    color: #d0d0d0;
+    border-color: #555;
+    background: #1c1c1c;
+}
+
+.status-approved {
+    color: #f5f5f5;
+    border-color: #555;
+    background: #202020;
+}
+
+.status-rejected {
+    color: #ff5964;
+    border-color: #6b1b22;
+    background: #1d0b0d;
+}
+
+/* Filter */
+.filter-btn {
+    color: #aaa;
+    background: #111;
+    border-color: #303030;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    color: #fff;
+    background: #25090b;
+    border-color: #e50914;
+}
+
+/* Secondary buttons */
+.btn-small {
+    color: #ddd;
+    background: #171717;
+    border-color: #383838;
+}
+
+.btn-small:hover {
+    background: #222;
+    border-color: #e50914;
+}
+
+.btn-small.danger {
+    color: #ff5964;
+    background: #1d0b0d;
+    border-color: #6b1b22;
+}
+
+.btn-small.success {
+    color: #eee;
+    background: #191919;
+    border-color: #555;
+}
+
+/* Modal */
+.modal-box {
+    background: #101010;
+    border-color: #353535;
+}
+
+.modal-box input,
+.modal-box select,
+.modal-box textarea {
+    color: #f5f5f5;
+    background: #080808;
+    border-color: #333;
+}
+
+.modal-box input:focus,
+.modal-box select:focus,
+.modal-box textarea:focus {
+    border-color: #e50914;
+    box-shadow: 0 0 0 3px rgba(229, 9, 20, 0.1);
+}
+
+.modal-header h2 {
+    color: #f5f5f5;
+}
+
+.modal-close {
+    color: #bbb;
+    background: #171717;
+    border-color: #333;
+}
+
+.modal-close:hover {
+    border-color: #e50914;
+    color: #fff;
+}
+
+/* Progress */
+.progress-track {
+    background: #292929;
+}
+
+.progress-fill {
+    background: linear-gradient(90deg, #850008, #e50914);
+}
+
+/* Details */
+.btn-tournament-details {
+    color: #e5e5e5;
+    background: #171717;
+    border-color: #5a2025;
+}
+
+.btn-tournament-details:hover {
+    color: #fff;
+    background: #25090b;
+    border-color: #e50914;
+}
+
+.tournament-details-hero {
+    border-color: #4a1b20;
+    background: linear-gradient(135deg, #20090b, #101010);
+}
+
+.details-stat strong,
+.tournament-details-section h3 .material-symbols-rounded,
+.roster-member-count {
+    color: #e50914;
+}
+
+.tournament-roster-card {
+    border-color: #333;
+    background: #111;
+}
+
+.roster-position {
+    color: #ff5964;
+    background: #25090b;
+}
+
+/* Back dashboard */
+.btn-back-dashboard {
+    color: #ddd;
+    background: #111;
+    border-color: #333;
+}
+
+.btn-back-dashboard:hover {
+    color: #fff;
+    background: #25090b;
+    border-color: #e50914;
+}
+
+/* Refresh */
+.btn-refresh {
+    color: #ddd;
+    background: #111;
+    border-color: #4a1b20;
+}
+
+.btn-refresh:hover {
+    color: #fff;
+    background: #25090b;
+    border-color: #e50914;
+}
+
+.btn-refresh .refresh-icon {
+    color: #e50914;
+}
+
+.btn-refresh:hover .refresh-icon {
+    color: #ff5964;
+}
+
+/* Toast */
+.tournament-toast {
+    color: #eee;
+    background: #111;
+    border-color: #444;
+}
+
+.tournament-toast.toast-success {
+    color: #eee;
+    border-color: #555;
+}
+
+.tournament-toast.toast-error {
+    color: #ff5964;
+    border-color: #6b1b22;
+}
+
+/* Footer */
+.tournament-footer {
+    border-color: #292929;
+    color: #777;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .tournament-card {
+        background: linear-gradient(145deg, #141414, #090909);
+    }
+
+    .tournament-hero {
+        background:
+            radial-gradient(
+                ellipse at 80% 50%,
+                rgba(229, 9, 20, 0.12),
+                transparent 45%
+            ),
+            linear-gradient(110deg, #151515, #080808);
+    }
+}

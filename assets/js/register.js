@@ -7,9 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   
   const usernameInput =
     document.getElementById("username");
-  
-  const pubgNameInput =
-    document.getElementById("pubg-name");
+ 
   
   const passwordInput =
     document.getElementById("password");
@@ -67,10 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
         usernameInput.value
         .trim()
         .toLowerCase();
-      
-      const pubgName =
-        pubgNameInput.value.trim();
-      
+
       const password =
         passwordInput.value;
       
@@ -97,11 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
       
-      if (!pubgName) {
-        registerMessage.textContent =
-          "กรุณากรอก PUBG Name";
-        return;
-      }
+
       
       const registerButton =
         registerForm.querySelector(
@@ -133,8 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
           options: {
             data: {
               username: username,
-              display_name: pubgName,
-              pubg_name: pubgName
+         
             }
           }
         });
