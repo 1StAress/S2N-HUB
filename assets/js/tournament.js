@@ -398,11 +398,8 @@
                 ).length.toLocaleString("th-TH");
         }
 
-        const totalPrize = state.tournaments.reduce(
-            (sum, tournament) =>
-                sum + Number(tournament.prize_pool || 0),
-            0
-        );
+        const latestTournament = state.tournaments[0];
+const totalPrize = Number(latestTournament?.prize_pool || 0);
 
         if (prizeStat) {
             prizeStat.textContent = `฿${formatMoney(totalPrize)}`;
@@ -1992,7 +1989,8 @@
 
         const mapName =
             $("#tournament-map")?.value || "Erangel";
-
+const tournamentMode =
+    $("#tournament-mode")?.value || "normal";
         const description =
             $("#tournament-description")?.value.trim() || "";
 
@@ -2074,17 +2072,17 @@
             registration_start: registrationStart,
             registration_end: registrationEnd,
 
-            max_teams: matchType === "team"
-                ? maxTeams
-                : randomSlots,
-
-            random_slots: matchType === "random"
-                ? randomSlots
-                : null,
-
-            random_players_per_slot: matchType === "random"
-                ? playersPerSlot
-                : null,
+            max_teams: matchType === "team" ?
+    maxTeams :
+    randomSlots,
+    
+    random_slots: matchType === "random" ?
+    randomSlots :
+    maxTeams,
+    
+    random_players_per_slot: 4,
+    
+    mode: tournamentMode,
 
             status: "upcoming",
             created_by: state.user.id
