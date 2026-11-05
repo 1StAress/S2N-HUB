@@ -85,9 +85,9 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
       
-      if (password.length < 8) {
+      if (password.length < 6) {
         registerMessage.textContent =
-          "Password ต้องมีอย่างน้อย 8 ตัว";
+          "Password ต้องมีอย่างน้อย 6 ตัว";
         return;
       }
       
