@@ -7,8 +7,9 @@
 
   <title>S2N HUB | Dashboard</title>
 
-  <link rel="stylesheet" href="assets/css/global.css">
-  <link rel="stylesheet" href="assets/css/dashboard.css">
+ <link rel="stylesheet" href="assets/css/global.css">
+<link rel="stylesheet" href="assets/css/dashboard.css">
+  
 
   <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Orbitron:wght@500;600;700;800&display=swap" rel="stylesheet">
 
@@ -22,39 +23,41 @@
 
   <main class="dashboard-container">
 
-    <!-- HEADER -->
-    <header class="dash-header">
+<!-- HEADER -->
+<header class="dash-header">
 
-      <a href="dashboard.html" class="dash-brand">
-        <img
-          src="assets/images/logo/s2n-logo.png"
-          alt="S2N"
-          class="dash-logo"
-          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
-        >
+  <a href="dashboard.html" class="dash-brand">
 
-        <div class="dash-logo-fallback">S2N</div>
+    <img
+      src="./assets/images/s2n-logo.png"
+      alt="S2N Clan Logo"
+      class="dash-logo"
+      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+    >
 
-        <div class="brand-info">
-          <span class="brand-name">SECOND TO NONE</span>
-          <span class="brand-sub">CLAN HUB / HOME</span>
-        </div>
-      </a>
+   <div class="dash-logo-fallback">S2N</div>
 
-      <div class="dash-header-right">
+    <div class="brand-info">
+      <span class="brand-name">SECOND TO NONE</span>
+      <span class="brand-sub">CLAN HUB / HOME</span>
+    </div>
 
-        <div class="online-status">
-          <span class="status-dot"></span>
-          CLAN SYSTEM
-        </div>
+  </a>
 
-        <button class="logout-btn" id="logout-btn" type="button">
-          LOGOUT ↗
-        </button>
+  <div class="dash-header-right">
 
-      </div>
+    <div class="online-status">
+      <span class="status-dot"></span>
+      CLAN SYSTEM
+    </div>
 
-    </header>
+    <button class="logout-btn" id="logout-btn" type="button">
+      LOGOUT
+    </button>
+
+  </div>
+
+</header>
 
 <!-- NAVIGATION -->
 <nav class="dash-navigation" id="dash-navigation">
@@ -130,53 +133,64 @@
 
     </section>
 
-    <!-- PROFILE -->
-    <section class="profile-panel">
+  <!-- PROFILE -->
+<section class="profile-panel">
 
-      <div class="profile-left">
+  <div class="profile-left">
 
-        <div class="profile-avatar">
-          <span>S2N</span>
-          <span class="avatar-online"></span>
-        </div>
+<!-- PLAYER AVATAR -->
+<div class="profile-avatar">
 
-        <div class="profile-info">
+  <div
+    class="profile-avatar-initials"
+    id="profile-avatar-initials"
+  >
+    S2N
+  </div>
 
-          <div class="profile-role">
-            <span class="role-dot"></span>
-            <span id="profile-role">MEMBER</span>
-          </div>
+  <span class="avatar-online"></span>
 
-          <h2 id="profile-username">
-            PLAYER NAME
-          </h2>
+</div>
 
-          <div class="pubg-name">
-            PUBG NAME:
-            <span id="profile-pubg-name">
-              PUBG PLAYER
-            </span>
-          </div>
+    <!-- PLAYER INFO -->
+    <div class="profile-info">
 
-        </div>
-
+      <div class="profile-role">
+        <span class="role-dot"></span>
+        <span id="profile-role">MEMBER</span>
       </div>
 
-      <div class="profile-right">
+      <h2 id="profile-username">
+        PLAYER NAME
+      </h2>
 
-        <div class="profile-stat">
-          <span class="stat-label">CLAN</span>
-          <strong>S2N</strong>
-        </div>
-
-        <div class="profile-stat">
-          <span class="stat-label">STATUS</span>
-          <strong class="stat-active">ACTIVE</strong>
-        </div>
-
+      <div class="pubg-name">
+        PUBG NAME:
+        <span id="profile-pubg-name">
+          PUBG PLAYER
+        </span>
       </div>
 
-    </section>
+    </div>
+
+  </div>
+
+  <!-- PROFILE STATS -->
+  <div class="profile-right">
+
+    <div class="profile-stat">
+      <span class="stat-label">CLAN</span>
+      <strong>S2N</strong>
+    </div>
+
+    <div class="profile-stat">
+      <span class="stat-label">STATUS</span>
+      <strong class="stat-active">ACTIVE</strong>
+    </div>
+
+  </div>
+
+</section>
 
     <!-- TOURNAMENT ANNOUNCEMENT -->
     <section class="announcement-panel tournament-announcement">

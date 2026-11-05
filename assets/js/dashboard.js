@@ -4,9 +4,10 @@
 // Role-Based Navigation
 // Admin Control + Member Privacy
 // Tournament Announcement
+// PUBG Avatar Initials
 // ==========================================
 
-document.addEventListener("DOMContentLoaded", async () => {
+document.addEventListener("DOMContentLoaded", async () =>  {
   "use strict";
 
   const s2nClient = window.supabaseClient;
@@ -25,8 +26,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   const profileUsername = $("#profile-username");
   const profilePubgName = $("#profile-pubg-name");
   const profileRole = $("#profile-role");
+  const profileAvatarInitials = $("#profile-avatar-initials");
 
-  const rosterSection = $("#admin-roster") || $(".roster-section");
+  const rosterSection =
+    $("#admin-roster") || $(".roster-section");
+
   const rosterBody = $("#roster-body");
   const rosterCount = $("#roster-count");
 
@@ -40,7 +44,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   const announcementStatus = $("#announcement-status");
   const announcementDate = $("#announcement-date");
 
-  const adminCreateTournament = $("#admin-create-tournament");
+  const adminCreateTournament =
+    $("#admin-create-tournament");
 
   // ==========================================
   // HELPERS
@@ -53,6 +58,26 @@ document.addEventListener("DOMContentLoaded", async () => {
       .replace(/>/g, "&gt;")
       .replace(/"/g, "&quot;")
       .replace(/'/g, "&#039;");
+  }
+
+  // PUBG NAME INITIALS
+  function getInitials(id) {
+    const name = String(id || "").trim();
+
+    if (!name) return "??";
+
+    const words = name
+      .split(/[\s._\-•]+/)
+      .filter(Boolean);
+
+    if (words.length >= 2) {
+      return words
+        .slice(0, 2)
+        .map((word) => word.charAt(0).toUpperCase())
+        .join("");
+    }
+
+    return name.substring(0, 2).toUpperCase();
   }
 
   function formatDate(value) {
@@ -83,19 +108,26 @@ document.addEventListener("DOMContentLoaded", async () => {
   // ==========================================
 
   function hideAdminElements() {
-    document.querySelectorAll(".admin-only").forEach((element) => {
-      element.classList.add("hidden");
-      element.setAttribute("hidden", "");
-      element.style.setProperty("display", "none", "important");
-    });
+    document.querySelectorAll(".admin-only")
+      .forEach((element) => {
+        element.classList.add("hidden");
+        element.setAttribute("hidden", "");
+
+        element.style.setProperty(
+          "display",
+          "none",
+          "important"
+        );
+      });
   }
 
   function showAdminElements() {
-    document.querySelectorAll(".admin-only").forEach((element) => {
-      element.classList.remove("hidden");
-      element.removeAttribute("hidden");
-      element.style.removeProperty("display");
-    });
+    document.querySelectorAll(".admin-only")
+      .forEach((element) => {
+        element.classList.remove("hidden");
+        element.removeAttribute("hidden");
+        element.style.removeProperty("display");
+      });
   }
 
   function setRosterVisibility(isAdmin) {
@@ -108,11 +140,15 @@ document.addEventListener("DOMContentLoaded", async () => {
     } else {
       rosterSection.classList.add("hidden");
       rosterSection.setAttribute("hidden", "");
-      rosterSection.style.setProperty("display", "none", "important");
+
+      rosterSection.style.setProperty(
+        "display",
+        "none",
+        "important"
+      );
     }
   }
 
-  // ซ่อน Admin UI ตั้งแต่เริ่มต้น
   hideAdminElements();
   setRosterVisibility(false);
 
@@ -124,23 +160,25 @@ document.addEventListener("DOMContentLoaded", async () => {
     const now = new Date();
 
     if (dashClock) {
-      dashClock.textContent = now.toLocaleTimeString("th-TH", {
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-        hour12: false,
-        timeZone: "Asia/Bangkok"
-      });
+      dashClock.textContent =
+        now.toLocaleTimeString("th-TH", {
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+          hour12: false,
+          timeZone: "Asia/Bangkok"
+        });
     }
 
     if (dashDate) {
-      dashDate.textContent = now.toLocaleDateString("th-TH", {
-        weekday: "long",
-        day: "numeric",
-        month: "long",
-        year: "numeric",
-        timeZone: "Asia/Bangkok"
-      });
+      dashDate.textContent =
+        now.toLocaleDateString("th-TH", {
+          weekday: "long",
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+          timeZone: "Asia/Bangkok"
+        });
     }
   }
 
@@ -171,7 +209,9 @@ document.addEventListener("DOMContentLoaded", async () => {
       error: profileError
     } = await s2nClient
       .from("s2n_members")
-      .select("id, user_id, username, display_name, role")
+      .select(
+        "id, user_id, username, display_name, role"
+      )
       .eq("user_id", user.id)
       .maybeSingle();
 
@@ -181,7 +221,10 @@ document.addEventListener("DOMContentLoaded", async () => {
         profileError
       );
 
-      showMessage(profileUsername, "PROFILE ERROR");
+      showMessage(
+        profileUsername,
+        "PROFILE ERROR"
+      );
 
       return;
     }
@@ -191,7 +234,10 @@ document.addEventListener("DOMContentLoaded", async () => {
         "S2N HUB: Member profile not found."
       );
 
-      showMessage(profileUsername, "PROFILE NOT FOUND");
+      showMessage(
+        profileUsername,
+        "PROFILE NOT FOUND"
+      );
 
       return;
     }
@@ -200,15 +246,27 @@ document.addEventListener("DOMContentLoaded", async () => {
     // ROLE VALIDATION
     // ==========================================
 
-    const userRole = String(currentMember.role || "")
-      .trim()
-      .toLowerCase();
+    const userRole =
+      String(currentMember.role || "")
+        .trim()
+        .toLowerCase();
 
     const isAdmin = userRole === "admin";
 
-    console.log("S2N HUB USER:", currentMember.username);
-    console.log("S2N HUB ROLE:", userRole);
-    console.log("S2N HUB IS ADMIN:", isAdmin);
+    console.log(
+      "S2N HUB USER:",
+      currentMember.username
+    );
+
+    console.log(
+      "S2N HUB ROLE:",
+      userRole
+    );
+
+    console.log(
+      "S2N HUB IS ADMIN:",
+      isAdmin
+    );
 
     // ==========================================
     // APPLY PERMISSIONS
@@ -253,25 +311,37 @@ document.addEventListener("DOMContentLoaded", async () => {
     );
 
     // ==========================================
+    // PROFILE AVATAR INITIALS
+    // ==========================================
+
+    if (profileAvatarInitials) {
+      profileAvatarInitials.textContent =
+        getInitials(pubgName);
+    }
+
+    // ==========================================
     // NAVIGATION ACTIVE STATE
     // ==========================================
 
-    const currentPage = window.location.pathname
-      .split("/")
-      .pop()
-      .toLowerCase();
-
-    document.querySelectorAll(".dash-nav-link").forEach((link) => {
-      const linkPage = link.getAttribute("href")
-        ?.split("/")
+    const currentPage =
+      window.location.pathname
+        .split("/")
         .pop()
         .toLowerCase();
 
-      link.classList.toggle(
-        "active",
-        linkPage === currentPage
-      );
-    });
+    document.querySelectorAll(".dash-nav-link")
+      .forEach((link) => {
+        const linkPage =
+          link.getAttribute("href")
+            ?.split("/")
+            .pop()
+            .toLowerCase();
+
+        link.classList.toggle(
+          "active",
+          linkPage === currentPage
+        );
+      });
 
     // ==========================================
     // LOAD CLAN ROSTER
@@ -296,7 +366,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         error
       } = await s2nClient
         .from("s2n_members")
-        .select("user_id, username, display_name, role, created_at")
+        .select(
+          "user_id, username, display_name, role, created_at"
+        )
         .order("created_at", {
           ascending: true
         });
@@ -339,65 +411,72 @@ document.addEventListener("DOMContentLoaded", async () => {
           String(members.length).padStart(2, "0");
       }
 
-      rosterBody.innerHTML = members.map((member, index) => {
-        const memberUsername =
-          member.username || "UNKNOWN PLAYER";
+      rosterBody.innerHTML =
+        members.map((member, index) => {
 
-        const memberPubgName =
-          member.display_name || memberUsername;
+          const memberUsername =
+            member.username || "UNKNOWN PLAYER";
 
-        const memberRole = String(member.role || "")
-          .trim()
-          .toLowerCase();
+          const memberPubgName =
+            member.display_name ||
+            memberUsername;
 
-        const role =
-          memberRole === "admin"
-            ? "ADMIN"
-            : "MEMBER";
+          const memberRole =
+            String(member.role || "")
+              .trim()
+              .toLowerCase();
 
-        const avatarText =
-          memberUsername.charAt(0).toUpperCase();
+          const role =
+            memberRole === "admin"
+              ? "ADMIN"
+              : "MEMBER";
 
-        return `
-          <tr>
+          // PUBG NAME INITIALS
+          const avatarText =
+            getInitials(memberPubgName);
 
-            <td class="roster-number">
-              ${String(index + 1).padStart(2, "0")}
-            </td>
+          return `
+            <tr>
 
-            <td>
-              <div class="roster-player">
+              <td class="roster-number">
+                ${String(index + 1).padStart(2, "0")}
+              </td>
 
-                <div class="roster-avatar">
-                  ${escapeHTML(avatarText)}
+              <td>
+                <div class="roster-player">
+
+                  <div class="roster-avatar">
+                    ${escapeHTML(avatarText)}
+                  </div>
+
+                  ${escapeHTML(
+                    memberUsername.toUpperCase()
+                  )}
+
                 </div>
+              </td>
 
-                ${escapeHTML(memberUsername.toUpperCase())}
+              <td class="pubg-cell">
+                ${escapeHTML(memberPubgName)}
+              </td>
 
-              </div>
-            </td>
+              <td>
+                <span class="roster-role ${
+                  role === "ADMIN" ? "leader" : ""
+                }">
+                  ${escapeHTML(role)}
+                </span>
+              </td>
 
-            <td class="pubg-cell">
-              ${escapeHTML(memberPubgName)}
-            </td>
+              <td>
+                <span class="member-status">
+                  ACTIVE
+                </span>
+              </td>
 
-            <td>
-              <span class="roster-role ${
-                role === "ADMIN" ? "leader" : ""
-              }">
-                ${escapeHTML(role)}
-              </span>
-            </td>
-
-            <td>
-              <span class="member-status">
-                ACTIVE
-              </span>
-            </td>
-
-          </tr>
-        `;
-      }).join("");
+            </tr>
+          `;
+        }).join("");
 
       console.log(
         "S2N HUB: Admin roster loaded.",
@@ -472,7 +551,10 @@ document.addEventListener("DOMContentLoaded", async () => {
         return;
       }
 
-      if (!tournaments || tournaments.length === 0) {
+      if (
+        !tournaments ||
+        tournaments.length === 0
+      ) {
         announcementTitle.textContent =
           "NO TOURNAMENT ANNOUNCEMENTS";
 
@@ -498,27 +580,32 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       const now = new Date();
 
-      const activeTournament = tournaments.find((tournament) => {
-        const status = String(tournament.status || "")
-          .trim()
-          .toLowerCase();
+      const activeTournament =
+        tournaments.find((tournament) => {
 
-        if (
-          status === "completed" ||
-          status === "cancelled"
-        ) {
-          return false;
-        }
+          const status =
+            String(tournament.status || "")
+              .trim()
+              .toLowerCase();
 
-        if (tournament.registration_end) {
-          const registrationEnd =
-            new Date(tournament.registration_end);
+          if (
+            status === "completed" ||
+            status === "cancelled"
+          ) {
+            return false;
+          }
 
-          return registrationEnd >= now;
-        }
+          if (tournament.registration_end) {
+            const registrationEnd =
+              new Date(
+                tournament.registration_end
+              );
 
-        return true;
-      });
+            return registrationEnd >= now;
+          }
+
+          return true;
+        });
 
       const tournament =
         activeTournament || tournaments[0];
@@ -544,9 +631,10 @@ document.addEventListener("DOMContentLoaded", async () => {
           cancelled: "CANCELLED"
         };
 
-        const status = String(tournament.status || "")
-          .trim()
-          .toLowerCase();
+        const status =
+          String(tournament.status || "")
+            .trim()
+            .toLowerCase();
 
         announcementStatus.textContent =
           statusLabels[status] ||
@@ -575,8 +663,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     // ADMIN CREATE TOURNAMENT
     // ==========================================
 
-    if (adminCreateTournament && isAdmin) {
-      adminCreateTournament.href = "tournament.html";
+    if (
+      adminCreateTournament &&
+      isAdmin
+    ) {
+      adminCreateTournament.href =
+        "tournament.html";
     }
 
     // ==========================================
@@ -588,42 +680,56 @@ document.addEventListener("DOMContentLoaded", async () => {
     ];
 
     if (isAdmin) {
-      dashboardTasks.push(loadRoster());
+      dashboardTasks.push(
+        loadRoster()
+      );
     }
 
-    await Promise.all(dashboardTasks);
+    await Promise.all(
+      dashboardTasks
+    );
 
     // ==========================================
     // LOGOUT
     // ==========================================
 
     if (logoutBtn) {
-      logoutBtn.addEventListener("click", async () => {
-        logoutBtn.disabled = true;
-        logoutBtn.textContent = "LOGGING OUT...";
+      logoutBtn.addEventListener(
+        "click",
+        async () => {
 
-        const {
-          error: logoutError
-        } = await s2nClient.auth.signOut();
+          logoutBtn.disabled = true;
 
-        if (logoutError) {
-          console.error(
-            "S2N HUB: Logout failed.",
-            logoutError
+          logoutBtn.textContent =
+            "LOGGING OUT...";
+
+          const {
+            error: logoutError
+          } = await s2nClient.auth.signOut();
+
+          if (logoutError) {
+            console.error(
+              "S2N HUB: Logout failed.",
+              logoutError
+            );
+
+            logoutBtn.disabled = false;
+
+            logoutBtn.textContent =
+              "LOGOUT ↗";
+
+            alert(
+              "Logout failed. Please try again."
+            );
+
+            return;
+          }
+
+          window.location.replace(
+            "login.html"
           );
-
-          logoutBtn.disabled = false;
-          logoutBtn.textContent = "LOGOUT ↗";
-
-          alert(
-            "Logout failed. Please try again."
-          );
-
-          return;
         }
-
-        window.location.replace("login.html");
-      });
+      );
     }
 
     console.log(

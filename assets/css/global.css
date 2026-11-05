@@ -1,27 +1,42 @@
-/* =========================================
-   S2N HUB — PREMIUM ESPORTS LANDING PAGE
-   SECOND TO NONE ESPORTS
-   UI / UX REWORK
-========================================= */
+
+/* =====================================================
+   S2N HUB — SECOND TO NONE ESPORTS
+   PREMIUM RED / BLACK / SILVER THEME
+   LANDING PAGE — COMPLETE CSS REWORK
+===================================================== */
+
+/* =========================
+   THEME VARIABLES
+========================= */
 
 :root {
-    --bg: #050914;
-    --bg-soft: #081222;
-    --cyan: #00e5ff;
-    --cyan-light: #8bf7ff;
-    --blue: #007bff;
-    --navy: #0a1427;
-    --white: #f1f7ff;
-    --muted: #73839d;
+    --bg: #050505;
+    --bg-soft: #0b0b0d;
+    --bg-card: rgba(15, 15, 17, 0.88);
 
-    --glass: rgba(10, 20, 39, 0.55);
-    --glass-border: rgba(0, 229, 255, 0.12);
-    --glow: 0 0 30px rgba(0, 229, 255, 0.12);
+    --red: #e50914;
+    --red-light: #ff3344;
+    --red-dark: #850008;
+
+    --silver: #bfc3c8;
+    --silver-light: #f5f5f5;
+
+    --white: #f5f5f5;
+    --muted: #99999f;
+    --muted-dark: #626269;
+
+    --glass: rgba(12, 12, 14, 0.78);
+    --glass-border: rgba(229, 9, 20, 0.24);
+
+    --red-glow: 0 0 30px rgba(229, 9, 20, 0.18);
+    --red-glow-strong: 0 0 45px rgba(229, 9, 20, 0.3);
 
     --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* RESET */
+/* =========================
+   RESET
+========================= */
 
 * {
     margin: 0;
@@ -31,40 +46,60 @@
 
 html {
     scroll-behavior: smooth;
+    background: var(--bg);
 }
 
 body {
     min-height: 100vh;
     overflow-x: hidden;
-    font-family: Arial, Helvetica, sans-serif;
+
+    font-family: "Kanit", Arial, Helvetica, sans-serif;
+    font-weight: 400;
+
     background: var(--bg);
     color: var(--white);
+
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
 }
 
 a {
     color: inherit;
+    text-decoration: none;
 }
 
-/* =========================================
+button,
+input {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+/* =========================
    BACKGROUND
-========================================= */
+========================= */
 
 .background {
     position: fixed;
     inset: 0;
-    z-index: -1;
+    z-index: -10;
+
     overflow: hidden;
 
     background:
         radial-gradient(
-            ellipse at 50% 42%,
-            #101d35 0%,
-            #080e1c 48%,
-            #050914 100%
+            ellipse at 50% 35%,
+            #20090b 0%,
+            #100607 38%,
+            #070707 75%,
+            #030303 100%
         );
 }
+
+/* Animated Grid */
 
 .grid-background {
     position: absolute;
@@ -72,25 +107,27 @@ a {
 
     background-image:
         linear-gradient(
-            rgba(0, 229, 255, 0.035) 1px,
+            rgba(229, 9, 20, 0.055) 1px,
             transparent 1px
         ),
         linear-gradient(
             90deg,
-            rgba(0, 229, 255, 0.035) 1px,
+            rgba(229, 9, 20, 0.055) 1px,
             transparent 1px
         );
 
-    background-size: 60px 60px;
+    background-size: 70px 70px;
 
     transform:
-        perspective(600px)
+        perspective(700px)
         rotateX(58deg)
         scale(2.1);
 
     transform-origin: center;
 
-    animation: gridMove 35s linear infinite;
+    animation: gridMove 32s linear infinite;
+
+    opacity: 0.65;
 }
 
 @keyframes gridMove {
@@ -99,55 +136,106 @@ a {
     }
 
     to {
-        background-position: 0 600px;
+        background-position: 0 700px;
     }
 }
 
-/* AMBIENT LIGHT */
+/* Ambient Red Lights */
 
 .ambient {
     position: absolute;
-    width: 480px;
-    height: 480px;
+
+    width: 520px;
+    height: 520px;
+
     border-radius: 50%;
-    filter: blur(110px);
-    opacity: 0.12;
+
+    filter: blur(120px);
+
+    opacity: 0.16;
+
     pointer-events: none;
     will-change: transform;
 }
 
 .ambient-one {
-    top: 5%;
+    top: 0;
     left: -18%;
-    background: #007bff;
 
-    animation: ambientMove 16s ease-in-out infinite alternate;
+    background: #e50914;
+
+    animation: ambientMove 17s ease-in-out infinite alternate;
 }
 
 .ambient-two {
-    right: -18%;
-    bottom: 0;
-    background: #00e5ff;
+    right: -20%;
+    bottom: -5%;
 
-    animation: ambientMove 13s ease-in-out infinite alternate-reverse;
+    background: #850008;
+
+    animation: ambientMove 20s ease-in-out infinite alternate-reverse;
 }
 
 @keyframes ambientMove {
-    from {
+    0% {
         transform: translate3d(0, 0, 0) scale(0.85);
     }
 
-    to {
-        transform: translate3d(80px, -60px, 0) scale(1.15);
+    50% {
+        transform: translate3d(70px, -35px, 0) scale(1.08);
+    }
+
+    100% {
+        transform: translate3d(-35px, 65px, 0) scale(1.15);
     }
 }
 
-/* SCAN LINE */
+/* Silver Ambient Light */
+
+.background::after {
+    content: "";
+
+    position: absolute;
+
+    width: 350px;
+    height: 350px;
+
+    top: 35%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background: rgba(191, 195, 200, 0.035);
+
+    filter: blur(100px);
+
+    animation: silverAmbient 12s ease-in-out infinite alternate;
+
+    pointer-events: none;
+}
+
+@keyframes silverAmbient {
+    from {
+        opacity: 0.2;
+        transform: translate(-60%, -45%) scale(0.8);
+    }
+
+    to {
+        opacity: 0.65;
+        transform: translate(-40%, -55%) scale(1.2);
+    }
+}
+
+/* Scan Line */
 
 .scan-line {
     position: absolute;
+
     top: -10%;
     left: 0;
+
     width: 100%;
     height: 1px;
 
@@ -155,13 +243,15 @@ a {
         linear-gradient(
             90deg,
             transparent,
-            rgba(0, 229, 255, 0.35),
+            rgba(255, 51, 68, 0.55),
+            rgba(191, 195, 200, 0.2),
             transparent
         );
 
-    box-shadow: 0 0 18px rgba(0, 229, 255, 0.15);
+    box-shadow:
+        0 0 12px rgba(229, 9, 20, 0.25);
 
-    animation: scan 12s linear infinite;
+    animation: scan 14s linear infinite;
 
     pointer-events: none;
 }
@@ -176,14 +266,16 @@ a {
     }
 }
 
-/* =========================================
+/* =========================
    NAVBAR
-========================================= */
+========================= */
 
 .navbar {
     position: absolute;
+
     top: 0;
     left: 0;
+
     width: 100%;
 
     padding: 28px 6%;
@@ -198,7 +290,7 @@ a {
 .nav-brand {
     display: flex;
     align-items: center;
-    gap: 13px;
+    gap: 14px;
 
     text-decoration: none;
 
@@ -210,18 +302,25 @@ a {
 }
 
 .brand-mark {
-    font-size: 23px;
-    font-weight: 900;
-    color: var(--cyan);
+    font-family: "Orbitron", sans-serif;
+
+    font-size: 24px;
+    font-weight: 800;
+
+    color: var(--red-light);
+
     letter-spacing: 2px;
 
-    text-shadow: 0 0 18px rgba(0, 229, 255, 0.3);
+    text-shadow:
+        0 0 15px rgba(229, 9, 20, 0.35);
 }
 
 .brand-name {
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: 2.5px;
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 3px;
+
     color: var(--white);
 }
 
@@ -230,23 +329,27 @@ a {
     align-items: center;
     gap: 10px;
 
-    font-size: 9px;
+    font-size: 10px;
+    font-weight: 500;
+
     letter-spacing: 2px;
-    color: var(--muted);
+
+    color: var(--silver);
 }
 
 .status-dot {
-    width: 6px;
-    height: 6px;
+    width: 7px;
+    height: 7px;
 
     flex-shrink: 0;
 
     border-radius: 50%;
-    background: var(--cyan);
+
+    background: var(--red-light);
 
     box-shadow:
-        0 0 8px var(--cyan),
-        0 0 18px rgba(0, 229, 255, 0.35);
+        0 0 8px var(--red),
+        0 0 18px rgba(229, 9, 20, 0.4);
 
     animation: blink 2.5s ease-in-out infinite;
 }
@@ -261,12 +364,15 @@ a {
     }
 }
 
-/* =========================================
-   HERO
-========================================= */
+/* =========================
+   HERO SECTION
+========================= */
 
 .hero {
+    position: relative;
+
     min-height: 100vh;
+    min-height: 100svh;
 
     display: flex;
     align-items: center;
@@ -276,29 +382,37 @@ a {
 }
 
 .hero-content {
+    position: relative;
+
     width: 100%;
-    max-width: 900px;
+    max-width: 950px;
 
     display: flex;
     flex-direction: column;
     align-items: center;
 
     text-align: center;
+
+    z-index: 2;
 }
 
-/* LOGO STAGE */
+/* =========================
+   LOGO
+   NO FRAME / NO ORBIT
+   RED & SILVER SPARK
+========================= */
 
 .logo-stage {
     position: relative;
 
-    width: 230px;
-    height: 230px;
+    width: 240px;
+    height: 240px;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    margin-bottom: 32px;
+    margin-bottom: 35px;
 
     animation: logoEntrance 1.3s var(--ease) both;
 }
@@ -306,7 +420,7 @@ a {
 @keyframes logoEntrance {
     from {
         opacity: 0;
-        transform: translateY(30px) scale(0.82);
+        transform: translateY(20px) scale(0.92);
     }
 
     to {
@@ -318,56 +432,6 @@ a {
 .logo-frame {
     position: relative;
 
-    width: 130px;
-    height: 130px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    z-index: 2;
-
-    border: 1px solid rgba(0, 229, 255, 0.22);
-    border-radius: 28px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(0, 229, 255, 0.07),
-            rgba(10, 20, 39, 0.72)
-        );
-
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-
-    box-shadow:
-        inset 0 0 25px rgba(0, 229, 255, 0.025),
-        0 0 45px rgba(0, 229, 255, 0.04);
-
-    animation: logoFloat 5s ease-in-out infinite;
-}
-
-@keyframes logoFloat {
-    0%, 100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-8px);
-    }
-}
-
-.hero-logo {
-    width: 88%;
-    height: 88%;
-
-    object-fit: contain;
-
-    filter:
-        drop-shadow(0 0 12px rgba(0, 229, 255, 0.35));
-}
-
-.logo-fallback {
     width: 100%;
     height: 100%;
 
@@ -375,97 +439,66 @@ a {
     align-items: center;
     justify-content: center;
 
-    font-size: 35px;
-    font-weight: 900;
-    letter-spacing: 4px;
+    z-index: 2;
 
-    color: var(--cyan);
+    border: none;
+    border-radius: 0;
 
-    text-shadow:
-        0 0 15px rgba(0, 229, 255, 0.5);
+    background: transparent;
+
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+
+    box-shadow: none;
 }
 
-/* LOGO GLOW */
+/* Logo Image */
 
-.logo-glow {
-    position: absolute;
+.hero-logo {
+    display: block;
 
-    width: 170px;
-    height: 170px;
+    width: 100%;
+    height: 100%;
 
-    border-radius: 50%;
+    object-fit: contain;
 
-    background: var(--cyan);
-    filter: blur(75px);
+    background: transparent;
 
-    opacity: 0.13;
+    filter:
+        drop-shadow(0 0 6px rgba(229, 9, 20, 0.35))
+        drop-shadow(0 0 18px rgba(229, 9, 20, 0.12));
 
-    animation: glowPulse 5s ease-in-out infinite;
+    animation: logoSpark 4s ease-in-out infinite;
 }
 
-@keyframes glowPulse {
+@keyframes logoSpark {
     0%, 100% {
-        opacity: 0.10;
-        transform: scale(0.85);
+        filter:
+            drop-shadow(0 0 5px rgba(229, 9, 20, 0.25))
+            drop-shadow(0 0 12px rgba(191, 195, 200, 0.08));
     }
 
     50% {
-        opacity: 0.23;
-        transform: scale(1.15);
+        filter:
+            drop-shadow(0 0 10px rgba(255, 51, 68, 0.65))
+            drop-shadow(0 0 25px rgba(229, 9, 20, 0.25))
+            drop-shadow(0 0 35px rgba(191, 195, 200, 0.15));
     }
 }
 
-/* ORBIT */
+/* Remove Previous Logo Effects */
 
-.orbit {
-    position: absolute;
-
-    border: 1px solid rgba(0, 229, 255, 0.13);
-    border-radius: 50%;
-
-    pointer-events: none;
-}
-
-.orbit-one {
-    width: 170px;
-    height: 170px;
-
-    border-top-color: rgba(0, 229, 255, 0.65);
-
-    animation: orbitRotate 10s linear infinite;
-}
-
-.orbit-two {
-    width: 195px;
-    height: 195px;
-
-    border-right-color: rgba(139, 247, 255, 0.55);
-
-    animation: orbitRotate 16s linear infinite reverse;
-}
-
+.logo-glow,
+.orbit,
+.orbit-one,
+.orbit-two,
 .orbit-three {
-    width: 220px;
-    height: 220px;
-
-    border-bottom-color: rgba(0, 229, 255, 0.4);
-
-    animation: orbitRotate 22s linear infinite;
+    display: none !important;
 }
 
-@keyframes orbitRotate {
-    from {
-        transform: rotate(0deg);
-    }
-
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-/* =========================================
+/* =========================
    HERO TEXT
-========================================= */
+========================= */
 
 .hero-text {
     animation: textEntrance 1.4s var(--ease) both;
@@ -483,30 +516,33 @@ a {
     }
 }
 
+/* Eyebrow */
+
 .eyebrow {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
+    gap: 14px;
 
-    margin-bottom: 22px;
+    margin-bottom: 24px;
 
-    font-size: 10px;
-    font-weight: 800;
+    font-size: 11px;
+    font-weight: 700;
+
     letter-spacing: 4px;
 
-    color: var(--cyan);
+    color: var(--red-light);
 }
 
 .eyebrow span {
-    width: 28px;
+    width: 32px;
     height: 1px;
 
     background:
         linear-gradient(
             90deg,
             transparent,
-            var(--cyan)
+            var(--red-light)
         );
 }
 
@@ -514,17 +550,22 @@ a {
     transform: rotate(180deg);
 }
 
+/* Main Heading */
+
 .hero-text h1 {
-    font-size: clamp(42px, 8vw, 84px);
+    font-family: "Orbitron", "Kanit", sans-serif;
 
-    font-weight: 900;
-    line-height: 0.98;
-    letter-spacing: 5px;
+    font-size: clamp(40px, 8vw, 82px);
 
-    color: var(--white);
+    font-weight: 800;
+
+    line-height: 1.12;
+    letter-spacing: 3px;
+
+    color: var(--silver-light);
 
     text-shadow:
-        0 0 35px rgba(0, 229, 255, 0.04);
+        0 0 25px rgba(255, 255, 255, 0.035);
 }
 
 .hero-text h1 span {
@@ -532,59 +573,73 @@ a {
 
     margin-top: 12px;
 
-    color: var(--cyan);
+    color: var(--red-light);
 
     text-shadow:
-        0 0 20px rgba(0, 229, 255, 0.18),
-        0 0 55px rgba(0, 229, 255, 0.08);
+        0 0 18px rgba(229, 9, 20, 0.25),
+        0 0 50px rgba(229, 9, 20, 0.08);
 }
 
-.title-line {
-    width: 110px;
-    height: 1px;
+/* Title Divider */
 
-    margin: 30px auto;
+.title-line {
+    width: 120px;
+    height: 2px;
+
+    margin: 32px auto;
 
     background:
         linear-gradient(
             90deg,
             transparent,
-            var(--cyan),
+            var(--red),
+            var(--silver),
+            var(--red),
             transparent
         );
 
     box-shadow:
-        0 0 12px rgba(0, 229, 255, 0.25);
+        0 0 14px rgba(229, 9, 20, 0.3);
 }
 
-.hero-description {
-    font-size: 13px;
-    line-height: 2.1;
-    letter-spacing: 1.8px;
+/* Description */
 
-    color: #c4d1e3;
+.hero-description {
+    max-width: 650px;
+
+    font-size: 15px;
+    font-weight: 400;
+
+    line-height: 2;
+
+    letter-spacing: 1.2px;
+
+    color: #c6c6cb;
 }
 
 .hero-subtitle {
-    margin-top: 16px;
+    margin-top: 18px;
 
-    font-size: 9px;
+    font-size: 10px;
+    font-weight: 500;
+
     letter-spacing: 3px;
 
     color: var(--muted);
 }
 
-/* =========================================
+/* =========================
    BUTTONS
-========================================= */
+========================= */
 
 .hero-actions {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 16px;
 
-    margin-top: 42px;
+    gap: 18px;
+
+    margin-top: 45px;
 
     animation: textEntrance 1.8s var(--ease) both;
 }
@@ -592,8 +647,8 @@ a {
 .btn {
     position: relative;
 
-    width: 180px;
-    height: 52px;
+    width: 190px;
+    height: 54px;
 
     display: flex;
     align-items: center;
@@ -604,11 +659,12 @@ a {
 
     text-decoration: none;
 
-    font-size: 10px;
-    font-weight: 900;
+    font-size: 11px;
+    font-weight: 700;
+
     letter-spacing: 2px;
 
-    border-radius: 12px;
+    border-radius: 10px;
 
     transition:
         transform 0.35s var(--ease),
@@ -617,44 +673,76 @@ a {
         box-shadow 0.35s ease;
 }
 
+/* Button Light Sweep */
+
+.btn::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -120%;
+
+    width: 100%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            110deg,
+            transparent,
+            rgba(255, 255, 255, 0.16),
+            transparent
+        );
+
+    transition: left 0.65s ease;
+}
+
+.btn:hover::before {
+    left: 120%;
+}
+
 .btn-arrow {
-    font-size: 18px;
+    font-size: 19px;
 
     transition:
         transform 0.35s var(--ease);
 }
 
+/* Primary Button */
+
 .btn-primary {
-    color: #03111c;
+    color: #ffffff;
 
     background:
         linear-gradient(
             135deg,
-            #8bf7ff,
-            #00e5ff 55%,
-            #00b8ff
+            #ff3344,
+            #e50914 55%,
+            #850008
         );
 
-    border: 1px solid rgba(139, 247, 255, 0.65);
+    border: 1px solid rgba(255, 51, 68, 0.65);
 
     box-shadow:
-        0 0 22px rgba(0, 229, 255, 0.09);
+        0 0 22px rgba(229, 9, 20, 0.12);
 }
 
 .btn-primary:hover {
     transform: translateY(-4px);
 
     box-shadow:
-        0 8px 30px rgba(0, 229, 255, 0.2),
-        0 0 45px rgba(0, 229, 255, 0.08);
+        0 8px 30px rgba(229, 9, 20, 0.25),
+        0 0 45px rgba(229, 9, 20, 0.1);
 }
 
+/* Secondary Button */
+
 .btn-secondary {
-    color: var(--cyan);
+    color: var(--silver-light);
 
-    background: rgba(0, 229, 255, 0.035);
+    background: rgba(255, 255, 255, 0.025);
 
-    border: 1px solid rgba(0, 229, 255, 0.2);
+    border: 1px solid rgba(191, 195, 200, 0.22);
 
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -663,12 +751,12 @@ a {
 .btn-secondary:hover {
     transform: translateY(-4px);
 
-    background: rgba(0, 229, 255, 0.07);
+    background: rgba(229, 9, 20, 0.07);
 
-    border-color: rgba(0, 229, 255, 0.5);
+    border-color: rgba(229, 9, 20, 0.55);
 
     box-shadow:
-        0 8px 28px rgba(0, 229, 255, 0.07);
+        0 8px 28px rgba(229, 9, 20, 0.08);
 }
 
 .btn:hover .btn-arrow {
@@ -676,17 +764,17 @@ a {
 }
 
 .btn:focus-visible {
-    outline: 2px solid var(--cyan-light);
+    outline: 2px solid var(--red-light);
     outline-offset: 4px;
 }
 
-/* =========================================
+/* =========================
    HERO FOOTER INFO
-========================================= */
+========================= */
 
 .hero-footer {
     width: 100%;
-    max-width: 620px;
+    max-width: 650px;
 
     display: flex;
     align-items: center;
@@ -694,10 +782,10 @@ a {
 
     gap: 24px;
 
-    margin-top: 65px;
-    padding-top: 25px;
+    margin-top: 70px;
+    padding-top: 28px;
 
-    border-top: 1px solid rgba(0, 229, 255, 0.09);
+    border-top: 1px solid rgba(229, 9, 20, 0.16);
 
     animation: textEntrance 2s var(--ease) both;
 }
@@ -705,31 +793,35 @@ a {
 .footer-item {
     display: flex;
     flex-direction: column;
+
     gap: 9px;
 }
 
 .footer-label {
-    font-size: 8px;
+    font-size: 9px;
+    font-weight: 500;
+
     letter-spacing: 2px;
 
     color: var(--muted);
 }
 
 .footer-value {
-    font-size: 10px;
-    font-weight: 800;
+    font-size: 11px;
+    font-weight: 700;
+
     letter-spacing: 1px;
 
-    color: var(--white);
+    color: var(--silver-light);
 }
 
 .online {
-    color: var(--cyan);
+    color: var(--red-light);
 }
 
-/* =========================================
+/* =========================
    CORNER HUD
-========================================= */
+========================= */
 
 .corner {
     position: fixed;
@@ -737,7 +829,7 @@ a {
     width: 32px;
     height: 32px;
 
-    border-color: rgba(0, 229, 255, 0.25);
+    border-color: rgba(229, 9, 20, 0.3);
 
     pointer-events: none;
 
@@ -776,12 +868,13 @@ a {
     border-right: 1px solid;
 }
 
-/* =========================================
+/* =========================
    SITE FOOTER
-========================================= */
+========================= */
 
 .site-footer {
     position: absolute;
+
     bottom: 25px;
     left: 0;
 
@@ -793,15 +886,17 @@ a {
 
     padding: 0 6%;
 
-    font-size: 8px;
-    letter-spacing: 2px;
+    font-size: 9px;
+    font-weight: 500;
 
-    color: #50617a;
+    letter-spacing: 1.5px;
+
+    color: var(--muted-dark);
 }
 
-/* =========================================
+/* =========================
    RESPONSIVE — TABLET
-========================================= */
+========================= */
 
 @media (max-width: 900px) {
     .hero {
@@ -814,13 +909,13 @@ a {
     }
 
     .hero-text h1 {
-        letter-spacing: 3px;
+        letter-spacing: 2px;
     }
 }
 
-/* =========================================
+/* =========================
    RESPONSIVE — MOBILE
-========================================= */
+========================= */
 
 @media (max-width: 600px) {
     .navbar {
@@ -856,36 +951,27 @@ a {
     }
 
     .logo-frame {
-        width: 110px;
-        height: 110px;
-
-        border-radius: 23px;
+        width: 100%;
+        height: 100%;
     }
 
-    .orbit-one {
-        width: 145px;
-        height: 145px;
-    }
-
-    .orbit-two {
-        width: 165px;
-        height: 165px;
-    }
-
-    .orbit-three {
-        width: 185px;
-        height: 185px;
+    .hero-logo {
+        width: 100%;
+        height: 100%;
     }
 
     .hero-text h1 {
-        font-size: clamp(38px, 11vw, 50px);
-        letter-spacing: 2.5px;
+        font-size: clamp(34px, 9vw, 50px);
+        letter-spacing: 1.5px;
+        line-height: 1.18;
     }
 
     .eyebrow {
         font-size: 8px;
         letter-spacing: 2px;
+
         gap: 9px;
+
         margin-bottom: 18px;
     }
 
@@ -895,24 +981,29 @@ a {
 
     .title-line {
         width: 75px;
+
         margin: 24px auto;
     }
 
     .hero-description {
-        font-size: 10px;
+        font-size: 12px;
         line-height: 2;
-        letter-spacing: 1.2px;
+
+        letter-spacing: 0.7px;
     }
 
     .hero-subtitle {
-        font-size: 7px;
+        font-size: 8px;
         letter-spacing: 1.5px;
+
         line-height: 1.8;
     }
 
     .hero-actions {
         width: 100%;
+
         gap: 10px;
+
         margin-top: 32px;
     }
 
@@ -923,9 +1014,9 @@ a {
         gap: 8px;
 
         font-size: 9px;
-        letter-spacing: 1.3px;
+        letter-spacing: 1px;
 
-        border-radius: 10px;
+        border-radius: 9px;
     }
 
     .btn-arrow {
@@ -935,6 +1026,7 @@ a {
     .hero-footer {
         margin-top: 45px;
         padding-top: 22px;
+
         gap: 12px;
     }
 
@@ -943,17 +1035,18 @@ a {
     }
 
     .footer-label {
-        font-size: 6px;
+        font-size: 7px;
         letter-spacing: 0.8px;
     }
 
     .footer-value {
-        font-size: 8px;
+        font-size: 9px;
         letter-spacing: 0.4px;
     }
 
     .site-footer {
         bottom: 18px;
+
         padding: 0 20px;
 
         font-size: 6px;
@@ -988,14 +1081,16 @@ a {
     .ambient {
         width: 300px;
         height: 300px;
+
         filter: blur(90px);
-        opacity: 0.10;
+
+        opacity: 0.12;
     }
 }
 
-/* =========================================
+/* =========================
    RESPONSIVE — SMALL MOBILE
-========================================= */
+========================= */
 
 @media (max-width: 360px) {
     .brand-name {
@@ -1007,19 +1102,24 @@ a {
         font-size: 6px;
     }
 
+    .logo-stage {
+        width: 165px;
+        height: 165px;
+    }
+
     .hero-text h1 {
-        font-size: 36px;
-        letter-spacing: 2px;
+        font-size: 32px;
+        letter-spacing: 1px;
     }
 
     .hero-description {
-        font-size: 9px;
-        letter-spacing: 0.8px;
+        font-size: 10px;
+        letter-spacing: 0.5px;
     }
 
     .btn {
         font-size: 8px;
-        letter-spacing: 1px;
+        letter-spacing: 0.7px;
     }
 
     .hero-footer {
@@ -1027,9 +1127,9 @@ a {
     }
 }
 
-/* =========================================
+/* =========================
    REDUCED MOTION
-========================================= */
+========================= */
 
 @media (prefers-reduced-motion: reduce) {
     *,
@@ -1042,8 +1142,10 @@ a {
     }
 }
 
+/* =========================
+   SECURITY VISIBILITY
+========================= */
 
-/* S2N HUB SECURITY VISIBILITY */
 .hidden,
 [hidden] {
     display: none !important;
