@@ -2000,14 +2000,21 @@ const tournamentMode =
         const prizePool =
             Number($("#tournament-prize")?.value || 0);
 
-        const startDate =
-            $("#tournament-start")?.value || null;
+      const toISOStringFromLocal = (value) => {
+    return value ? new Date(value).toISOString() : null;
+};
 
-        const registrationStart =
-            $("#registration-start")?.value || null;
+const startDate = toISOStringFromLocal(
+    $("#tournament-start")?.value
+);
 
-        const registrationEnd =
-            $("#registration-end")?.value || null;
+const registrationStart = toISOStringFromLocal(
+    $("#registration-start")?.value
+);
+
+const registrationEnd = toISOStringFromLocal(
+    $("#registration-end")?.value
+);
 
         const maxTeams =
             Number($("#tournament-max-teams")?.value || 16);
