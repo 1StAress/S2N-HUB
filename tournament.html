@@ -101,7 +101,7 @@
 
                         <div>
                             <strong id="stat-prize">฿0</strong>
-                            <span>TOTAL PRIZE POOL</span>
+                            <span>เงินรางวัลรวม</span>
                         </div>
 
                     </div>
@@ -313,7 +313,7 @@
                         type="number"
                         id="random-slots"
                         min="2"
-                        max="128"
+                        max="16"
                         value="4"
                         step="1"
                         disabled
@@ -364,10 +364,20 @@
                         <option value="Livik">Livik</option>
                         <option value="Rondo">Rondo</option>
                     </select>
-                </label>
+              </label>
 
-                <!-- DESCRIPTION -->
-                <label for="tournament-description">
+<!-- TOURNAMENT MODE -->
+<label for="tournament-mode">
+    MODE
+    
+    <select id="tournament-mode" required>
+        <option value="normal">แข่งแบบปกติ</option>
+        <option value="wow">แบบ WOW</option>
+    </select>
+</label>
+
+<!-- DESCRIPTION -->
+<label for="tournament-description">
                     รายละเอียด
 
                     <textarea
@@ -400,7 +410,7 @@
                             type="number"
                             id="tournament-max-teams"
                             min="2"
-                            max="128"
+                            max="16"
                             value="16"
                             step="1"
                             required
