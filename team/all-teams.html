@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>All Teams | S2N HUB</title>
+
+  <link rel="stylesheet" href="../assets/css/global.css">
+  <link rel="stylesheet" href="../assets/css/team.css">
+  <link rel="stylesheet" href="../assets/css/all-teams.css">
+</head>
+<body>
+
+  <main class="team-page all-teams-page">
+
+    <header class="all-teams-header">
+      <div>
+        <span class="team-eyebrow">S2N // COMPETITIVE DIRECTORY</span>
+        <h1>All Teams</h1>
+        <p>ค้นหาและดูรายละเอียดทีมทั้งหมดใน S2N HUB</p>
+      </div>
+
+      <div class="all-teams-header-actions">
+        <a href="my-team.html" class="team-back-btn">
+          MY TEAMS
+        </a>
+
+        <a href="create-team.html" class="team-submit-btn">
+          + CREATE TEAM
+        </a>
+      </div>
+    </header>
+
+    <section class="all-teams-overview">
+      <div class="all-teams-stat">
+        <span>TOTAL TEAMS</span>
+        <strong id="all-team-count">0</strong>
+      </div>
+
+      <div class="all-teams-stat">
+        <span>TOTAL PLAYERS</span>
+        <strong id="all-player-count">0</strong>
+      </div>
+    </section>
+
+    <section class="all-teams-directory">
+
+      <div class="all-teams-directory-header">
+        <div>
+          <span class="team-eyebrow">TEAM DIRECTORY</span>
+          <h2>Discover Teams</h2>
+        </div>
+
+        <input
+          type="search"
+          id="all-team-search"
+          placeholder="ค้นหาชื่อแคลน หรือ TAG..."
+          autocomplete="off"
+        >
+      </div>
+
+      <div id="all-team-list" class="all-team-grid"></div>
+
+      <div id="all-team-message" class="all-team-message">
+        กำลังโหลดข้อมูลทีม...
+      </div>
+
+    </section>
+
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../assets/js/supabase.js"></script>
+  <script src="../assets/js/all-teams.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>S2N HUB | Tournament Registrations</title>
+  
+  <link rel="stylesheet" href="../assets/css/global.css">
+  <link rel="stylesheet" href="../assets/css/admin.css">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    .registration-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      margin: 24px 0;
+    }
+    
+    .registration-toolbar select {
+      flex: 1;
+      min-width: 220px;
+      padding: 12px;
+      border-radius: 10px;
+    }
+    
+    .registration-count {
+      color: #60a5fa;
+      font-weight: 600;
+    }
+    
+    .registration-list {
+      display: grid;
+      gap: 16px;
+    }
+    
+    .registration-card {
+      padding: 20px;
+      border: 1px solid rgba(148, 163, 184, .2);
+      border-radius: 14px;
+      background: rgba(15, 23, 42, .72);
+    }
+    
+    .registration-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    
+    .registration-team-name {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+    
+    .registration-team-tag {
+      color: #60a5fa;
+      font-size: .85rem;
+    }
+    
+    .registration-status {
+      color: #4ade80;
+      font-size: .8rem;
+      font-weight: 600;
+    }
+    
+    .registration-roster {
+      display: grid;
+      gap: 8px;
+      margin: 16px 0;
+    }
+    
+    .registration-player {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 9px 12px;
+      border-radius: 8px;
+      background: rgba(30, 41, 59, .7);
+    }
+    
+    .registration-player-label {
+      color: #94a3b8;
+      min-width: 45px;
+    }
+    
+    .registration-date {
+      color: #94a3b8;
+      font-size: .85rem;
+      margin-top: 14px;
+    }
+    
+    .copy-registration-btn {
+      width: 100%;
+      margin-top: 14px;
+      padding: 12px;
+      border: 0;
+      border-radius: 9px;
+      background: #2563eb;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    
+    .copy-registration-btn:active {
+      transform: scale(.99);
+    }
+    
+    .registration-message {
+      margin: 12px 0;
+      color: #94a3b8;
+    }
+    
+    .registration-empty {
+      text-align: center;
+      padding: 30px 16px;
+      color: #94a3b8;
+      border: 1px dashed rgba(148, 163, 184, .3);
+      border-radius: 12px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="admin-container">
+    
+    <header class="admin-header">
+      <div class="brand">
+        <div class="brand-logo">S2N</div>
+        <div class="brand-info">
+          <h1>S2N HUB</h1>
+          <span>ADMIN CONTROL</span>
+        </div>
+      </div>
+      
+      <a href="../dashboard.html" class="back-btn">
+        ← กลับหน้าหลัก
+      </a>
+    </header>
+    
+    <main class="admin-content">
+      
+      <section class="page-heading">
+        <div>
+          <span class="eyebrow">TOURNAMENT MANAGEMENT</span>
+          <h2>รายชื่อทีมสมัครแข่งขัน</h2>
+          <p>ตรวจสอบรายชื่อทีมที่ได้รับอนุมัติ และคัดลอกข้อมูลเพื่อประกาศ</p>
+        </div>
+      </section>
+      
+      <section class="registration-toolbar">
+        <select id="tournament-select">
+          <option value="">กำลังโหลด Tournament...</option>
+        </select>
+        
+        <span class="registration-count" id="registration-count">
+          0 ทีม
+        </span>
+      </section>
+      
+      <div id="registration-message" class="registration-message"></div>
+      
+      <section id="registration-list" class="registration-list">
+        <div class="registration-empty">
+          กำลังโหลดข้อมูล...
+        </div>
+      </section>
+      
+    </main>
+    
+    <footer class="admin-footer">
+      S2N HUB <span>•</span> TOURNAMENT REGISTRATIONS
+    </footer>
+    
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../assets/js/supabase.js"></script>
+  <script src="../assets/js/tournament-registrations.js"></script>
+</body>
+
+</html>
+
