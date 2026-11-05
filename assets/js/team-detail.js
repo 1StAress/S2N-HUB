@@ -1,198 +1,269 @@
+
 /* =========================================
    S2N HUB - TEAM DETAIL
-   PREVIEW MODE
+   Supabase Connected Version
 ========================================= */
 
 "use strict";
 
-const teamData = {
-  id: "S2N-TEAM-001",
-  name: "S2N ALPHA",
-  tag: "S2N",
-  game: "PUBG MOBILE",
-  leader: "S2N_JP",
-  createdDate: "28 OCT 2026",
-  description: "Competitive PUBG Mobile team under S2N HUB.",
-  
-  mainPlayers: [
-    "S2N_JP",
-    "S2N_PLAYER02",
-    "S2N_PLAYER03",
-    "S2N_PLAYER04"
-  ],
-  
-  substitute: "S2N_SUB01"
-};
-
-/* DOM */
+const s2nClient = window.supabaseClient;
 
 const $ = (id) => document.getElementById(id);
 
-/* MESSAGE */
+const teamRoster = $("team-roster");
+const messageBox = $("team-detail-message");
+
+let currentUser = null;
+let currentTeam = null;
+let currentMembers = [];
+
+// ======================================
+// MESSAGE
+// ======================================
 
 function showTeamMessage(message, type = "success") {
-  const messageBox = $("team-detail-message");
-  
   if (!messageBox) return;
-  
+
   messageBox.textContent = message;
   messageBox.className = `team-detail-message show ${type}`;
   messageBox.style.display = "block";
-  
-  clearTimeout(showTeamMessage.timeout);
-  
-  showTeamMessage.timeout = setTimeout(() => {
-    messageBox.style.display = "none";
-  }, 3000);
 }
 
-/* TEAM INFORMATION */
+// ======================================
+// FORMAT DATE
+// ======================================
+
+function formatCreatedDate(dateValue) {
+  if (!dateValue) return "-";
+
+  const date = new Date(dateValue);
+
+  if (Number.isNaN(date.getTime())) {
+    return "-";
+  }
+
+  return date.toLocaleDateString("en-GB", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric"
+  }).toUpperCase();
+}
+
+// ======================================
+// TEAM INFORMATION
+// ======================================
 
 function renderTeamInformation() {
-  $("team-logo").textContent = teamData.tag;
-  $("team-tag").textContent = `TAG // ${teamData.tag}`;
-  $("team-name").textContent = teamData.name;
-  $("team-game").textContent =
-    `${teamData.game} COMPETITIVE TEAM`;
-  $("team-id").textContent = `TEAM ID: ${teamData.id}`;
-  
-  $("main-count").textContent =
-    teamData.mainPlayers.length;
-  
-  $("sub-count").textContent =
-    teamData.substitute ? 1 : 0;
-  
-  $("leader-stat").textContent = teamData.leader;
-  
-  $("info-team-name").textContent = teamData.name;
-  $("info-team-tag").textContent = teamData.tag;
-  $("info-team-game").textContent = teamData.game;
+  if (!currentTeam) return;
+
+  const teamName = currentTeam.team_name || "UNKNOWN TEAM";
+  const teamTag = currentTeam.team_tag || "-";
+  const teamGame = currentTeam.game || "PUBG MOBILE";
+
+  const leader = currentMembers.find(
+    member => member.role === "leader"
+  );
+
+  const mainPlayers = currentMembers.filter(
+    member =>
+      member.role === "leader" ||
+      member.role === "main"
+  );
+
+  const substitutes = currentMembers.filter(
+    member => member.role === "substitute"
+  );
+
+  $("team-logo").textContent = teamTag;
+  $("team-tag").textContent = `TAG // ${teamTag}`;
+  $("team-name").textContent = teamName;
+  $("team-game").textContent = `${teamGame} COMPETITIVE TEAM`;
+  $("team-id").textContent = `TEAM ID: ${currentTeam.id}`;
+
+  $("main-count").textContent = mainPlayers.length;
+  $("sub-count").textContent = substitutes.length;
+
+  $("leader-stat").textContent =
+    leader?.pubg_name || "UNKNOWN";
+
+  $("info-team-name").textContent = teamName;
+  $("info-team-tag").textContent = teamTag;
+  $("info-team-game").textContent = teamGame;
+
   $("info-created-date").textContent =
-    teamData.createdDate;
-  
+    formatCreatedDate(currentTeam.created_at);
+
   $("team-description").textContent =
-    teamData.description || "No team description.";
-  
-  const totalPlayers =
-    teamData.mainPlayers.length +
-    (teamData.substitute ? 1 : 0);
-  
+    currentTeam.description || "No team description.";
+
   $("roster-total").textContent =
-    `${String(totalPlayers).padStart(2, "0")} PLAYERS`;
+    `${String(currentMembers.length).padStart(2, "0")} PLAYERS`;
+
+  // Button permissions
+  const isLeader = currentTeam.leader_id === currentUser.id;
+
+  const editButton = $("edit-team-btn");
+  const leaveButton = $("leave-team-btn");
+
+  if (editButton) {
+    editButton.disabled = !isLeader;
+    editButton.textContent = isLeader
+      ? "EDIT TEAM"
+      : "LEADER ONLY";
+  }
+
+  if (leaveButton) {
+    leaveButton.disabled = isLeader;
+    leaveButton.textContent = isLeader
+      ? "LEADER CANNOT LEAVE"
+      : "LEAVE TEAM";
+  }
 }
 
-/* PLAYER CARD */
+// ======================================
+// PLAYER CARD
+// ======================================
 
-function createPlayerCard(player, index, role) {
+function createPlayerCard(member, index) {
   const card = document.createElement("div");
-  
   card.className = "team-detail-player";
-  
-  if (role === "TEAM LEADER") {
+
+  const isLeader = member.role === "leader";
+  const isSubstitute = member.role === "substitute";
+
+  if (isLeader) {
     card.classList.add("leader");
   }
-  
-  if (role === "SUBSTITUTE") {
+
+  if (isSubstitute) {
     card.classList.add("reserve");
   }
-  
+
   const avatar = document.createElement("div");
   avatar.className = "team-detail-player-avatar";
   avatar.textContent = String(index).padStart(2, "0");
-  
+
   const info = document.createElement("div");
   info.className = "team-detail-player-info";
-  
+
   const name = document.createElement("strong");
-  name.textContent = player;
-  
+  name.textContent = member.pubg_name || "UNKNOWN PLAYER";
+
   const roleText = document.createElement("small");
-  roleText.textContent = role;
-  
+
+  if (isLeader) {
+    roleText.textContent = "TEAM LEADER";
+  } else if (isSubstitute) {
+    roleText.textContent = "SUBSTITUTE";
+  } else {
+    roleText.textContent = "MAIN ROSTER";
+  }
+
   info.append(name, roleText);
-  
+
   const roleBadge = document.createElement("div");
   roleBadge.className = "team-detail-player-role";
-  
-  roleBadge.textContent =
-    role === "SUBSTITUTE" ? "RESERVE" : "ACTIVE";
-  
+
+  roleBadge.textContent = isSubstitute
+    ? "RESERVE"
+    : isLeader
+      ? "LEADER"
+      : "ACTIVE";
+
   card.append(avatar, info, roleBadge);
-  
+
   return card;
 }
 
-/* ROSTER */
+// ======================================
+// RENDER ROSTER
+// ======================================
 
 function renderTeamRoster() {
-  const roster = $("team-roster");
-  
-  roster.replaceChildren();
-  
-  teamData.mainPlayers.forEach((player, index) => {
-    const role =
-      player === teamData.leader ?
-      "TEAM LEADER" :
-      "MAIN ROSTER";
-    
-    roster.appendChild(
-      createPlayerCard(player, index + 1, role)
+  if (!teamRoster) return;
+
+  teamRoster.replaceChildren();
+
+  const sortedMembers = [...currentMembers].sort((a, b) => {
+    const positionA = Number(a.position || 0);
+    const positionB = Number(b.position || 0);
+
+    return positionA - positionB;
+  });
+
+  if (sortedMembers.length === 0) {
+    const empty = document.createElement("p");
+    empty.textContent = "ยังไม่มีรายชื่อสมาชิกในทีม";
+    teamRoster.appendChild(empty);
+    return;
+  }
+
+  sortedMembers.forEach((member, index) => {
+    teamRoster.appendChild(
+      createPlayerCard(member, index + 1)
     );
   });
-  
-  if (teamData.substitute) {
-    roster.appendChild(
-      createPlayerCard(
-        teamData.substitute,
-        5,
-        "SUBSTITUTE"
-      )
-    );
-  }
 }
 
-/* COPY */
+// ======================================
+// COPY
+// ======================================
 
-async function copyText(text, message) {
+async function copyText(value, successMessage) {
+  if (!value) {
+    showTeamMessage("ไม่มีข้อมูลสำหรับคัดลอก", "error");
+    return;
+  }
+
   try {
-    await navigator.clipboard.writeText(text);
-    
-    showTeamMessage(message);
+    await navigator.clipboard.writeText(String(value));
+
+    showTeamMessage(successMessage);
   } catch (error) {
     const input = document.createElement("textarea");
-    
-    input.value = text;
+
+    input.value = String(value);
     input.style.position = "fixed";
     input.style.opacity = "0";
-    
+
     document.body.appendChild(input);
     input.select();
-    
+
     const copied = document.execCommand("copy");
-    
+
     input.remove();
-    
+
     showTeamMessage(
-      copied ?
-      message :
-      "ไม่สามารถคัดลอกได้",
+      copied ? successMessage : "ไม่สามารถคัดลอกได้",
       copied ? "success" : "error"
     );
   }
 }
 
-/* EDIT TEAM */
+// ======================================
+// EDIT TEAM NAME
+// ======================================
 
-function editTeam() {
+async function editTeam() {
+  if (!currentTeam || !currentUser) return;
+
+  if (currentTeam.leader_id !== currentUser.id) {
+    showTeamMessage(
+      "เฉพาะหัวหน้าทีมเท่านั้นที่แก้ไขข้อมูลทีมได้",
+      "error"
+    );
+    return;
+  }
+
   const newName = prompt(
     "แก้ไขชื่อทีม",
-    teamData.name
+    currentTeam.team_name || ""
   );
-  
+
   if (newName === null) return;
-  
+
   const cleanName = newName.trim();
-  
+
   if (!cleanName) {
     showTeamMessage(
       "ชื่อทีมไม่สามารถเว้นว่างได้",
@@ -200,68 +271,214 @@ function editTeam() {
     );
     return;
   }
-  
-  teamData.name = cleanName.toUpperCase();
-  
+
+  if (cleanName.length > 40) {
+    showTeamMessage(
+      "ชื่อทีมต้องมีความยาวไม่เกิน 40 ตัวอักษร",
+      "error"
+    );
+    return;
+  }
+
+  const { data, error } = await s2nClient
+    .from("s2n_teams")
+    .update({
+      team_name: cleanName
+    })
+    .eq("id", currentTeam.id)
+    .eq("leader_id", currentUser.id)
+    .select()
+    .single();
+
+  if (error) {
+    console.error("S2N Team Update Error:", error);
+
+    showTeamMessage(
+      error.message || "ไม่สามารถแก้ไขชื่อทีมได้",
+      "error"
+    );
+
+    return;
+  }
+
+  currentTeam = data;
+
   renderTeamInformation();
-  
-  showTeamMessage(
-    "แก้ไขชื่อทีมใน Preview Mode เรียบร้อย"
-  );
+
+  showTeamMessage("บันทึกชื่อทีมเรียบร้อย");
 }
 
-/* LEAVE TEAM */
+// ======================================
+// LEAVE TEAM
+// ======================================
 
-function leaveTeam() {
+async function leaveTeam() {
+  if (!currentTeam || !currentUser) return;
+
+  if (currentTeam.leader_id === currentUser.id) {
+    showTeamMessage(
+      "หัวหน้าทีมไม่สามารถออกจากทีมด้วยคำสั่งนี้ได้",
+      "error"
+    );
+    return;
+  }
+
   const confirmed = confirm(
-    "ต้องการจำลองการออกจากทีมนี้หรือไม่?\n\nPreview Mode เท่านั้น"
+    `ต้องการออกจากทีม ${currentTeam.team_name} หรือไม่?\n\nการดำเนินการนี้จะลบสมาชิกภาพของคุณในทีม`
   );
-  
+
   if (!confirmed) return;
-  
-  showTeamMessage(
-    "Preview Mode: ยังไม่มีการออกจากทีมจริง",
-    "error"
-  );
+
+  const { error } = await s2nClient
+    .from("s2n_team_members")
+    .delete()
+    .eq("team_id", currentTeam.id)
+    .eq("user_id", currentUser.id);
+
+  if (error) {
+    console.error("S2N Leave Team Error:", error);
+
+    showTeamMessage(
+      error.message || "ไม่สามารถออกจากทีมได้",
+      "error"
+    );
+
+    return;
+  }
+
+  alert("ออกจากทีมเรียบร้อย");
+
+  window.location.href = "my-team.html";
 }
 
-/* EVENTS */
+// ======================================
+// LOAD TEAM
+// ======================================
 
-$("edit-team-btn").addEventListener(
-  "click",
-  editTeam
-);
+async function loadTeamDetail() {
+  if (!s2nClient || typeof s2nClient.from !== "function") {
+    showTeamMessage(
+      "Supabase Client ไม่พร้อมใช้งาน",
+      "error"
+    );
+    return;
+  }
 
-$("leave-team-btn").addEventListener(
-  "click",
-  leaveTeam
-);
+  const params = new URLSearchParams(window.location.search);
+  const teamId = params.get("id");
 
-$("copy-team-id-btn").addEventListener(
-  "click",
-  () => copyText(
-    teamData.id,
+  if (!teamId) {
+    showTeamMessage(
+      "ไม่พบ Team ID ใน URL",
+      "error"
+    );
+    return;
+  }
+
+  try {
+    const {
+      data: { user },
+      error: authError
+    } = await s2nClient.auth.getUser();
+
+    if (authError) throw authError;
+
+    if (!user) {
+      window.location.href = "../login.html";
+      return;
+    }
+
+    currentUser = user;
+
+    const { data, error } = await s2nClient
+      .from("s2n_teams")
+      .select(`
+        id,
+        team_name,
+        team_tag,
+        game,
+        description,
+        leader_id,
+        created_at,
+        s2n_team_members (
+          id,
+          user_id,
+          pubg_name,
+          role,
+          position
+        )
+      `)
+      .eq("id", teamId)
+      .single();
+
+    if (error) throw error;
+
+    if (!data) {
+      showTeamMessage("ไม่พบข้อมูลทีม", "error");
+      return;
+    }
+
+    currentTeam = data;
+    currentMembers = data.s2n_team_members || [];
+
+    // Check whether the current user belongs to this team
+    const isMember = currentMembers.some(
+      member => member.user_id === currentUser.id
+    );
+
+    const isLeader = currentTeam.leader_id === currentUser.id;
+
+    if (!isMember && !isLeader) {
+      showTeamMessage(
+        "คุณไม่มีสิทธิ์เข้าถึงข้อมูลทีมนี้",
+        "error"
+      );
+
+      $("edit-team-btn").disabled = true;
+      $("leave-team-btn").disabled = true;
+
+      return;
+    }
+
+    renderTeamInformation();
+    renderTeamRoster();
+
+    console.log("S2N HUB: Team detail loaded.");
+
+  } catch (error) {
+    console.error("S2N Team Detail Error:", error);
+
+    showTeamMessage(
+      error.message || "ไม่สามารถโหลดข้อมูลทีมได้",
+      "error"
+    );
+  }
+}
+
+// ======================================
+// EVENTS
+// ======================================
+
+$("edit-team-btn")?.addEventListener("click", editTeam);
+
+$("leave-team-btn")?.addEventListener("click", leaveTeam);
+
+$("copy-team-id-btn")?.addEventListener("click", () => {
+  copyText(
+    currentTeam?.id,
     "คัดลอก Team ID เรียบร้อย"
-  )
-);
-
-$("copy-team-name-btn").addEventListener(
-  "click",
-  () => copyText(
-    teamData.name,
-    "คัดลอกชื่อทีมเรียบร้อย"
-  )
-);
-
-/* INITIALIZE */
-
-function initializeTeamDetail() {
-  renderTeamInformation();
-  renderTeamRoster();
-  
-  console.log(
-    "S2N HUB Team Detail - Preview Mode"
   );
-}
+});
 
-initializeTeamDetail();
+$("copy-team-name-btn")?.addEventListener("click", () => {
+  copyText(
+    currentTeam?.team_name,
+    "คัดลอกชื่อทีมเรียบร้อย"
+  );
+});
+
+// ======================================
+// INITIALIZE
+// ======================================
+
+loadTeamDetail();

@@ -1,5 +1,5 @@
-// S2N HUB - My Teams V1.3
-// Load teams for both leaders and members
+// S2N HUB - My Teams V1.2
+// Supabase Connected + Debug
 
 const s2nClient = window.supabaseClient;
 
@@ -9,21 +9,32 @@ const emptyState = document.getElementById("my-team-empty");
 
 let myTeams = [];
 
-console.log("S2N HUB: My Teams V1.3 initialized.");
+// ======================================
+// INITIALIZATION
+// ======================================
+
+console.log("S2N HUB: My Teams V1.2 initialized.");
+
+console.log("S2N CLIENT:", s2nClient);
+console.log("S2N AUTH TYPE:", typeof s2nClient?.auth);
+console.log("S2N FROM TYPE:", typeof s2nClient?.from);
+
+if (!s2nClient || typeof s2nClient.from !== "function") {
+  console.error("S2N DEBUG: Invalid Supabase Client.");
+}
+
+if (!teamList || !teamSearch || !emptyState) {
+  console.error("S2N DEBUG: My Teams HTML elements missing.");
+}
 
 // ======================================
-// EMPTY STATE
+// MESSAGE
 // ======================================
 
 function showEmptyState(message = "ไม่พบข้อมูลทีม") {
   if (!emptyState) return;
 
-  const paragraph = emptyState.querySelector("p");
-
-  if (paragraph) {
-    paragraph.textContent = message;
-  }
-
+  emptyState.textContent = message;
   emptyState.classList.remove("hidden");
 }
 
@@ -58,6 +69,7 @@ function createTeamCard(team) {
   const card = document.createElement("article");
   card.className = "my-team-card";
 
+  // Header
   const top = document.createElement("div");
   top.className = "my-team-card-top";
 
@@ -95,31 +107,37 @@ function createTeamCard(team) {
 
   members
     .filter(member => member.role !== "substitute")
-    .sort((a, b) => (a.position || 0) - (b.position || 0))
+    .sort((a, b) => a.position - b.position)
     .forEach(member => {
-      const role = member.role === "leader" ? "LEADER" : "MAIN";
+      const role =
+        member.role === "leader"
+          ? "LEADER"
+          : "MAIN";
 
       roster.appendChild(
         createPlayerRow(member.pubg_name, role)
       );
     });
 
-  const substitutes = members.filter(
+  // Substitute
+  const substitute = members.find(
     member => member.role === "substitute"
   );
 
-  if (substitutes.length > 0) {
+  if (substitute) {
     const subHeading = document.createElement("div");
     subHeading.className = "my-team-roster-heading";
     subHeading.textContent = "SUBSTITUTE";
 
     roster.appendChild(subHeading);
 
-    substitutes.forEach(member => {
-      roster.appendChild(
-        createPlayerRow(member.pubg_name, "RESERVE", true)
-      );
-    });
+    roster.appendChild(
+      createPlayerRow(
+        substitute.pubg_name,
+        "RESERVE",
+        true
+      )
+    );
   }
 
   // Footer
@@ -131,12 +149,14 @@ function createTeamCard(team) {
 
   const detailLink = document.createElement("a");
   detailLink.className = "my-team-detail-link";
+
   detailLink.href =
     `team-detail.html?id=${encodeURIComponent(team.id)}`;
 
   detailLink.textContent = "VIEW DETAILS →";
 
   footer.append(teamId, detailLink);
+
   card.append(top, roster, footer);
 
   return card;
@@ -157,22 +177,24 @@ function updateOverview(teams) {
 
   if (mainCount) {
     mainCount.textContent = teams.reduce(
-      (total, team) =>
-        total + (team.members || []).filter(
+      (total, team) => {
+        return total + (team.members || []).filter(
           member =>
             member.role === "leader" ||
             member.role === "main"
-        ).length,
+        ).length;
+      },
       0
     );
   }
 
   if (subCount) {
     subCount.textContent = teams.reduce(
-      (total, team) =>
-        total + (team.members || []).filter(
+      (total, team) => {
+        return total + (team.members || []).filter(
           member => member.role === "substitute"
-        ).length,
+        ).length;
+      },
       0
     );
   }
@@ -183,15 +205,21 @@ function updateOverview(teams) {
 // ======================================
 
 function renderMyTeams() {
-  if (!teamList || !teamSearch || !emptyState) return;
+  if (!teamList || !teamSearch || !emptyState) {
+    return;
+  }
 
-  const keyword = teamSearch.value.trim().toLowerCase();
+  const keyword = teamSearch.value
+    .trim()
+    .toLowerCase();
 
-  const filteredTeams = myTeams.filter(team =>
-    (team.team_name || "").toLowerCase().includes(keyword) ||
-    (team.team_tag || "").toLowerCase().includes(keyword) ||
-    (team.leader_name || "").toLowerCase().includes(keyword)
-  );
+  const filteredTeams = myTeams.filter(team => {
+    return (
+      (team.team_name || "").toLowerCase().includes(keyword) ||
+      (team.team_tag || "").toLowerCase().includes(keyword) ||
+      (team.leader_name || "").toLowerCase().includes(keyword)
+    );
+  });
 
   teamList.innerHTML = "";
 
@@ -217,69 +245,40 @@ function renderMyTeams() {
 // ======================================
 
 async function loadMyTeams() {
+  console.log("S2N DEBUG: Loading My Teams...");
+
   if (!s2nClient || typeof s2nClient.from !== "function") {
     showEmptyState("Supabase Client ไม่พร้อมใช้งาน");
     return;
   }
 
   try {
+    // Authentication
+    console.log("S2N DEBUG: Checking user session...");
+
     const {
       data: { user },
       error: authError
     } = await s2nClient.auth.getUser();
 
-    if (authError) throw authError;
+    if (authError) {
+      console.error("S2N DEBUG: Auth error:", authError);
+      throw authError;
+    }
 
     if (!user) {
+      console.warn("S2N DEBUG: User not logged in.");
+
       window.location.href = "../login.html";
       return;
     }
 
-    // 1. Get teams where user is a member
-    const {
-      data: memberRows,
-      error: memberError
-    } = await s2nClient
-      .from("s2n_team_members")
-      .select("team_id")
-      .eq("user_id", user.id);
+    console.log("S2N DEBUG: User authenticated:", user.id);
 
-    if (memberError) throw memberError;
+    // Query Teams
+    console.log("S2N DEBUG: Querying s2n_teams...");
 
-    const teamIds = [
-      ...new Set((memberRows || []).map(row => row.team_id))
-    ];
-
-    // 2. Get teams led by this user as a fallback
-    const {
-      data: leaderRows,
-      error: leaderError
-    } = await s2nClient
-      .from("s2n_teams")
-      .select("id")
-      .eq("leader_id", user.id);
-
-    if (leaderError) throw leaderError;
-
-    (leaderRows || []).forEach(team => {
-      if (!teamIds.includes(team.id)) {
-        teamIds.push(team.id);
-      }
-    });
-
-    // 3. No teams found
-    if (teamIds.length === 0) {
-      myTeams = [];
-      updateOverview(myTeams);
-      renderMyTeams();
-      return;
-    }
-
-    // 4. Load team information and roster
-    const {
-      data,
-      error
-    } = await s2nClient
+    const { data, error } = await s2nClient
       .from("s2n_teams")
       .select(`
         id,
@@ -297,12 +296,19 @@ async function loadMyTeams() {
           position
         )
       `)
-      .in("id", teamIds)
+      .eq("leader_id", user.id)
       .order("created_at", { ascending: false });
 
-    if (error) throw error;
+    console.log("S2N DEBUG: Teams query result:", {
+      data,
+      error
+    });
 
-    // 5. Normalize data
+    if (error) {
+      throw error;
+    }
+
+    // Normalize Data
     myTeams = (data || []).map(team => {
       const members = team.s2n_team_members || [];
 
@@ -319,13 +325,17 @@ async function loadMyTeams() {
       };
     });
 
+    console.log(
+      "S2N DEBUG: Loaded teams:",
+      myTeams.length
+    );
+
+    // Update UI
     updateOverview(myTeams);
     renderMyTeams();
 
-    console.log("S2N HUB: Loaded teams", myTeams);
-
   } catch (error) {
-    console.error("S2N My Teams Error:", error);
+    console.error("S2N DEBUG: Load My Teams error:", error);
 
     showEmptyState(
       error.message || "ไม่สามารถโหลดข้อมูลทีมได้"
@@ -338,7 +348,10 @@ async function loadMyTeams() {
 // ======================================
 
 if (teamSearch) {
-  teamSearch.addEventListener("input", renderMyTeams);
+  teamSearch.addEventListener(
+    "input",
+    renderMyTeams
+  );
 }
 
 // ======================================

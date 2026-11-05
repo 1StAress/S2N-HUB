@@ -599,3 +599,221 @@
     grid-template-columns: 1fr;
   }
 }
+
+
+/* =====================================================
+   S2N HUB — MY TEAMS PAGE
+   Professional Esports UI
+===================================================== */
+
+.my-team-page {
+  color: #f4f4f5;
+}
+
+/* PAGE NAVIGATION */
+
+.team-page-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 26px;
+}
+
+.team-page-nav .team-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 11px 15px;
+  border: 1px solid rgba(229, 9, 20, 0.3);
+  border-radius: 9px;
+  background: rgba(229, 9, 20, 0.06);
+  color: #f4f4f5;
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  transition: 0.2s ease;
+}
+
+.team-page-nav .team-back-btn:hover {
+  border-color: #e50914;
+  background: rgba(229, 9, 20, 0.14);
+  transform: translateY(-1px);
+}
+
+.team-page-nav .material-symbols-outlined {
+  font-size: 18px;
+}
+
+.team-page-nav-label {
+  color: #77777f;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-align: right;
+}
+
+/* PAGE HEADER */
+
+.my-team-page .team-eyebrow {
+  color: #ff3344;
+}
+
+.my-team-page .team-header h1 {
+  color: #ffffff;
+  letter-spacing: -1px;
+}
+
+.my-team-page .team-header p {
+  color: #9999a3;
+}
+
+.my-team-page .team-submit-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #e50914, #8f0008);
+  color: #ffffff;
+  border: 1px solid rgba(255, 51, 68, 0.35);
+  text-decoration: none;
+  letter-spacing: 0.8px;
+  transition: 0.2s ease;
+}
+
+.my-team-page .team-submit-btn:hover {
+  background: #e50914;
+  box-shadow: 0 5px 20px rgba(229, 9, 20, 0.18);
+  transform: translateY(-1px);
+}
+
+/* OVERVIEW CARDS */
+
+.my-team-page .my-team-overview-card {
+  background: linear-gradient(
+    145deg,
+    rgba(20, 20, 23, 0.96),
+    rgba(10, 10, 12, 0.96)
+  );
+  border-color: rgba(229, 9, 20, 0.18);
+  transition: border-color 0.2s ease,
+              transform 0.2s ease;
+}
+
+.my-team-page .my-team-overview-card:hover {
+  border-color: rgba(229, 9, 20, 0.45);
+  transform: translateY(-2px);
+}
+
+.my-team-page .my-team-overview-card strong {
+  color: #ff3344;
+}
+
+/* TEAM DIRECTORY */
+
+.my-team-page .my-team-section {
+  background: rgba(12, 12, 14, 0.94);
+  border-color: rgba(255, 255, 255, 0.07);
+}
+
+.my-team-page .my-team-section-header h2 {
+  margin-top: 8px;
+  color: #f4f4f5;
+  font-size: 22px;
+  font-weight: 900;
+}
+
+.my-team-page .my-team-section-header p {
+  color: #92929c;
+}
+
+/* SEARCH */
+
+.my-team-search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: min(100%, 280px);
+  min-height: 44px;
+  padding: 0 13px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 9px;
+  background: #09090b;
+  transition: border-color 0.2s ease;
+}
+
+.my-team-search:focus-within {
+  border-color: rgba(229, 9, 20, 0.65);
+}
+
+.my-team-search .material-symbols-outlined {
+  color: #77777f;
+  font-size: 19px;
+}
+
+.my-team-search input {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #f4f4f5;
+  font-size: 13px;
+}
+
+.my-team-search input::placeholder {
+  color: #666670;
+}
+
+/* EMPTY STATE */
+
+.my-team-page .my-team-empty-logo {
+  border-color: rgba(229, 9, 20, 0.35);
+  background: rgba(229, 9, 20, 0.05);
+  color: #ff3344;
+  letter-spacing: 1px;
+}
+
+.my-team-page .my-team-empty h3 {
+  color: #f4f4f5;
+  font-weight: 800;
+}
+
+.my-team-page .my-team-empty p {
+  color: #92929c;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 650px) {
+  .team-page-nav {
+    align-items: flex-start;
+  }
+
+  .team-page-nav-label {
+    max-width: 45%;
+    font-size: 8px;
+    letter-spacing: 0.8px;
+  }
+
+  .team-page-nav .team-back-btn {
+    padding: 10px 12px;
+    font-size: 10px;
+  }
+
+  .my-team-page .team-header {
+    gap: 18px;
+  }
+
+  .my-team-page .team-header .team-submit-btn {
+    width: 100%;
+  }
+
+  .my-team-search {
+    width: 100%;
+  }
+
+  .my-team-page .my-team-section-header {
+    align-items: stretch;
+  }
+}
