@@ -348,141 +348,155 @@ document.addEventListener("DOMContentLoaded", async () =>  {
     // ADMIN ONLY
     // ==========================================
 
-    async function loadRoster() {
-      if (!isAdmin || !rosterBody) {
-        return;
-      }
-
-      rosterBody.innerHTML = `
+    // ==========================================
+// LOAD CLAN ROSTER
+// ADMIN ONLY
+// SORT BY ROLE + USERNAME A-Z
+// ==========================================
+async function loadRoster() {
+  if (!isAdmin || !rosterBody) {
+    return;
+  }
+  rosterBody.innerHTML = `
+    <tr>
+      <td colspan="5" style="text-align:center;">
+        LOADING ROSTER...
+      </td>
+    </tr>
+  `;
+  const {
+    data: members,
+    error
+  } = await s2nClient
+    .from("s2n_members")
+    .select(
+      "user_id, username, display_name, role, created_at"
+    );
+  if (error) {
+    console.error(
+      "S2N HUB: Roster loading error.",
+      error
+    );
+    rosterBody.innerHTML = `
+      <tr>
+        <td colspan="5" style="text-align:center;">
+          UNABLE TO LOAD ROSTER
+        </td>
+      </tr>
+    `;
+    return;
+  }
+  if (!members || members.length === 0) {
+    rosterBody.innerHTML = `
+      <tr>
+        <td colspan="5" style="text-align:center;">
+          NO MEMBERS FOUND
+        </td>
+      </tr>
+    `;
+    if (rosterCount) {
+      rosterCount.textContent = "00";
+    }
+    return;
+  }
+  // ==========================================
+  // SORT ROLE
+  // ADMIN FIRST -> MEMBER
+  // SAME ROLE SORT USERNAME A-Z
+  // ==========================================
+  const roleOrder = {
+    admin: 1,
+    member: 2
+  };
+  members.sort((a, b) => {
+    const roleA = String(a.role || "")
+      .trim()
+      .toLowerCase();
+    const roleB = String(b.role || "")
+      .trim()
+      .toLowerCase();
+    const orderA = roleOrder[roleA] ?? 99;
+    const orderB = roleOrder[roleB] ?? 99;
+    // Sort by role first
+    if (orderA !== orderB) {
+      return orderA - orderB;
+    }
+    // Same role: sort username A-Z
+    return String(a.username || "")
+      .localeCompare(
+        String(b.username || ""),
+        "en",
+        {
+          sensitivity: "base",
+          numeric: true
+        }
+      );
+  });
+  // ==========================================
+  // UPDATE ROSTER COUNT
+  // ==========================================
+  if (rosterCount) {
+    rosterCount.textContent =
+      String(members.length).padStart(2, "0");
+  }
+  // ==========================================
+  // RENDER ROSTER
+  // ==========================================
+  rosterBody.innerHTML =
+    members.map((member, index) => {
+      const memberUsername =
+        member.username || "UNKNOWN PLAYER";
+      const memberPubgName =
+        member.display_name ||
+        memberUsername;
+      const memberRole =
+        String(member.role || "")
+        .trim()
+        .toLowerCase();
+      const role =
+        memberRole === "admin" ?
+        "ADMIN" :
+        "MEMBER";
+      const avatarText =
+        getInitials(memberPubgName);
+      return `
         <tr>
-          <td colspan="5" style="text-align:center;">
-            LOADING ROSTER...
+          <td class="roster-number">
+            ${String(index + 1).padStart(2, "0")}
+          </td>
+          <td>
+            <div class="roster-player">
+              <div class="roster-avatar">
+                ${escapeHTML(avatarText)}
+              </div>
+              ${escapeHTML(
+                memberUsername.toUpperCase()
+              )}
+            </div>
+          </td>
+          <td class="pubg-cell">
+            ${escapeHTML(memberPubgName)}
+          </td>
+          <td>
+            <span class="roster-role ${
+              role === "ADMIN" ? "leader" : ""
+            }">
+              ${escapeHTML(role)}
+            </span>
+          </td>
+          <td>
+            <span class="member-status">
+              ACTIVE
+            </span>
           </td>
         </tr>
       `;
-
-      const {
-        data: members,
-        error
-      } = await s2nClient
-        .from("s2n_members")
-        .select(
-          "user_id, username, display_name, role, created_at"
-        )
-        .order("created_at", {
-          ascending: true
-        });
-
-      if (error) {
-        console.error(
-          "S2N HUB: Roster loading error.",
-          error
-        );
-
-        rosterBody.innerHTML = `
-          <tr>
-            <td colspan="5" style="text-align:center;">
-              UNABLE TO LOAD ROSTER
-            </td>
-          </tr>
-        `;
-
-        return;
-      }
-
-      if (!members || members.length === 0) {
-        rosterBody.innerHTML = `
-          <tr>
-            <td colspan="5" style="text-align:center;">
-              NO MEMBERS FOUND
-            </td>
-          </tr>
-        `;
-
-        if (rosterCount) {
-          rosterCount.textContent = "00";
-        }
-
-        return;
-      }
-
-      if (rosterCount) {
-        rosterCount.textContent =
-          String(members.length).padStart(2, "0");
-      }
-
-      rosterBody.innerHTML =
-        members.map((member, index) => {
-
-          const memberUsername =
-            member.username || "UNKNOWN PLAYER";
-
-          const memberPubgName =
-            member.display_name ||
-            memberUsername;
-
-          const memberRole =
-            String(member.role || "")
-              .trim()
-              .toLowerCase();
-
-          const role =
-            memberRole === "admin"
-              ? "ADMIN"
-              : "MEMBER";
-
-          // PUBG NAME INITIALS
-          const avatarText =
-            getInitials(memberPubgName);
-
-          return `
-            <tr>
-
-              <td class="roster-number">
-                ${String(index + 1).padStart(2, "0")}
-              </td>
-
-              <td>
-                <div class="roster-player">
-
-                  <div class="roster-avatar">
-                    ${escapeHTML(avatarText)}
-                  </div>
-
-                  ${escapeHTML(
-                    memberUsername.toUpperCase()
-                  )}
-
-                </div>
-              </td>
-
-              <td class="pubg-cell">
-                ${escapeHTML(memberPubgName)}
-              </td>
-
-              <td>
-                <span class="roster-role ${
-                  role === "ADMIN" ? "leader" : ""
-                }">
-                  ${escapeHTML(role)}
-                </span>
-              </td>
-
-              <td>
-                <span class="member-status">
-                  ACTIVE
-                </span>
-              </td>
-
-            </tr>
-          `;
-        }).join("");
-
-      console.log(
-        "S2N HUB: Admin roster loaded.",
-        members.length
-      );
-    }
+    }).join("");
+  console.log(
+    "S2N HUB: Admin roster sorted and loaded.",
+    members.length
+  );
+}
 
     // ==========================================
     // TOURNAMENT ANNOUNCEMENT
