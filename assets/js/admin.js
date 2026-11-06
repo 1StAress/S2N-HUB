@@ -1,6 +1,7 @@
 /* ==========================================
    S2N HUB - ADMIN MEMBER DIRECTORY
    Real Supabase Data
+   FIX: ROLE MEMBER
 ========================================== */
 
 document.addEventListener("DOMContentLoaded", loadAdminMembers);
@@ -60,8 +61,9 @@ async function loadAdminMembers() {
     if (membersError) throw membersError;
     
     // 4. แยก User และ Admin
+    // FIX: ฐานข้อมูลใช้ role = member
     const users = members.filter(
-      member => member.role === "user"
+      member => member.role === "member"
     );
     
     const admins = members.filter(
@@ -69,7 +71,7 @@ async function loadAdminMembers() {
     );
     
     // 5. แสดงผล
-    renderTable(userList, users, "user");
+    renderTable(userList, users, "member");
     renderTable(adminList, admins, "admin");
     
     userCount.textContent = `${users.length} คน`;
@@ -127,14 +129,21 @@ function renderTable(container, members, role) {
     const username = escapeHTML(member.username || "-");
     const displayName = escapeHTML(member.display_name || "-");
     
-    const roleText = role === "admin" ? "ADMIN" : "USER";
+    const roleText = role === "admin" ? "ADMIN" : "MEMBER";
     const roleClass = role === "admin" ? "role-admin" : "role-user";
     
     return `
       <tr>
         <td>${index + 1}</td>
-        <td class="username-cell">${username}</td>
-        <td>${displayName}</td>
+
+        <td class="username-cell">
+          ${username}
+        </td>
+
+        <td>
+          ${displayName}
+        </td>
+
         <td>
           <span class="role-badge ${roleClass}">
             ${roleText}

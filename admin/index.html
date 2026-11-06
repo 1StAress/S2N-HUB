@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="../assets/css/admin.css">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     .admin-tools-grid {
@@ -68,6 +68,247 @@
       font-size: 12px;
       font-weight: 500;
     }
+
+    /* ================================
+       S2N RANDOM TEAM
+    ================================= */
+
+    .team-randomizer {
+      margin-bottom: 36px;
+    }
+
+    .randomizer-panel {
+      padding: 20px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      background: linear-gradient(
+        145deg,
+        rgba(20, 20, 25, 0.98),
+        rgba(10, 10, 13, 0.98)
+      );
+    }
+
+    .randomizer-field {
+      margin-bottom: 20px;
+    }
+
+    .randomizer-field label {
+      display: block;
+      margin-bottom: 9px;
+      color: #f0f0f0;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .randomizer-field select,
+    .randomizer-field textarea {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 13px 14px;
+      border: 1px solid #34343c;
+      border-radius: 10px;
+      outline: none;
+      background: #15151a;
+      color: #fff;
+      font-family: 'Kanit', sans-serif;
+      font-size: 13px;
+    }
+
+    .randomizer-field select:focus,
+    .randomizer-field textarea:focus {
+      border-color: #d93636;
+    }
+
+    .randomizer-field textarea {
+      resize: vertical;
+      min-height: 170px;
+      line-height: 1.8;
+    }
+
+    .randomizer-hint {
+      margin: 8px 0 0;
+      color: #85858f;
+      font-size: 11px;
+      line-height: 1.7;
+    }
+
+    .randomizer-actions {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .randomizer-actions button {
+      padding: 13px 10px;
+      border: 1px solid #393941;
+      border-radius: 10px;
+      background: #202027;
+      color: #fff;
+      font-family: 'Kanit', sans-serif;
+      font-size: 13px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .randomizer-actions button:hover {
+      transform: translateY(-2px);
+      border-color: #e53939;
+    }
+
+    #randomize-btn {
+      border-color: #e53939;
+      background: linear-gradient(135deg, #e53939, #941d1d);
+      font-weight: 600;
+    }
+
+    #copy-teams-btn {
+      background: #25252c;
+    }
+
+    .randomizer-status {
+      margin-top: 16px;
+      color: #aaa;
+      font-size: 12px;
+      text-align: center;
+    }
+
+    .random-team-result {
+      margin-top: 25px;
+    }
+
+    .random-result-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .random-result-heading h3 {
+      margin: 0;
+      color: #fff;
+      font-size: 18px;
+    }
+
+    .random-result-heading span {
+      color: #aaa;
+      font-size: 11px;
+    }
+
+    .random-team-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .random-team-card {
+      overflow: hidden;
+      border: 1px solid #383840;
+      border-radius: 14px;
+      background: #15151a;
+    }
+
+    .random-team-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 14px;
+      border-bottom: 1px solid #33333a;
+      background: linear-gradient(
+        135deg,
+        rgba(180, 35, 35, 0.18),
+        rgba(20, 20, 25, 0.8)
+      );
+    }
+
+    .random-team-title {
+      color: #ff4b4b;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+
+    .random-team-count {
+      color: #999;
+      font-size: 10px;
+    }
+
+    .random-team-members {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 9px;
+      padding: 12px;
+    }
+
+    .random-player-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 85px;
+      padding: 10px 6px;
+      border: 1px solid #35353d;
+      border-radius: 10px;
+      background: linear-gradient(
+        145deg,
+        #25252d,
+        #17171c
+      );
+      text-align: center;
+      overflow-wrap: anywhere;
+    }
+
+    .random-player-short {
+      color: #fff;
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1.3;
+      letter-spacing: 1px;
+    }
+
+    .random-player-name {
+      margin-top: 5px;
+      color: #a7a7b0;
+      font-size: 11px;
+      line-height: 1.5;
+    }
+
+    .random-team-empty {
+      grid-column: 1 / -1;
+      padding: 20px 10px;
+      color: #666;
+      font-size: 12px;
+      text-align: center;
+    }
+
+    .randomizer-empty {
+      padding: 30px 15px;
+      border: 1px dashed #37373e;
+      border-radius: 12px;
+      color: #888;
+      font-size: 13px;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      .randomizer-panel {
+        padding: 14px;
+      }
+
+      .random-team-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .randomizer-actions {
+        grid-template-columns: 1fr;
+      }
+
+      .randomizer-actions button {
+        padding: 12px;
+      }
+    }
   </style>
 </head>
 
@@ -91,6 +332,7 @@
 
     <main class="admin-content">
 
+      <!-- PAGE HEADING -->
       <section class="page-heading">
         <div>
           <span class="eyebrow">ADMIN CONTROL CENTER</span>
@@ -135,6 +377,125 @@
             เปิดรายชื่อสมาชิก →
           </span>
         </a>
+
+        <a href="#team-randomizer" class="admin-tool-card">
+          <span class="admin-tool-eyebrow">
+            S2N ESPORT EVENT
+          </span>
+
+          <h3>สุ่มทีมกิจกรรม</h3>
+
+          <p>
+            ระบบสุ่มสมาชิก SOLO / DUO / SQUAD
+            เลือกจำนวนทีม 2–16 ทีม
+            พร้อมแสดงชื่อย่อและชื่อ PUBG
+          </p>
+
+          <span class="admin-tool-arrow">
+            เปิดระบบสุ่มทีม →
+          </span>
+        </a>
+
+      </section>
+
+      <!-- S2N TEAM RANDOMIZER -->
+      <section class="team-randomizer" id="team-randomizer">
+
+        <div class="page-heading">
+          <div>
+            <span class="eyebrow">S2N ESPORT RANDOMIZER</span>
+            <h2>สุ่มทีมกิจกรรม</h2>
+            <p>ระบบสุ่มสมาชิกสำหรับกิจกรรมแคลน S2N</p>
+          </div>
+        </div>
+
+        <div class="randomizer-panel">
+
+          <!-- GAME MODE -->
+          <div class="randomizer-field">
+            <label for="random-mode">
+              รูปแบบการแข่งขัน
+            </label>
+
+            <select id="random-mode">
+              <option value="solo">SOLO — 1 คน / ทีม</option>
+              <option value="duo">DUO — 2 คน / ทีม</option>
+              <option value="squad" selected>SQUAD — 4 คน / ทีม</option>
+            </select>
+          </div>
+
+          <!-- TEAM COUNT -->
+          <div class="randomizer-field">
+            <label for="team-count">
+              จำนวนทีม
+            </label>
+
+            <select id="team-count">
+              <option value="2">2 ทีม</option>
+              <option value="3">3 ทีม</option>
+              <option value="4" selected>4 ทีม</option>
+              <option value="5">5 ทีม</option>
+              <option value="6">6 ทีม</option>
+              <option value="7">7 ทีม</option>
+              <option value="8">8 ทีม</option>
+              <option value="9">9 ทีม</option>
+              <option value="10">10 ทีม</option>
+              <option value="11">11 ทีม</option>
+              <option value="12">12 ทีม</option>
+              <option value="13">13 ทีม</option>
+              <option value="14">14 ทีม</option>
+              <option value="15">15 ทีม</option>
+              <option value="16">16 ทีม</option>
+            </select>
+          </div>
+
+          <!-- MEMBER INPUT -->
+          <div class="randomizer-field">
+            <label for="player-list">
+              รายชื่อสมาชิก
+            </label>
+
+            <textarea
+              id="player-list"
+              rows="8"
+              placeholder="ชื่อย่อ | ชื่อ PUBG
+
+NUT | S2N_NUT
+JAY | S2N_JAY
+PAN | S2N_PAN
+ZEN | S2N_ZEN"
+            ></textarea>
+
+            <p class="randomizer-hint">
+              1 บรรทัดต่อ 1 คน ใช้เครื่องหมาย | คั่นชื่อย่อกับชื่อ PUBG
+            </p>
+          </div>
+
+          <!-- BUTTONS -->
+          <div class="randomizer-actions">
+
+            <button type="button" id="randomize-btn">
+              🎲 สุ่มทีม
+            </button>
+
+            <button type="button" id="reshuffle-btn">
+              🔄 สุ่มใหม่
+            </button>
+
+            <button type="button" id="copy-teams-btn">
+              📋 คัดลอกผล
+            </button>
+
+          </div>
+
+          <div class="randomizer-status" id="randomizer-status">
+            กรอกรายชื่อสมาชิกเพื่อเริ่มสุ่มทีม
+          </div>
+
+          <!-- RESULT -->
+          <div class="random-team-result" id="random-team-result"></div>
+
+        </div>
 
       </section>
 
@@ -231,9 +592,320 @@
 
   </div>
 
+  <!-- SUPABASE -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="../assets/js/supabase.js"></script>
   <script src="../assets/js/admin.js"></script>
+
+  <!-- TEAM RANDOMIZER SCRIPT -->
+  <script>
+    (() => {
+      "use strict";
+
+      const modeSelect = document.getElementById("random-mode");
+      const teamCountSelect = document.getElementById("team-count");
+      const playerListInput = document.getElementById("player-list");
+
+      const randomizeBtn = document.getElementById("randomize-btn");
+      const reshuffleBtn = document.getElementById("reshuffle-btn");
+      const copyBtn = document.getElementById("copy-teams-btn");
+
+      const resultContainer = document.getElementById("random-team-result");
+      const statusElement = document.getElementById("randomizer-status");
+
+      let currentTeams = [];
+
+      const modeNames = {
+        solo: "SOLO",
+        duo: "DUO",
+        squad: "SQUAD"
+      };
+
+      function escapeHTML(value) {
+        return String(value)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#039;");
+      }
+
+      function getPlayers() {
+        const lines = playerListInput.value
+          .split(/\r?\n/)
+          .map(line => line.trim())
+          .filter(Boolean);
+
+        const players = [];
+
+        lines.forEach(line => {
+          const parts = line.split("|");
+
+          let shortName = "";
+          let playerName = "";
+
+          if (parts.length >= 2) {
+            shortName = parts[0].trim();
+            playerName = parts.slice(1).join("|").trim();
+          } else {
+            playerName = parts[0].trim();
+
+            shortName = playerName
+              .replace(/^S2N[_\-\s]*/i, "")
+              .split(/[_\-\s]/)[0]
+              .substring(0, 5)
+              .toUpperCase();
+          }
+
+          if (!shortName || !playerName) return;
+
+          players.push({
+            shortName,
+            playerName
+          });
+        });
+
+        return players;
+      }
+
+      function shuffleArray(array) {
+        const shuffled = [...array];
+
+        for (let i = shuffled.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+
+          [shuffled[i], shuffled[j]] =
+            [shuffled[j], shuffled[i]];
+        }
+
+        return shuffled;
+      }
+
+      function generateTeams() {
+        const players = getPlayers();
+
+        const teamCount = Number(teamCountSelect.value);
+        const mode = modeSelect.value;
+
+        if (players.length === 0) {
+          statusElement.textContent =
+            "กรุณาใส่รายชื่อสมาชิกก่อนสุ่มทีม";
+
+          resultContainer.innerHTML = "";
+
+          currentTeams = [];
+
+          return;
+        }
+
+        if (teamCount < 2 || teamCount > 16) {
+          statusElement.textContent =
+            "จำนวนทีมต้องอยู่ระหว่าง 2–16 ทีม";
+
+          return;
+        }
+
+        const shuffledPlayers = shuffleArray(players);
+
+        const teams = Array.from(
+          { length: teamCount },
+          () => []
+        );
+
+        /*
+          กระจายสมาชิกให้จำนวนใกล้เคียงกันที่สุด
+          ไม่จำเป็นต้องรอสมาชิกครบทีม
+        */
+
+        shuffledPlayers.forEach((player, index) => {
+          const teamIndex = index % teamCount;
+
+          teams[teamIndex].push(player);
+        });
+
+        currentTeams = teams;
+
+        renderTeams();
+
+        statusElement.textContent =
+          `สุ่มสำเร็จ ${players.length} คน | ${teamCount} ทีม | ${modeNames[mode]}`;
+      }
+
+      function renderTeams() {
+        if (!currentTeams.length) {
+          resultContainer.innerHTML = "";
+          return;
+        }
+
+        const totalPlayers = currentTeams.reduce(
+          (sum, team) => sum + team.length,
+          0
+        );
+
+        let html = `
+          <div class="random-result-heading">
+            <h3>ผลการสุ่มทีม</h3>
+
+            <span>
+              ${totalPlayers} PLAYERS
+              • ${currentTeams.length} TEAMS
+            </span>
+          </div>
+
+          <div class="random-team-grid">
+        `;
+
+        currentTeams.forEach((team, index) => {
+          const teamNumber = String(index + 1).padStart(2, "0");
+
+          html += `
+            <div class="random-team-card">
+
+              <div class="random-team-header">
+
+                <div class="random-team-title">
+                  TEAM ${teamNumber}
+                </div>
+
+                <div class="random-team-count">
+                  ${team.length} PLAYERS
+                </div>
+
+              </div>
+
+              <div class="random-team-members">
+          `;
+
+          if (team.length === 0) {
+            html += `
+              <div class="random-team-empty">
+                ยังไม่มีสมาชิกในทีม
+              </div>
+            `;
+          }
+
+          team.forEach(player => {
+            html += `
+              <div class="random-player-card">
+
+                <div class="random-player-short">
+                  ${escapeHTML(player.shortName)}
+                </div>
+
+                <div class="random-player-name">
+                  ${escapeHTML(player.playerName)}
+                </div>
+
+              </div>
+            `;
+          });
+
+          html += `
+              </div>
+            </div>
+          `;
+        });
+
+        html += `</div>`;
+
+        resultContainer.innerHTML = html;
+      }
+
+      function getCopyText() {
+        if (!currentTeams.length) return "";
+
+        const mode = modeNames[modeSelect.value];
+
+        let text = `S2N ESPORT RANDOM TEAM\n`;
+        text += `MODE: ${mode}\n\n`;
+
+        currentTeams.forEach((team, index) => {
+          const teamNumber = String(index + 1).padStart(2, "0");
+
+          text += `TEAM ${teamNumber}\n`;
+
+          if (team.length === 0) {
+            text += `- ไม่มีสมาชิก\n`;
+          } else {
+            team.forEach((player, playerIndex) => {
+              text += `${playerIndex + 1}. ${player.shortName} | ${player.playerName}\n`;
+            });
+          }
+
+          text += `\n`;
+        });
+
+        return text.trim();
+      }
+
+      async function copyResults() {
+        const text = getCopyText();
+
+        if (!text) {
+          statusElement.textContent =
+            "ยังไม่มีผลการสุ่มให้คัดลอก";
+
+          return;
+        }
+
+        try {
+          await navigator.clipboard.writeText(text);
+
+          statusElement.textContent =
+            "คัดลอกผลการสุ่มเรียบร้อยแล้ว";
+        } catch (error) {
+          const textarea = document.createElement("textarea");
+
+          textarea.value = text;
+
+          textarea.style.position = "fixed";
+          textarea.style.opacity = "0";
+
+          document.body.appendChild(textarea);
+
+          textarea.select();
+
+          const success = document.execCommand("copy");
+
+          textarea.remove();
+
+          statusElement.textContent = success
+            ? "คัดลอกผลการสุ่มเรียบร้อยแล้ว"
+            : "ไม่สามารถคัดลอกได้ กรุณาลองใหม่";
+        }
+      }
+
+      randomizeBtn.addEventListener("click", generateTeams);
+
+      reshuffleBtn.addEventListener("click", generateTeams);
+
+      copyBtn.addEventListener("click", copyResults);
+
+      playerListInput.addEventListener("input", () => {
+        statusElement.textContent =
+          "รายชื่อมีการเปลี่ยนแปลง กรุณากดสุ่มทีมอีกครั้ง";
+
+        currentTeams = [];
+
+        resultContainer.innerHTML = "";
+      });
+
+      modeSelect.addEventListener("change", () => {
+        if (currentTeams.length) {
+          statusElement.textContent =
+            "เปลี่ยนโหมดการแข่งขัน กรุณากดสุ่มทีมใหม่";
+        }
+      });
+
+      teamCountSelect.addEventListener("change", () => {
+        if (currentTeams.length) {
+          statusElement.textContent =
+            "เปลี่ยนจำนวนทีม กรุณากดสุ่มทีมใหม่";
+        }
+      });
+
+    })();
+  </script>
 
 </body>
 </html>
