@@ -224,3 +224,4 @@ teamSearch.addEventListener(
 // ======================================
 
 loadAllTeams();
+

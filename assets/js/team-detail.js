@@ -1,7 +1,7 @@
-
 /* =========================================
    S2N HUB - TEAM DETAIL
    Supabase Connected Version
+   UI UPDATE V2.0
 ========================================= */
 
 "use strict";
@@ -16,6 +16,21 @@ const messageBox = $("team-detail-message");
 let currentUser = null;
 let currentTeam = null;
 let currentMembers = [];
+
+// ======================================
+// BUTTON UI
+// ======================================
+
+function setButtonContent(button, icon, text) {
+  if (!button) return;
+
+  button.innerHTML = `
+    <span class="material-symbols-rounded">
+      ${icon}
+    </span>
+    <span>${text}</span>
+  `;
+}
 
 // ======================================
 // MESSAGE
@@ -54,7 +69,7 @@ function formatCreatedDate(dateValue) {
 // ======================================
 
 function renderTeamInformation() {
-  if (!currentTeam) return;
+  if (!currentTeam || !currentUser) return;
 
   const teamName = currentTeam.team_name || "UNKNOWN TEAM";
   const teamTag = currentTeam.team_tag || "-";
@@ -107,16 +122,22 @@ function renderTeamInformation() {
 
   if (editButton) {
     editButton.disabled = !isLeader;
-    editButton.textContent = isLeader
-      ? "EDIT TEAM"
-      : "LEADER ONLY";
+
+    setButtonContent(
+      editButton,
+      "edit",
+      isLeader ? "EDIT TEAM" : "LEADER ONLY"
+    );
   }
 
   if (leaveButton) {
     leaveButton.disabled = isLeader;
-    leaveButton.textContent = isLeader
-      ? "LEADER CANNOT LEAVE"
-      : "LEAVE TEAM";
+
+    setButtonContent(
+      leaveButton,
+      "logout",
+      isLeader ? "LEADER CANNOT LEAVE" : "LEAVE TEAM"
+    );
   }
 }
 
@@ -193,8 +214,11 @@ function renderTeamRoster() {
 
   if (sortedMembers.length === 0) {
     const empty = document.createElement("p");
+
     empty.textContent = "ยังไม่มีรายชื่อสมาชิกในทีม";
+
     teamRoster.appendChild(empty);
+
     return;
   }
 
@@ -227,6 +251,7 @@ async function copyText(value, successMessage) {
     input.style.opacity = "0";
 
     document.body.appendChild(input);
+
     input.select();
 
     const copied = document.execCommand("copy");
@@ -252,6 +277,7 @@ async function editTeam() {
       "เฉพาะหัวหน้าทีมเท่านั้นที่แก้ไขข้อมูลทีมได้",
       "error"
     );
+
     return;
   }
 
@@ -269,6 +295,7 @@ async function editTeam() {
       "ชื่อทีมไม่สามารถเว้นว่างได้",
       "error"
     );
+
     return;
   }
 
@@ -277,6 +304,7 @@ async function editTeam() {
       "ชื่อทีมต้องมีความยาวไม่เกิน 40 ตัวอักษร",
       "error"
     );
+
     return;
   }
 
@@ -320,6 +348,7 @@ async function leaveTeam() {
       "หัวหน้าทีมไม่สามารถออกจากทีมด้วยคำสั่งนี้ได้",
       "error"
     );
+
     return;
   }
 
@@ -361,6 +390,7 @@ async function loadTeamDetail() {
       "Supabase Client ไม่พร้อมใช้งาน",
       "error"
     );
+
     return;
   }
 
@@ -372,6 +402,7 @@ async function loadTeamDetail() {
       "ไม่พบ Team ID ใน URL",
       "error"
     );
+
     return;
   }
 
@@ -421,7 +452,6 @@ async function loadTeamDetail() {
     currentTeam = data;
     currentMembers = data.s2n_team_members || [];
 
-    // Check whether the current user belongs to this team
     const isMember = currentMembers.some(
       member => member.user_id === currentUser.id
     );

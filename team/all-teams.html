@@ -3,53 +3,486 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080808">
 
-  <title>All Teams | S2N HUB</title>
+  <title>S2N HUB | All Teams</title>
 
+  <!-- S2N DASHBOARD THEME -->
   <link rel="stylesheet" href="../assets/css/global.css">
-  <link rel="stylesheet" href="../assets/css/team.css">
-  <link rel="stylesheet" href="../assets/css/all-teams.css">
+  <link rel="stylesheet" href="../assets/css/dashboard.css">
+
+  <!-- FONTS -->
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Orbitron:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- MATERIAL SYMBOLS -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet">
+
+  <style>
+    /* =====================================
+       S2N HUB - ALL TEAMS
+       DASHBOARD THEME
+    ===================================== */
+
+    .all-teams-page {
+      width: 100%;
+    }
+
+    .all-teams-hero {
+      position: relative;
+      overflow: hidden;
+      margin: 28px 0;
+      padding: 30px;
+      border: 1px solid rgba(255, 48, 63, 0.22);
+      border-radius: 16px;
+      background: linear-gradient(145deg, #151515, #080808);
+    }
+
+    .all-teams-hero::before {
+      content: "";
+      position: absolute;
+      top: -100px;
+      right: -80px;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: rgba(255, 48, 63, 0.10);
+      filter: blur(75px);
+      pointer-events: none;
+    }
+
+    .all-teams-hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .team-eyebrow {
+      display: inline-block;
+      color: #ff303f;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+
+    .all-teams-hero h1 {
+      margin: 14px 0 8px;
+      color: #f5f5f5;
+      font-family: 'Orbitron', 'Kanit', sans-serif;
+      font-size: clamp(26px, 5vw, 38px);
+      font-weight: 800;
+      line-height: 1.4;
+    }
+
+    .all-teams-hero h1 span {
+      color: #ff303f;
+    }
+
+    .all-teams-hero p {
+      max-width: 650px;
+      margin: 0;
+      color: #9ca3af;
+      font-size: 13px;
+      line-height: 1.9;
+    }
+
+    .all-teams-header-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .all-teams-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+      background: rgba(255,255,255,0.03);
+      color: #d1d5db;
+      font-family: 'Kanit', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: .2s ease;
+    }
+
+    .all-teams-action:hover {
+      border-color: rgba(255,48,63,0.4);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    .all-teams-action.primary {
+      border-color: rgba(255,48,63,0.35);
+      background: rgba(255,48,63,0.10);
+      color: #ff555f;
+    }
+
+    .all-teams-action.primary:hover {
+      background: rgba(255,48,63,0.18);
+    }
+
+    /* STATS */
+
+    .all-teams-overview {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+
+    .all-teams-stat {
+      position: relative;
+      overflow: hidden;
+      padding: 22px;
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px;
+      background: rgba(15,15,15,0.8);
+    }
+
+    .all-teams-stat::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 35%;
+      height: 2px;
+      background: #ff303f;
+      box-shadow: 0 0 12px rgba(255,48,63,0.5);
+    }
+
+    .all-teams-stat span {
+      display: block;
+      margin-bottom: 10px;
+      color: #8b95a7;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 10px;
+      letter-spacing: 1.5px;
+    }
+
+    .all-teams-stat strong {
+      color: #f5f5f5;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 27px;
+      font-weight: 700;
+    }
+
+    /* DIRECTORY */
+
+    .all-teams-directory {
+      margin-bottom: 35px;
+    }
+
+    .all-teams-directory-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
+    }
+
+    .all-teams-directory-header h2 {
+      margin: 10px 0 0;
+      color: #f5f5f5;
+      font-size: 22px;
+      font-weight: 600;
+    }
+
+    .all-teams-directory-header h2 span {
+      color: #ff303f;
+    }
+
+    #all-team-search {
+      width: 100%;
+      max-width: 320px;
+      box-sizing: border-box;
+      padding: 12px 15px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 9px;
+      outline: none;
+      background: #0d0d0d;
+      color: #f5f5f5;
+      font-family: 'Kanit', sans-serif;
+      font-size: 13px;
+      transition: .2s ease;
+    }
+
+    #all-team-search::placeholder {
+      color: #737373;
+    }
+
+    #all-team-search:focus {
+      border-color: rgba(255,48,63,0.5);
+      box-shadow: 0 0 0 3px rgba(255,48,63,0.06);
+    }
+
+    .all-team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    /* Compatible with common all-teams.js card selectors */
+
+    .all-team-card,
+    .team-card {
+      position: relative;
+      overflow: hidden;
+      padding: 20px;
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 13px;
+      background: linear-gradient(145deg, #141414, #090909);
+      transition: .25s ease;
+    }
+
+    .all-team-card:hover,
+    .team-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(255,48,63,0.4);
+      box-shadow: 0 8px 28px rgba(255,48,63,0.06);
+    }
+
+    .all-team-message {
+      padding: 35px 20px;
+      border: 1px dashed rgba(255,255,255,0.1);
+      border-radius: 12px;
+      background: rgba(15,15,15,0.4);
+      color: #8b95a7;
+      text-align: center;
+      font-size: 13px;
+      line-height: 1.9;
+    }
+
+    .all-team-message:empty {
+      display: none;
+    }
+
+    .all-team-message.error {
+      color: #ff6b75;
+    }
+
+    /* FOOTER */
+
+    .all-teams-footer {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 20px 0;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      color: #666;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 9px;
+      letter-spacing: 1px;
+    }
+
+    @media (max-width: 900px) {
+      .all-team-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 700px) {
+      .all-teams-hero {
+        padding: 22px;
+      }
+
+      .all-teams-overview {
+        gap: 10px;
+      }
+
+      .all-teams-stat {
+        padding: 16px;
+      }
+
+      .all-teams-stat strong {
+        font-size: 22px;
+      }
+
+      .all-team-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .all-teams-directory-header {
+        align-items: stretch;
+      }
+
+      #all-team-search {
+        max-width: 100%;
+      }
+    }
+
+    @media (max-width: 390px) {
+      .all-teams-overview {
+        grid-template-columns: 1fr;
+      }
+
+      .all-teams-header-actions {
+        flex-direction: column;
+      }
+
+      .all-teams-action {
+        width: 100%;
+        box-sizing: border-box;
+      }
+    }
+  </style>
 </head>
-<body>
 
-  <main class="team-page all-teams-page">
+<body class="dashboard-page">
 
-    <header class="all-teams-header">
-      <div>
-        <span class="team-eyebrow">S2N // COMPETITIVE DIRECTORY</span>
-        <h1>All Teams</h1>
-        <p>ค้นหาและดูรายละเอียดทีมทั้งหมดใน S2N HUB</p>
+  <!-- DASHBOARD BACKGROUND -->
+  <div class="dash-bg-grid"></div>
+  <div class="dash-glow"></div>
+
+  <main class="dashboard-container all-teams-page">
+
+    <!-- HEADER -->
+    <header class="dash-header">
+
+      <a href="../dashboard.html" class="dash-brand">
+
+        <img
+          src="../assets/images/s2n-logo.png"
+          alt="S2N Clan Logo"
+          class="dash-logo"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        >
+
+        <div class="dash-logo-fallback">S2N</div>
+
+        <div class="brand-info">
+          <span class="brand-name">SECOND TO NONE</span>
+          <span class="brand-sub">CLAN HUB / TEAM DIRECTORY</span>
+        </div>
+
+      </a>
+
+      <div class="dash-header-right">
+
+        <div class="online-status">
+          <span class="status-dot"></span>
+          CLAN SYSTEM
+        </div>
+
+        <button class="logout-btn" id="logout-btn" type="button">
+          LOGOUT
+        </button>
+
       </div>
 
-      <div class="all-teams-header-actions">
-        <a href="my-team.html" class="team-back-btn">
-          MY TEAMS
-        </a>
-
-        <a href="create-team.html" class="team-submit-btn">
-          + CREATE TEAM
-        </a>
-      </div>
     </header>
 
+    <!-- NAVIGATION -->
+    <nav class="dash-navigation" id="dash-navigation">
+
+      <a href="../dashboard.html" class="dash-nav-link">
+        <span class="material-symbols-rounded">dashboard</span>
+        <span>Dashboard</span>
+      </a>
+
+      <a href="../tournament.html" class="dash-nav-link">
+        <span class="material-symbols-rounded">emoji_events</span>
+        <span>Tournament</span>
+      </a>
+
+      <a href="../admin/members.html" class="dash-nav-link admin-only hidden">
+        <span class="material-symbols-rounded">groups</span>
+        <span>Members</span>
+      </a>
+
+      <a href="all-teams.html" class="dash-nav-link active">
+        <span class="material-symbols-rounded">groups</span>
+        <span>All Teams</span>
+      </a>
+
+      <a href="my-team.html" class="dash-nav-link">
+        <span class="material-symbols-rounded">shield</span>
+        <span>My Teams</span>
+      </a>
+
+      <a href="../profile.html" class="dash-nav-link">
+        <span class="material-symbols-rounded">person</span>
+        <span>Profile</span>
+      </a>
+
+      <a href="../admin/index.html" class="dash-nav-link admin-only hidden">
+        <span class="material-symbols-rounded">admin_panel_settings</span>
+        <span>Admin</span>
+      </a>
+
+    </nav>
+
+    <!-- HERO -->
+    <section class="all-teams-hero">
+
+      <div class="all-teams-hero-content">
+
+        <span class="team-eyebrow">
+          S2N ESPORT // COMPETITIVE DIRECTORY
+        </span>
+
+        <h1>
+          ALL
+          <span>TEAMS</span>
+        </h1>
+
+        <p>
+          ค้นหาและดูรายละเอียดทีมทั้งหมดใน S2N HUB
+          สำรวจทีม ผู้เล่น และสายการแข่งขันของ SECOND TO NONE
+        </p>
+
+        <div class="all-teams-header-actions">
+
+          <a href="my-team.html" class="all-teams-action">
+            <span class="material-symbols-rounded">shield</span>
+            MY TEAMS
+          </a>
+
+          <a href="create-team.html" class="all-teams-action primary">
+            <span class="material-symbols-rounded">add</span>
+            CREATE TEAM
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- OVERVIEW -->
     <section class="all-teams-overview">
+
       <div class="all-teams-stat">
         <span>TOTAL TEAMS</span>
-        <strong id="all-team-count">0</strong>
+        <strong id="all-team-count">00</strong>
       </div>
 
       <div class="all-teams-stat">
         <span>TOTAL PLAYERS</span>
-        <strong id="all-player-count">0</strong>
+        <strong id="all-player-count">00</strong>
       </div>
+
     </section>
 
+    <!-- DIRECTORY -->
     <section class="all-teams-directory">
 
       <div class="all-teams-directory-header">
+
         <div>
-          <span class="team-eyebrow">TEAM DIRECTORY</span>
-          <h2>Discover Teams</h2>
+          <span class="team-eyebrow">
+            TEAM DIRECTORY
+          </span>
+
+          <h2>
+            DISCOVER
+            <span>TEAMS</span>
+          </h2>
         </div>
 
         <input
@@ -58,8 +491,10 @@
           placeholder="ค้นหาชื่อแคลน หรือ TAG..."
           autocomplete="off"
         >
+
       </div>
 
+      <!-- TEAM CARDS RENDER BY JS -->
       <div id="all-team-list" class="all-team-grid"></div>
 
       <div id="all-team-message" class="all-team-message">
@@ -68,11 +503,42 @@
 
     </section>
 
+    <!-- FOOTER -->
+    <footer class="all-teams-footer">
+
+      <span>© 2026 SECOND TO NONE</span>
+
+      <span>S2N HUB / TEAM DIRECTORY</span>
+
+    </footer>
+
   </main>
 
+  <!-- SUPABASE -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="../assets/js/supabase.js"></script>
   <script src="../assets/js/all-teams.js"></script>
+
+  <!-- LOGOUT -->
+  <script>
+    document.getElementById("logout-btn")
+      ?.addEventListener("click", async () => {
+
+        const confirmed = confirm("ต้องการออกจากระบบหรือไม่?");
+
+        if (!confirmed) return;
+
+        const { error } = await supabase.auth.signOut();
+
+        if (error) {
+          alert("ออกจากระบบไม่สำเร็จ");
+          console.error(error);
+          return;
+        }
+
+        window.location.href = "../index.html";
+      });
+  </script>
 
 </body>
 </html>
