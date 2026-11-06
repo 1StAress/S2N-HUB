@@ -11,21 +11,28 @@
   <link rel="stylesheet" href="../assets/css/global.css">
   <link rel="stylesheet" href="../assets/css/dashboard.css">
 
-  <!-- FONTS -->
-  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Orbitron:wght@500;600;700;800&display=swap" rel="stylesheet">
+<!-- GOOGLE FONTS -->
+<link
+  href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Orbitron:wght@500;600;700;800&display=swap"
+  rel="stylesheet"
+>
 
-  <!-- MATERIAL SYMBOLS -->
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet">
+<!-- MATERIAL SYMBOLS -->
+<link
+  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded"
+  rel="stylesheet"
+>
 
   <style>
-    /* =====================================
-       S2N HUB - ALL TEAMS
-       DASHBOARD THEME
-    ===================================== */
+/* =====================================
+S2N HUB - ALL TEAMS
+DASHBOARD THEME
+===================================== */
 
-    .all-teams-page {
-      width: 100%;
-    }
+.all-teams-page {
+  width: min(1180px, calc(100% - 40px));
+  margin: 0 auto;
+}
 
     .all-teams-hero {
       position: relative;
@@ -124,6 +131,8 @@
     .all-teams-action.primary:hover {
       background: rgba(255,48,63,0.18);
     }
+
+
 
     /* STATS */
 
@@ -342,40 +351,34 @@
   <main class="dashboard-container all-teams-page">
 
     <!-- HEADER -->
-    <header class="dash-header">
+<header class="dash-header">
+  <a href="../dashboard.html" class="dash-brand">
+    <img
+      src="../assets/images/s2n-logo.png"
+      alt="S2N Clan Logo"
+      class="dash-logo"
+      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+    >
+    <div class="dash-logo-fallback">S2N</div>
+    <div class="brand-info">
+      <span class="brand-name">SECOND TO NONE</span>
+      <span class="brand-sub">CLAN HUB / TEAM DIRECTORY</span>
+    </div>
+  </a>
 
-      <a href="../dashboard.html" class="dash-brand">
-
-        <img
-          src="../assets/images/s2n-logo.png"
-          alt="S2N Clan Logo"
-          class="dash-logo"
-          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-        >
-
-        <div class="dash-logo-fallback">S2N</div>
-
-        <div class="brand-info">
-          <span class="brand-name">SECOND TO NONE</span>
-          <span class="brand-sub">CLAN HUB / TEAM DIRECTORY</span>
-        </div>
-
-      </a>
-
-      <div class="dash-header-right">
-
-        <div class="online-status">
-          <span class="status-dot"></span>
-          CLAN SYSTEM
-        </div>
-
-        <button class="logout-btn" id="logout-btn" type="button">
-          LOGOUT
-        </button>
-
-      </div>
-
-    </header>
+  <div class="dash-header-right">
+    <div class="online-status">
+      <span class="status-dot"></span>
+      CLAN SYSTEM
+    </div>
+    <button class="logout-btn" id="logout-btn" type="button">
+      LOGOUT
+    </button>
+  </div>
+  
+  
+  
+</header>
 
     <!-- NAVIGATION -->
     <nav class="dash-navigation" id="dash-navigation">
@@ -520,25 +523,32 @@
   <script src="../assets/js/all-teams.js"></script>
 
   <!-- LOGOUT -->
-  <script>
-    document.getElementById("logout-btn")
-      ?.addEventListener("click", async () => {
-
-        const confirmed = confirm("ต้องการออกจากระบบหรือไม่?");
-
-        if (!confirmed) return;
-
-        const { error } = await supabase.auth.signOut();
-
-        if (error) {
-          alert("ออกจากระบบไม่สำเร็จ");
-          console.error(error);
-          return;
-        }
-
-        window.location.href = "../index.html";
-      });
-  </script>
+<script>
+  document.getElementById("logout-btn")
+    ?.addEventListener("click", async () => {
+      
+      const confirmed = confirm("ต้องการออกจากระบบหรือไม่?");
+      
+      if (!confirmed) return;
+      
+      const client = window.supabaseClient;
+      
+      if (!client) {
+        alert("ไม่พบระบบ Supabase");
+        return;
+      }
+      
+      const { error } = await client.auth.signOut();
+      
+      if (error) {
+        alert("ออกจากระบบไม่สำเร็จ");
+        console.error(error);
+        return;
+      }
+      
+      window.location.href = "../index.html";
+    });
+</script>
 
 </body>
 </html>

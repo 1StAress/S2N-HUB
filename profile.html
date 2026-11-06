@@ -1,18 +1,30 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#080808">
 
     <title>S2N HUB | Player Profile</title>
 
     <!-- GOOGLE FONTS -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
+    <link
+        href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+<!-- S2N DASHBOARD THEME -->
+<link rel="stylesheet" href="assets/css/global.css">
+<link rel="stylesheet" href="assets/css/dashboard.css">
+
+<!-- PROFILE CSS -->
+<link rel="stylesheet" href="assets/css/profile.css">
     <!-- MATERIAL SYMBOLS -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded"
+        rel="stylesheet">
 
     <!-- PROFILE CSS -->
     <link rel="stylesheet" href="assets/css/profile.css">
@@ -26,48 +38,116 @@
 
 <div class="profile-page">
 
+    <!-- BACKGROUND EFFECT -->
+    <div class="profile-background" aria-hidden="true">
+        <div class="profile-bg-grid"></div>
+        <div class="profile-bg-glow"></div>
+    </div>
+
     <!-- ======================================
          TOPBAR
     ====================================== -->
+
     <header class="profile-topbar">
 
+        <!-- BACK TO DASHBOARD -->
         <a href="dashboard.html" class="back-dashboard">
-            <span class="material-symbols-rounded">dashboard</span>
-            Dashboard
+
+            <span class="material-symbols-rounded">
+                arrow_back
+            </span>
+
+            <span>Dashboard</span>
+
         </a>
 
-        <div class="topbar-brand">
-            <span class="brand-mark">S2N</span>
-            <span>HUB <small>PLAYER PROFILE</small></span>
-        </div>
+        <!-- BRAND -->
+        <a href="dashboard.html" class="topbar-brand">
 
+            <span class="brand-mark">
+                S2N
+            </span>
+
+            <span class="brand-text">
+                HUB
+
+                <small>
+                    PLAYER PROFILE
+                </small>
+            </span>
+
+        </a>
+
+        <!-- EDIT PROFILE -->
         <button
             type="button"
             id="edit-profile-btn"
             class="edit-profile-btn">
 
-            <span class="material-symbols-rounded">edit</span>
-            แก้ไขโปรไฟล์
+            <span class="material-symbols-rounded">
+                edit
+            </span>
+
+            <span>
+                แก้ไขโปรไฟล์
+            </span>
 
         </button>
 
     </header>
 
+
     <!-- ======================================
-         MAIN
+         MAIN CONTENT
     ====================================== -->
+
     <main class="profile-main">
+
+        <!-- PAGE HEADING -->
+        <section class="profile-page-heading">
+
+            <div>
+
+                <span class="profile-label">
+                    S2N HUB / MEMBER CENTER
+                </span>
+
+                <h2>
+                    PLAYER PROFILE
+                </h2>
+
+                <p>
+                    จัดการข้อมูลสมาชิกและบัญชีผู้เล่นของคุณ
+                </p>
+
+            </div>
+
+            <div class="profile-heading-decoration" aria-hidden="true">
+
+                <span class="material-symbols-rounded">
+                    shield
+                </span>
+
+            </div>
+
+        </section>
+
 
         <!-- ==================================
              PROFILE HERO
         ================================== -->
+
         <section class="profile-hero">
 
-            <div class="hero-glow"></div>
+            <div class="hero-glow" aria-hidden="true"></div>
 
             <!-- AVATAR -->
             <div class="profile-avatar" id="profile-avatar">
-                <span class="material-symbols-rounded">person</span>
+
+                <span class="material-symbols-rounded">
+                    person
+                </span>
+
             </div>
 
             <!-- IDENTITY -->
@@ -85,7 +165,7 @@
                     @member
                 </p>
 
-                <!-- BADGES -->
+                <!-- MEMBER BADGES -->
                 <div class="profile-badges">
 
                     <span class="role-badge" id="profile-role">
@@ -93,8 +173,11 @@
                     </span>
 
                     <span class="status-badge">
+
                         <span class="status-dot"></span>
+
                         ACTIVE MEMBER
+
                     </span>
 
                 </div>
@@ -141,68 +224,111 @@
             <!-- MEMBER ID -->
             <div class="profile-id-box">
 
-                <span>MEMBER ID</span>
+                <span>
+                    MEMBER ID
+                </span>
 
                 <strong id="profile-member-id">
                     --------
                 </strong>
 
+                <small class="member-id-caption">
+                    S2N PLAYER
+                </small>
+
             </div>
 
         </section>
 
+
         <!-- ==================================
              PROFILE STATS
         ================================== -->
+
         <section class="profile-stats">
 
+            <!-- TOURNAMENTS -->
             <article class="stat-card">
 
-                <span class="material-symbols-rounded">
-                    emoji_events
-                </span>
+                <div class="stat-card-top">
 
-                <small>TOURNAMENTS</small>
+                    <span class="material-symbols-rounded">
+                        emoji_events
+                    </span>
 
-                <strong id="stat-tournaments">0</strong>
+                    <small>
+                        TOURNAMENTS
+                    </small>
 
-                <p>รายการที่สมัคร</p>
+                </div>
+
+                <strong id="stat-tournaments">
+                    0
+                </strong>
+
+                <p>
+                    รายการที่สมัคร
+                </p>
 
             </article>
 
+            <!-- APPROVED -->
             <article class="stat-card">
 
-                <span class="material-symbols-rounded">
-                    verified
-                </span>
+                <div class="stat-card-top">
 
-                <small>APPROVED</small>
+                    <span class="material-symbols-rounded">
+                        verified
+                    </span>
 
-                <strong id="stat-approved">0</strong>
+                    <small>
+                        APPROVED
+                    </small>
 
-                <p>ได้รับอนุมัติ</p>
+                </div>
+
+                <strong id="stat-approved">
+                    0
+                </strong>
+
+                <p>
+                    ได้รับอนุมัติ
+                </p>
 
             </article>
 
+            <!-- PENDING -->
             <article class="stat-card">
 
-                <span class="material-symbols-rounded">
-                    pending_actions
-                </span>
+                <div class="stat-card-top">
 
-                <small>PENDING</small>
+                    <span class="material-symbols-rounded">
+                        pending_actions
+                    </span>
 
-                <strong id="stat-pending">0</strong>
+                    <small>
+                        PENDING
+                    </small>
 
-                <p>รออนุมัติ</p>
+                </div>
+
+                <strong id="stat-pending">
+                    0
+                </strong>
+
+                <p>
+                    รออนุมัติ
+                </p>
 
             </article>
 
         </section>
 
+
         <!-- ==================================
              PROFILE CONTENT
         ================================== -->
+
         <section class="profile-content-grid">
 
             <!-- PERSONAL DATA -->
@@ -211,11 +337,15 @@
                 <div class="panel-header">
 
                     <div>
+
                         <span class="panel-label">
                             PERSONAL DATA
                         </span>
 
-                        <h2>ข้อมูลสมาชิก</h2>
+                        <h2>
+                            ข้อมูลสมาชิก
+                        </h2>
+
                     </div>
 
                     <span class="material-symbols-rounded panel-icon">
@@ -227,28 +357,57 @@
                 <div class="profile-info-list">
 
                     <div class="profile-info-item">
-                        <span>ชื่อสมาชิก</span>
-                        <strong id="info-username">-</strong>
+
+                        <span>
+                            ชื่อสมาชิก
+                        </span>
+
+                        <strong id="info-username">
+                            -
+                        </strong>
+
                     </div>
 
                     <div class="profile-info-item">
-                        <span>ชื่อจริง</span>
-                        <strong id="info-fullname">-</strong>
+
+                        <span>
+                            ชื่อจริง
+                        </span>
+
+                        <strong id="info-fullname">
+                            -
+                        </strong>
+
                     </div>
 
                     <div class="profile-info-item">
-                        <span>อีเมล</span>
-                        <strong id="info-email">-</strong>
+
+                        <span>
+                            อีเมล
+                        </span>
+
+                        <strong id="info-email">
+                            -
+                        </strong>
+
                     </div>
 
                     <div class="profile-info-item">
-                        <span>สถานะสมาชิก</span>
-                        <strong id="info-role">MEMBER</strong>
+
+                        <span>
+                            สถานะสมาชิก
+                        </span>
+
+                        <strong id="info-role">
+                            MEMBER
+                        </strong>
+
                     </div>
 
                 </div>
 
             </article>
+
 
             <!-- PLAYER ACCOUNT -->
             <article class="profile-panel">
@@ -256,11 +415,15 @@
                 <div class="panel-header">
 
                     <div>
+
                         <span class="panel-label">
                             PLAYER ACCOUNT
                         </span>
 
-                        <h2>บัญชีเกม</h2>
+                        <h2>
+                            บัญชีเกม
+                        </h2>
+
                     </div>
 
                     <span class="material-symbols-rounded panel-icon">
@@ -269,6 +432,7 @@
 
                 </div>
 
+                <!-- PUBG ACCOUNT -->
                 <div class="game-account-card">
 
                     <div class="game-icon">
@@ -279,7 +443,7 @@
 
                     </div>
 
-                    <div>
+                    <div class="game-account-info">
 
                         <span class="game-label">
                             PUBG MOBILE
@@ -297,9 +461,12 @@
 
                 </div>
 
+                <!-- CLAN TAG -->
                 <div class="profile-info-item">
 
-                    <span>Clan Tag</span>
+                    <span>
+                        Clan Tag
+                    </span>
 
                     <strong id="info-clan-tag">
                         S2N
@@ -311,19 +478,25 @@
 
         </section>
 
+
         <!-- ==================================
              COMPETITIVE HISTORY
         ================================== -->
+
         <section class="profile-panel registration-panel">
 
             <div class="panel-header">
 
                 <div>
+
                     <span class="panel-label">
                         COMPETITIVE HISTORY
                     </span>
 
-                    <h2>การแข่งขันของฉัน</h2>
+                    <h2>
+                        การแข่งขันของฉัน
+                    </h2>
+
                 </div>
 
                 <span class="material-symbols-rounded panel-icon">
@@ -332,12 +505,21 @@
 
             </div>
 
+            <!-- REGISTRATION LIST -->
             <div
                 id="profile-registration-list"
                 class="registration-list">
 
                 <div class="empty-state">
-                    กำลังโหลดข้อมูลการแข่งขัน...
+
+                    <span class="material-symbols-rounded">
+                        hourglass_top
+                    </span>
+
+                    <p>
+                        กำลังโหลดข้อมูลการแข่งขัน...
+                    </p>
+
                 </div>
 
             </div>
@@ -346,261 +528,296 @@
 
     </main>
 
-</div>
 
-<!-- ======================================
-     EDIT PROFILE MODAL
-====================================== -->
-<div id="profile-edit-modal" class="modal hidden">
+    <!-- ======================================
+         EDIT PROFILE MODAL
+    ====================================== -->
 
     <div
-        class="modal-overlay"
-        data-close="profile-edit-modal">
-    </div>
+        id="profile-edit-modal"
+        class="modal hidden"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="edit-profile-title">
 
-    <div class="modal-box">
-
-        <div class="modal-header">
-
-            <div>
-                <span class="panel-label">
-                    EDIT IDENTITY
-                </span>
-
-                <h2>แก้ไขโปรไฟล์</h2>
-            </div>
-
-            <button
-                type="button"
-                class="modal-close"
-                data-close="profile-edit-modal"
-                aria-label="ปิดหน้าต่าง">
-
-                <span class="material-symbols-rounded">
-                    close
-                </span>
-
-            </button>
-
+        <div
+            class="modal-overlay"
+            data-close="profile-edit-modal">
         </div>
 
-        <form id="profile-edit-form">
+        <div class="modal-box">
 
-            <div class="form-group">
+            <div class="modal-header">
 
-                <label for="edit-username">
-                    ชื่อสมาชิก
-                </label>
+                <div>
 
-                <input
-                    id="edit-username"
-                    type="text"
-                    maxlength="40"
-                    autocomplete="username">
+                    <span class="panel-label">
+                        EDIT IDENTITY
+                    </span>
 
-            </div>
+                    <h2 id="edit-profile-title">
+                        แก้ไขโปรไฟล์
+                    </h2>
 
-            <div class="form-group">
-
-                <label for="edit-fullname">
-                    ชื่อจริง
-                </label>
-
-                <input
-                    id="edit-fullname"
-                    type="text"
-                    maxlength="100"
-                    autocomplete="name">
-
-            </div>
-
-            <div class="form-group">
-
-                <label for="edit-pubg-name">
-                    ชื่อในเกม PUBG
-                </label>
-
-                <input
-                    id="edit-pubg-name"
-                    type="text"
-                    maxlength="40">
-
-            </div>
-
-            <div class="form-group">
-
-                <label for="edit-pubg-uid">
-                    PUBG UID
-                </label>
-
-                <input
-                    id="edit-pubg-uid"
-                    type="text"
-                    inputmode="numeric"
-                    maxlength="30">
-
-            </div>
-
-            <div class="form-group">
-
-                <label for="edit-clan-tag">
-                    Clan Tag
-                </label>
-
-                <input
-                    id="edit-clan-tag"
-                    type="text"
-                    maxlength="10">
-
-            </div>
-
-            <div class="form-actions">
+                </div>
 
                 <button
                     type="button"
-                    class="btn-cancel"
-                    data-close="profile-edit-modal">
-
-                    ยกเลิก
-
-                </button>
-
-                <button
-                    type="submit"
-                    id="save-profile-btn"
-                    class="btn-save">
+                    class="modal-close"
+                    data-close="profile-edit-modal"
+                    aria-label="ปิดหน้าต่าง">
 
                     <span class="material-symbols-rounded">
-                        save
+                        close
                     </span>
-
-                    บันทึกข้อมูล
 
                 </button>
 
             </div>
 
-        </form>
+            <form id="profile-edit-form">
 
-    </div>
+                <!-- USERNAME -->
+                <div class="form-group">
 
-</div>
+                    <label for="edit-username">
+                        ชื่อสมาชิก
+                    </label>
 
-<!-- ======================================
-     CHANGE PASSWORD MODAL
-====================================== -->
-<div id="password-modal" class="modal hidden">
+                    <input
+                        id="edit-username"
+                        type="text"
+                        maxlength="40"
+                        autocomplete="username">
 
-    <div
-        class="modal-overlay"
-        data-close="password-modal">
-    </div>
+                </div>
 
-    <div class="modal-box">
+                <!-- FULL NAME -->
+                <div class="form-group">
 
-        <div class="modal-header">
+                    <label for="edit-fullname">
+                        ชื่อจริง
+                    </label>
 
-            <div>
-                <span class="panel-label">
-                    ACCOUNT SECURITY
-                </span>
+                    <input
+                        id="edit-fullname"
+                        type="text"
+                        maxlength="100"
+                        autocomplete="name">
 
-                <h2>เปลี่ยนรหัสผ่าน</h2>
-            </div>
+                </div>
 
-            <button
-                type="button"
-                class="modal-close"
-                data-close="password-modal"
-                aria-label="ปิดหน้าต่าง">
+                <!-- PUBG NAME -->
+                <div class="form-group">
 
-                <span class="material-symbols-rounded">
-                    close
-                </span>
+                    <label for="edit-pubg-name">
+                        ชื่อในเกม PUBG
+                    </label>
 
-            </button>
+                    <input
+                        id="edit-pubg-name"
+                        type="text"
+                        maxlength="40">
+
+                </div>
+
+                <!-- PUBG UID -->
+                <div class="form-group">
+
+                    <label for="edit-pubg-uid">
+                        PUBG UID
+                    </label>
+
+                    <input
+                        id="edit-pubg-uid"
+                        type="text"
+                        inputmode="numeric"
+                        maxlength="30">
+
+                </div>
+
+                <!-- CLAN TAG -->
+                <div class="form-group">
+
+                    <label for="edit-clan-tag">
+                        Clan Tag
+                    </label>
+
+                    <input
+                        id="edit-clan-tag"
+                        type="text"
+                        maxlength="10">
+
+                </div>
+
+                <!-- ACTIONS -->
+                <div class="form-actions">
+
+                    <button
+                        type="button"
+                        class="btn-cancel"
+                        data-close="profile-edit-modal">
+
+                        ยกเลิก
+
+                    </button>
+
+                    <button
+                        type="submit"
+                        id="save-profile-btn"
+                        class="btn-save">
+
+                        <span class="material-symbols-rounded">
+                            save
+                        </span>
+
+                        บันทึกข้อมูล
+
+                    </button>
+
+                </div>
+
+            </form>
 
         </div>
 
-        <form id="password-form">
+    </div>
 
-            <div class="form-group">
 
-                <label for="new-password">
-                    รหัสผ่านใหม่
-                </label>
+    <!-- ======================================
+         CHANGE PASSWORD MODAL
+    ====================================== -->
 
-                <input
-                    id="new-password"
-                    type="password"
-                    minlength="8"
-                    autocomplete="new-password"
-                    placeholder="กรอกรหัสผ่านใหม่"
-                    required>
+    <div
+        id="password-modal"
+        class="modal hidden"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="password-modal-title">
 
-            </div>
+        <div
+            class="modal-overlay"
+            data-close="password-modal">
+        </div>
 
-            <div class="form-group">
+        <div class="modal-box">
 
-                <label for="confirm-password">
-                    ยืนยันรหัสผ่านใหม่
-                </label>
+            <div class="modal-header">
 
-                <input
-                    id="confirm-password"
-                    type="password"
-                    minlength="8"
-                    autocomplete="new-password"
-                    placeholder="กรอกรหัสผ่านใหม่อีกครั้ง"
-                    required>
+                <div>
 
-            </div>
+                    <span class="panel-label">
+                        ACCOUNT SECURITY
+                    </span>
 
-            <div class="form-actions">
+                    <h2 id="password-modal-title">
+                        เปลี่ยนรหัสผ่าน
+                    </h2>
+
+                </div>
 
                 <button
                     type="button"
-                    class="btn-cancel"
-                    data-close="password-modal">
-
-                    ยกเลิก
-
-                </button>
-
-                <button
-                    type="submit"
-                    id="save-password-btn"
-                    class="btn-save">
+                    class="modal-close"
+                    data-close="password-modal"
+                    aria-label="ปิดหน้าต่าง">
 
                     <span class="material-symbols-rounded">
-                        lock_reset
+                        close
                     </span>
-
-                    เปลี่ยนรหัสผ่าน
 
                 </button>
 
             </div>
 
-        </form>
+            <form id="password-form">
 
+                <!-- NEW PASSWORD -->
+                <div class="form-group">
+
+                    <label for="new-password">
+                        รหัสผ่านใหม่
+                    </label>
+
+                    <input
+                        id="new-password"
+                        type="password"
+                        minlength="8"
+                        autocomplete="new-password"
+                        placeholder="กรอกรหัสผ่านใหม่"
+                        required>
+
+                </div>
+
+                <!-- CONFIRM PASSWORD -->
+                <div class="form-group">
+
+                    <label for="confirm-password">
+                        ยืนยันรหัสผ่านใหม่
+                    </label>
+
+                    <input
+                        id="confirm-password"
+                        type="password"
+                        minlength="8"
+                        autocomplete="new-password"
+                        placeholder="กรอกรหัสผ่านใหม่อีกครั้ง"
+                        required>
+
+                </div>
+
+                <!-- ACTIONS -->
+                <div class="form-actions">
+
+                    <button
+                        type="button"
+                        class="btn-cancel"
+                        data-close="password-modal">
+
+                        ยกเลิก
+
+                    </button>
+
+                    <button
+                        type="submit"
+                        id="save-password-btn"
+                        class="btn-save">
+
+                        <span class="material-symbols-rounded">
+                            lock_reset
+                        </span>
+
+                        เปลี่ยนรหัสผ่าน
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- ======================================
+         TOAST
+    ====================================== -->
+
+    <div
+        id="profile-toast"
+        class="profile-toast"
+        role="status"
+        aria-live="polite">
     </div>
 
 </div>
 
-<!-- ======================================
-     TOAST
-====================================== -->
-<div
-    id="profile-toast"
-    class="profile-toast"
-    role="status"
-    aria-live="polite">
-</div>
 
 <!-- ======================================
      PROFILE JS
 ====================================== -->
+
 <script src="assets/js/profile.js"></script>
 
 </body>

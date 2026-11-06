@@ -4,344 +4,254 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#080d18">
+
   <title>S2N HUB | Dashboard</title>
-  <link rel="stylesheet" href="assets/css/global.css">
-  <link rel="stylesheet" href="assets/css/dashboard.css">
+
+ <link rel="stylesheet" href="assets/css/global.css">
+<link rel="stylesheet" href="assets/css/dashboard.css">
+  
+
   <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Orbitron:wght@500;600;700;800&display=swap" rel="stylesheet">
+
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet">
-  <style>
-    /* =====================================
-       S2N ESPORT EVENT
-    ===================================== */
-    .event-announcement {
-      position: relative;
-      margin: 28px 0;
-      overflow: hidden;
-      border: 1px solid rgba(212, 165, 72, 0.35);
-      border-radius: 18px;
-      background: linear-gradient(145deg, #17120e, #090b11);
-      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
-    }
-    .event-announcement::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background: radial-gradient(
-        circle at top right,
-        rgba(180, 110, 30, 0.12),
-        transparent 55%
-      );
-    }
-    .event-announcement-header {
-      position: relative;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-      padding: 18px 20px;
-      border-bottom: 1px solid rgba(212, 165, 72, 0.2);
-    }
-    .event-announcement-label {
-      color: #e8c276;
-      font-family: 'Orbitron', sans-serif;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 2px;
-    }
-    .event-live-tag {
-      padding: 5px 12px;
-      border: 1px solid rgba(239, 68, 68, 0.35);
-      border-radius: 30px;
-      background: rgba(239, 68, 68, 0.1);
-      color: #ff6666;
-      font-family: 'Orbitron', sans-serif;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 1px;
-    }
-    .event-poster-wrap {
-      position: relative;
-      padding: 14px;
-    }
-    .event-poster {
-      display: block;
-      width: 100%;
-      height: auto;
-      max-height: 1000px;
-      object-fit: contain;
-      border-radius: 12px;
-      background: #111;
-    }
-    .event-details {
-      position: relative;
-      padding: 5px 20px 22px;
-    }
-    .event-details-title {
-      margin: 10px 0 8px;
-      color: #f3d18b;
-      font-size: 22px;
-      font-weight: 600;
-    }
-    .event-details-description {
-      margin: 0;
-      color: #aeb5c5;
-      font-size: 13px;
-      line-height: 1.9;
-    }
-    .event-info-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
-      margin-top: 18px;
-    }
-    .event-info-card {
-      padding: 13px;
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 10px;
-      background: rgba(255,255,255,0.025);
-    }
-    .event-info-label {
-      display: block;
-      margin-bottom: 5px;
-      color: #8c94a5;
-      font-size: 10px;
-      letter-spacing: 1px;
-    }
-    .event-info-value {
-      display: block;
-      color: #f0f0f0;
-      font-size: 14px;
-      font-weight: 500;
-    }
-    .event-prize-title {
-      margin: 20px 0 10px;
-      color: #e8c276;
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 1px;
-    }
-    .event-prize-list {
-      display: grid;
-      gap: 8px;
-    }
-    .event-prize-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-      padding: 11px 13px;
-      border: 1px solid rgba(255,255,255,0.07);
-      border-radius: 9px;
-      background: rgba(255,255,255,0.025);
-      color: #d7dbe5;
-      font-size: 12px;
-    }
-    .event-prize-item strong {
-      color: #f2d28a;
-      white-space: nowrap;
-    }
-    .event-announcement-footer {
-      position: relative;
-      padding: 14px 20px;
-      border-top: 1px solid rgba(212, 165, 72, 0.2);
-      color: #9ca3af;
-      font-size: 11px;
-      line-height: 1.8;
-      text-align: center;
-    }
-    @media (max-width: 600px) {
-      .event-announcement {
-        border-radius: 14px;
-      }
-      .event-announcement-header {
-        padding: 15px;
-      }
-      .event-poster-wrap {
-        padding: 9px;
-      }
-      .event-details {
-        padding: 5px 15px 18px;
-      }
-      .event-details-title {
-        font-size: 19px;
-      }
-      .event-info-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-      .event-info-value {
-        font-size: 12px;
-      }
-      .event-prize-item {
-        font-size: 11px;
-      }
-    }
-  </style>
 </head>
+
 <body class="dashboard-page">
+
   <div class="dash-bg-grid"></div>
   <div class="dash-glow"></div>
+
   <main class="dashboard-container">
-    <!-- HEADER -->
-    <header class="dash-header">
-      <a href="dashboard.html" class="dash-brand">
-        <img
-          src="./assets/images/s2n-logo.png"
-          alt="S2N Clan Logo"
-          class="dash-logo"
-          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-        >
-        <div class="dash-logo-fallback">S2N</div>
-        <div class="brand-info">
-          <span class="brand-name">SECOND TO NONE</span>
-          <span class="brand-sub">CLAN HUB / HOME</span>
-        </div>
-      </a>
-      <div class="dash-header-right">
-        <div class="online-status">
-          <span class="status-dot"></span>
-          CLAN SYSTEM
-        </div>
-        <button class="logout-btn" id="logout-btn" type="button">
-          LOGOUT
-        </button>
-      </div>
-    </header>
-    <!-- NAVIGATION -->
-    <nav class="dash-navigation" id="dash-navigation">
-      <a href="dashboard.html" class="dash-nav-link active">
-        <span class="material-symbols-rounded">dashboard</span>
-        <span>Dashboard</span>
-      </a>
-      <a href="tournament.html" class="dash-nav-link">
-        <span class="material-symbols-rounded">emoji_events</span>
-        <span>Tournament</span>
-      </a>
-      <a href="admin/members.html" class="dash-nav-link admin-only hidden">
-        <span class="material-symbols-rounded">groups</span>
-        <span>Members</span>
-      </a>
-      <a href="team/all-teams.html" class="dash-nav-link">
-        <span class="material-symbols-rounded">groups</span>
-        <span>All Teams</span>
-      </a>
-      <a href="team/my-team.html" class="dash-nav-link">
-        <span class="material-symbols-rounded">shield</span>
-        <span>My Teams</span>
-      </a>
-      <a href="profile.html" class="dash-nav-link">
-        <span class="material-symbols-rounded">person</span>
-        <span>Profile</span>
-      </a>
-      <a href="admin/index.html" class="dash-nav-link admin-only hidden">
-        <span class="material-symbols-rounded">admin_panel_settings</span>
-        <span>Admin</span>
-      </a>
-    </nav>
+
+<!-- HEADER -->
+<header class="dash-header">
+
+  <a href="dashboard.html" class="dash-brand">
+
+    <img
+      src="./assets/images/s2n-logo.png"
+      alt="S2N Clan Logo"
+      class="dash-logo"
+      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+    >
+
+   <div class="dash-logo-fallback">S2N</div>
+
+    <div class="brand-info">
+      <span class="brand-name">SECOND TO NONE</span>
+      <span class="brand-sub">CLAN HUB / HOME</span>
+    </div>
+
+  </a>
+
+  <div class="dash-header-right">
+
+    <div class="online-status">
+      <span class="status-dot"></span>
+      CLAN SYSTEM
+    </div>
+
+    <button class="logout-btn" id="logout-btn" type="button">
+      LOGOUT
+    </button>
+
+  </div>
+
+</header>
+
+<!-- NAVIGATION -->
+<nav class="dash-navigation" id="dash-navigation">
+  
+  <a href="dashboard.html" class="dash-nav-link active">
+    <span class="material-symbols-rounded">dashboard</span>
+    <span>Dashboard</span>
+  </a>
+  
+  <a href="tournament.html" class="dash-nav-link">
+    <span class="material-symbols-rounded">emoji_events</span>
+    <span>Tournament</span>
+  </a>
+  
+  <!-- ADMIN ONLY: Members Management -->
+  <a href="admin/members.html" class="dash-nav-link admin-only hidden">
+    <span class="material-symbols-rounded">groups</span>
+    <span>Members</span>
+  </a>
+  
+<a href="team/all-teams.html" class="dash-nav-link">
+  <span class="material-symbols-rounded">groups</span>
+  <span>All Teams</span>
+</a>
+
+<a href="team/my-team.html" class="dash-nav-link">
+  <span class="material-symbols-rounded">shield</span>
+  <span>My Teams</span>
+</a>
+  
+  <a href="profile.html" class="dash-nav-link">
+    <span class="material-symbols-rounded">person</span>
+    <span>Profile</span>
+  </a>
+  
+  <!-- ADMIN ONLY -->
+  <a href="admin/index.html" class="dash-nav-link admin-only hidden">
+    <span class="material-symbols-rounded">admin_panel_settings</span>
+    <span>Admin</span>
+  </a>
+  
+</nav>
+
     <!-- WELCOME -->
     <section class="welcome-section">
+
       <div class="welcome-content">
+
         <div class="section-label">
           <span class="label-line"></span>
           CLAN DASHBOARD
         </div>
+
         <h1>
           WELCOME TO
           <span>SECOND TO NONE</span>
         </h1>
+
         <p class="welcome-description">
           One Clan. One Identity. No Limits.
         </p>
+
       </div>
+
       <div class="welcome-side">
+
         <span class="side-label">LOCAL TIME</span>
+
         <div id="dash-clock" class="dash-clock">
           00:00:00
         </div>
+
         <div id="dash-date" class="dash-date">
           ---
         </div>
+
       </div>
+
     </section>
-    <!-- PROFILE -->
-    <section class="profile-panel">
-      <div class="profile-left">
-        <div class="profile-avatar">
-          <div
-            class="profile-avatar-initials"
-            id="profile-avatar-initials"
-          >
-            S2N
-          </div>
-          <span class="avatar-online"></span>
-        </div>
-        <div class="profile-info">
-          <div class="profile-role">
-            <span class="role-dot"></span>
-            <span id="profile-role">MEMBER</span>
-          </div>
-          <h2 id="profile-username">
-            PLAYER NAME
-          </h2>
-          <div class="pubg-name">
-            PUBG NAME:
-            <span id="profile-pubg-name">
-              PUBG PLAYER
-            </span>
-          </div>
-        </div>
+
+  <!-- PROFILE -->
+<section class="profile-panel">
+
+  <div class="profile-left">
+
+<!-- PLAYER AVATAR -->
+<div class="profile-avatar">
+
+  <div
+    class="profile-avatar-initials"
+    id="profile-avatar-initials"
+  >
+    S2N
+  </div>
+
+  <span class="avatar-online"></span>
+
+</div>
+
+    <!-- PLAYER INFO -->
+    <div class="profile-info">
+
+      <div class="profile-role">
+        <span class="role-dot"></span>
+        <span id="profile-role">MEMBER</span>
       </div>
-      <div class="profile-right">
-        <div class="profile-stat">
-          <span class="stat-label">CLAN</span>
-          <strong>S2N</strong>
-        </div>
-        <div class="profile-stat">
-          <span class="stat-label">STATUS</span>
-          <strong class="stat-active">ACTIVE</strong>
-        </div>
+
+      <h2 id="profile-username">
+        PLAYER NAME
+      </h2>
+
+      <div class="pubg-name">
+        PUBG NAME:
+        <span id="profile-pubg-name">
+          PUBG PLAYER
+        </span>
       </div>
-    </section>
+
+    </div>
+
+  </div>
+
+  <!-- PROFILE STATS -->
+  <div class="profile-right">
+
+    <div class="profile-stat">
+      <span class="stat-label">CLAN</span>
+      <strong>S2N</strong>
+    </div>
+
+    <div class="profile-stat">
+      <span class="stat-label">STATUS</span>
+      <strong class="stat-active">ACTIVE</strong>
+    </div>
+
+  </div>
+
+</section>
+
     <!-- TOURNAMENT ANNOUNCEMENT -->
     <section class="announcement-panel tournament-announcement">
+
       <div class="announcement-icon">
         <span class="material-symbols-rounded">
           emoji_events
         </span>
       </div>
+
       <div class="announcement-content">
+
         <div class="announcement-heading">
+
           <span class="section-label">
             TOURNAMENT ANNOUNCEMENT
           </span>
+
           <span class="announcement-tag tournament-tag">
             COMPETITIVE
           </span>
+
         </div>
+
         <div id="tournament-announcement-content">
+
           <h3 id="announcement-title">
             S2N TOURNAMENT
           </h3>
+
           <p id="announcement-description">
             กำลังโหลดประกาศการแข่งขัน...
           </p>
+
         </div>
+
         <div class="announcement-meta" id="announcement-meta">
           <span id="announcement-status">
             ---
           </span>
+
           <span id="announcement-date">
             ---
           </span>
         </div>
+
         <div class="announcement-actions">
+
           <a href="tournament.html" class="announcement-button">
             <span class="material-symbols-rounded">
               arrow_forward
             </span>
+
             ดูรายการแข่งขัน
           </a>
+
           <a
             href="tournament.html"
             class="announcement-button admin-only hidden"
@@ -350,121 +260,84 @@
             <span class="material-symbols-rounded">
               add
             </span>
+
             สร้างรายการแข่งขัน
           </a>
+
         </div>
+
       </div>
+
     </section>
-    <!-- S2N ESPORT EVENT -->
-    <section class="event-announcement">
-      <div class="event-announcement-header">
-        <span class="event-announcement-label">
-          S2N ESPORT / CLAN EVENT
-        </span>
-        <span class="event-live-tag">
-          EVENT
-        </span>
+
+    <!-- CLAN ANNOUNCEMENT -->
+    <section class="announcement-panel clan-announcement">
+
+      <div class="announcement-icon">
+        !
       </div>
-      <!-- POSTER -->
-      <div class="event-poster-wrap">
-        <img
-          src="./assets/images/s2n-event-161126.jpeg"
-          alt="โปสเตอร์กิจกรรมแคลน S2N Esport วันที่ 16 พฤศจิกายน 2569"
-          class="event-poster"
-          loading="eager"
-          onerror="this.onerror=null; this.alt='ไม่พบโปสเตอร์ กรุณาตรวจสอบไฟล์ assets/images/s2n-event-161126.jpeg'; this.style.display='none'; this.parentElement.insertAdjacentHTML('beforeend','<div style=&quot;padding:20px;text-align:center;color:#ff7777;font-size:13px;&quot;>ไม่พบไฟล์โปสเตอร์<br>assets/images/s2n-event-161126.jpeg</div>');"
-        >
-      </div>
-      <!-- EVENT DETAILS -->
-      <div class="event-details">
-        <div class="section-label">
-          <span class="label-line"></span>
-          OFFICIAL CLAN EVENT
+
+      <div class="announcement-content">
+
+        <div class="announcement-heading">
+
+          <span class="section-label">
+            CLAN ANNOUNCEMENT
+          </span>
+
+          <span class="announcement-tag">
+            SYSTEM
+          </span>
+
         </div>
-        <h3 class="event-details-title">
-          กิจกรรมแคลน S2N ESPORT
+
+        <h3 id="clan-announcement-title">
+          WELCOME TO S2N HUB
         </h3>
-        <p class="event-details-description">
-          เตรียมตัวให้พร้อม! มาร่วมสนุก วัดฝีมือ
-          และชิงรางวัลไปด้วยกันในกิจกรรมแคลน S2N
-          เปิดโอกาสให้สมาชิกทุกคนได้ลงสนาม
-          และพิสูจน์ฝีมือของตัวเอง
+
+        <p id="clan-announcement-description">
+          ยินดีต้อนรับสมาชิกทุกคนเข้าสู่ระบบ S2N HUB
+          พื้นที่สำหรับสมาชิกแคลนและการแข่งขัน
         </p>
-        <!-- EVENT INFO -->
-        <div class="event-info-grid">
-          <div class="event-info-card">
-            <span class="event-info-label">DATE</span>
-            <span class="event-info-value">16 NOV 2026</span>
-          </div>
-          <div class="event-info-card">
-            <span class="event-info-label">TIME</span>
-            <span class="event-info-value">20:00 น.</span>
-          </div>
-          <div class="event-info-card">
-            <span class="event-info-label">MAP</span>
-            <span class="event-info-value">ERANGEL</span>
-          </div>
-          <div class="event-info-card">
-            <span class="event-info-label">MODE</span>
-            <span class="event-info-value">DUO / 2 PLAYERS</span>
-          </div>
-        </div>
-        <!-- PRIZE POOL -->
-        <div class="event-prize-title">
-          PRIZE POOL
-        </div>
-        <div class="event-prize-list">
-          <div class="event-prize-item">
-            <span>🥇 อันดับที่ 1</span>
-            <strong>500 RP</strong>
-          </div>
-          <div class="event-prize-item">
-            <span>🥈 อันดับที่ 2</span>
-            <strong>300 RP</strong>
-          </div>
-          <div class="event-prize-item">
-            <span>🥉 อันดับที่ 3</span>
-            <strong>100 RP</strong>
-          </div>
-          <div class="event-prize-item">
-            <span>💀 Kill เยอะที่สุด</span>
-            <strong>50 RP</strong>
-          </div>
-          <div class="event-prize-item">
-            <span>🎯 ค่าหัว S2N-IRIN</span>
-            <strong>300 บาท</strong>
-          </div>
-        </div>
+
       </div>
-      <!-- EVENT FOOTER -->
-      <div class="event-announcement-footer">
-        S2N ESPORT / SECOND TO NONE
-        <br>
-        กิจกรรมวันที่ 16 พฤศจิกายน 2569 เวลา 20:00 น.
-        ขอให้สมาชิกเตรียมตัวเข้าร่วมกิจกรรม
-      </div>
+
     </section>
-  
+
     <!-- ROSTER -->
     <section class="roster-section">
+
       <div class="section-heading">
+
         <div>
+
           <div class="section-label">
             <span class="label-line"></span>
             CLAN ROSTER
           </div>
+
           <h2>
             MEMBER <span>ROSTER</span>
           </h2>
+
         </div>
+
         <div class="roster-count">
+
           <span class="count-dot"></span>
+
           <strong id="roster-count">00</strong>
+
           <span>MEMBERS</span>
+
         </div>
+
       </div>
+
       <div class="roster-table-wrap">
+
         <table class="roster-table">
+
           <thead>
             <tr>
               <th>#</th>
@@ -474,37 +347,56 @@
               <th>STATUS</th>
             </tr>
           </thead>
+
           <tbody id="roster-body">
+
             <tr>
               <td colspan="5">
                 กำลังโหลดข้อมูลสมาชิก...
               </td>
             </tr>
+
           </tbody>
+
         </table>
+
       </div>
+
       <div class="roster-footer">
+
         <span>
           SECOND TO NONE / OFFICIAL ROSTER
         </span>
+
         <span>
           DATA: SUPABASE
         </span>
+
       </div>
+
     </section>
+
     <!-- FOOTER -->
     <footer class="dash-footer">
+
       <span>
         © 2026 SECOND TO NONE
       </span>
+
       <span>
         S2N HUB / V1.1
       </span>
+
     </footer>
+
   </main>
+
   <!-- SUPABASE -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
   <script src="assets/js/supabase.js"></script>
+
   <script src="assets/js/dashboard.js"></script>
+
 </body>
 </html>
