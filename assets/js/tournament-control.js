@@ -4,7 +4,7 @@ Admin Slot Management
 ========================================== */
 
 (() => {
-“use strict”;
+"use strict";
 
 const supabase = window.supabaseClient || window.supabase;
 const $ = (selector) => document.querySelector(selector);
@@ -389,35 +389,64 @@ const closeSlotModal = () => {
     currentSlotName = null;
 };
 const assignPlayer = async (userID, memberName) => {
-    if (!currentTournament || !currentSlotNumber) return;
+    console.log("[S2N SLOT] assignPlayer เริ่มทำงาน", {
+        userID,
+        memberName,
+        tournamentID: currentTournament?.id,
+        slotNumber: currentSlotNumber,
+        slotName: currentSlotName
+    });
+    
+    if (!currentTournament || !currentSlotNumber) {
+        console.warn("[S2N SLOT] ไม่มี Tournament หรือ Slot");
+        showToast("กรุณาเลือก Tournament และ Slot", "error");
+        return;
+    }
+    
     if (isSlotFull(currentSlotNumber)) {
         showToast("สล็อตนี้เต็มแล้ว", "error");
         return;
     }
+    
     const existingAssignment = assignments.find((item) =>
         String(item.user_id) === String(userID)
     );
-    const confirmationMessage = existingAssignment
-        ? `${memberName} อยู่ใน ${existingAssignment.slot_name || getSlotName(existingAssignment.slot_number)}\nต้องการย้ายมา ${currentSlotName} หรือไม่?`
-        : `เพิ่ม ${memberName} ลง ${currentSlotName} หรือไม่?`;
-    if (!window.confirm(confirmationMessage)) return;
-    const { error } = await supabase.rpc("s2n_admin_assign_player", {
-        p_tournament_id: currentTournament.id,
-        p_user_id: userID,
-        p_slot_number: currentSlotNumber,
-        p_slot_name: currentSlotName
-    });
-    if (error) {
-        console.error("Assign player error:", error);
-        showToast(error.message || "จัดสล็อตไม่สำเร็จ", "error");
-        return;
+    
+ console.log("[S2N SLOT] ข้ามหน้าต่างยืนยัน กำลังดำเนินการ");
+    
+    try {
+        console.log("[S2N SLOT] กำลังเรียก RPC");
+        
+        const { data, error } = await supabase.rpc(
+            "s2n_admin_assign_player",
+            {
+                p_tournament_id: currentTournament.id,
+                p_user_id: userID,
+                p_slot_number: currentSlotNumber,
+                p_slot_name: currentSlotName
+            }
+        );
+        
+        console.log("[S2N SLOT] RPC Response", { data, error });
+        
+        if (error) {
+            console.error("[S2N SLOT] RPC Error:", error);
+            showToast(error.message || "จัดสล็อตไม่สำเร็จ", "error");
+            return;
+        }
+        
+        showToast("จัดสล็อตผู้เล่นสำเร็จ");
+        
+        await loadAssignments();
+        renderTournamentSummary();
+        renderSlots();
+        renderCurrentPlayers();
+        renderMemberList();
+        
+    } catch (error) {
+        console.error("[S2N SLOT] Unexpected Error:", error);
+        showToast(error.message || "เกิดข้อผิดพลาด", "error");
     }
-    showToast("จัดสล็อตผู้เล่นสำเร็จ");
-    await loadAssignments();
-    renderTournamentSummary();
-    renderSlots();
-    renderCurrentPlayers();
-    renderMemberList();
 };
 const checkAdmin = async () => {
     const { data: authData, error: authError } =
