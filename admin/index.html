@@ -4,15 +4,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080d18">
+
   <title>S2N HUB | Admin Control</title>
 
+  <!-- S2N DASHBOARD THEME -->
   <link rel="stylesheet" href="../assets/css/global.css">
+  <link rel="stylesheet" href="../assets/css/dashboard.css">
   <link rel="stylesheet" href="../assets/css/admin.css">
 
+  <!-- GOOGLE FONTS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Orbitron:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- MATERIAL SYMBOLS -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet">
 
   <style>
+    /* ==========================================
+       ADMIN TOOLS
+    ========================================== */
+
     .admin-tools-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -23,64 +35,86 @@
     .admin-tool-card {
       display: block;
       padding: 22px;
+
       border: 1px solid var(--admin-border);
       border-radius: 16px;
+
       background: linear-gradient(
-        135deg,
-        rgba(76, 141, 255, 0.10),
-        rgba(16, 22, 36, 0.95)
+        145deg,
+        rgba(255, 48, 63, 0.06),
+        rgba(16, 17, 22, 0.96)
       );
+
       color: var(--admin-text);
       text-decoration: none;
-      transition: 0.2s;
+
+      transition: var(--admin-transition);
     }
 
     .admin-tool-card:hover {
-      border-color: var(--admin-blue);
-      transform: translateY(-2px);
+      transform: translateY(-3px);
+      border-color: rgba(255, 48, 63, 0.35);
+
+      box-shadow: 0 10px 30px rgba(255, 48, 63, 0.05);
     }
 
     .admin-tool-eyebrow {
       display: block;
-      color: var(--admin-cyan);
-      font-size: 10px;
-      letter-spacing: 1.6px;
-      margin-bottom: 8px;
+
+      color: var(--admin-red);
+
+      font-family: "Orbitron", sans-serif;
+      font-size: 9px;
+      font-weight: 700;
+
+      letter-spacing: 1.5px;
+
+      margin-bottom: 10px;
     }
 
     .admin-tool-card h3 {
-      margin: 0 0 6px;
+      margin: 0 0 8px;
+
+      color: var(--admin-silver);
+
       font-size: 18px;
       font-weight: 500;
     }
 
     .admin-tool-card p {
       margin: 0;
+
       color: var(--admin-muted);
+
       font-size: 12px;
-      line-height: 1.7;
+      line-height: 1.8;
     }
 
     .admin-tool-arrow {
       display: block;
-      margin-top: 15px;
-      color: var(--admin-blue);
+
+      margin-top: 18px;
+
+      color: var(--admin-red);
+
       font-size: 12px;
       font-weight: 500;
     }
 
-    /* ================================
-       S2N RANDOM TEAM
-    ================================= */
+    /* ==========================================
+       RANDOMIZER
+    ========================================== */
 
     .team-randomizer {
       margin-bottom: 36px;
     }
 
     .randomizer-panel {
-      padding: 20px;
-      border: 1px solid rgba(255,255,255,0.08);
+      padding: 22px;
+
+      border: 1px solid var(--admin-border);
       border-radius: 18px;
+
       background: linear-gradient(
         145deg,
         rgba(20, 20, 25, 0.98),
@@ -94,8 +128,11 @@
 
     .randomizer-field label {
       display: block;
+
       margin-bottom: 9px;
-      color: #f0f0f0;
+
+      color: var(--admin-silver);
+
       font-size: 13px;
       font-weight: 500;
     }
@@ -104,30 +141,42 @@
     .randomizer-field textarea {
       width: 100%;
       box-sizing: border-box;
+
       padding: 13px 14px;
+
       border: 1px solid #34343c;
       border-radius: 10px;
+
       outline: none;
+
       background: #15151a;
       color: #fff;
-      font-family: 'Kanit', sans-serif;
+
+      font-family: "Kanit", sans-serif;
       font-size: 13px;
+
+      transition: var(--admin-transition);
     }
 
     .randomizer-field select:focus,
     .randomizer-field textarea:focus {
-      border-color: #d93636;
+      border-color: var(--admin-red);
+
+      box-shadow: 0 0 0 3px rgba(255, 48, 63, 0.06);
     }
 
     .randomizer-field textarea {
       resize: vertical;
       min-height: 170px;
+
       line-height: 1.8;
     }
 
     .randomizer-hint {
       margin: 8px 0 0;
-      color: #85858f;
+
+      color: var(--admin-muted);
+
       font-size: 11px;
       line-height: 1.7;
     }
@@ -135,31 +184,53 @@
     .randomizer-actions {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
+
       gap: 10px;
+
       margin-top: 22px;
     }
 
     .randomizer-actions button {
       padding: 13px 10px;
+
       border: 1px solid #393941;
       border-radius: 10px;
+
       background: #202027;
       color: #fff;
-      font-family: 'Kanit', sans-serif;
+
+      font-family: "Kanit", sans-serif;
       font-size: 13px;
-      cursor: pointer;
-      transition: 0.2s;
+
+      transition: var(--admin-transition);
     }
 
     .randomizer-actions button:hover {
       transform: translateY(-2px);
-      border-color: #e53939;
+
+      border-color: var(--admin-red);
+
+      background: rgba(255, 48, 63, 0.06);
     }
 
     #randomize-btn {
-      border-color: #e53939;
-      background: linear-gradient(135deg, #e53939, #941d1d);
+      border-color: var(--admin-red);
+
+      background: linear-gradient(
+        135deg,
+        #ff303f,
+        #941d1d
+      );
+
       font-weight: 600;
+    }
+
+    #randomize-btn:hover {
+      background: linear-gradient(
+        135deg,
+        #ff5965,
+        #b32626
+      );
     }
 
     #copy-teams-btn {
@@ -168,7 +239,9 @@
 
     .randomizer-status {
       margin-top: 16px;
-      color: #aaa;
+
+      color: var(--admin-muted);
+
       font-size: 12px;
       text-align: center;
     }
@@ -181,32 +254,41 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+
       gap: 10px;
+
       margin-bottom: 16px;
+
       flex-wrap: wrap;
     }
 
     .random-result-heading h3 {
       margin: 0;
-      color: #fff;
+
+      color: var(--admin-silver);
+
       font-size: 18px;
     }
 
     .random-result-heading span {
-      color: #aaa;
+      color: var(--admin-muted);
+
       font-size: 11px;
     }
 
     .random-team-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
+
       gap: 14px;
     }
 
     .random-team-card {
       overflow: hidden;
+
       border: 1px solid #383840;
       border-radius: 14px;
+
       background: #15151a;
     }
 
@@ -214,31 +296,40 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+
       padding: 12px 14px;
+
       border-bottom: 1px solid #33333a;
+
       background: linear-gradient(
         135deg,
-        rgba(180, 35, 35, 0.18),
+        rgba(255, 48, 63, 0.12),
         rgba(20, 20, 25, 0.8)
       );
     }
 
     .random-team-title {
-      color: #ff4b4b;
-      font-size: 14px;
-      font-weight: 600;
+      color: var(--admin-red);
+
+      font-family: "Orbitron", sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+
       letter-spacing: 1px;
     }
 
     .random-team-count {
-      color: #999;
+      color: var(--admin-muted);
+
       font-size: 10px;
     }
 
     .random-team-members {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
+
       gap: 9px;
+
       padding: 12px;
     }
 
@@ -247,50 +338,68 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
+
       min-height: 85px;
       padding: 10px 6px;
+
       border: 1px solid #35353d;
       border-radius: 10px;
+
       background: linear-gradient(
         145deg,
         #25252d,
         #17171c
       );
+
       text-align: center;
       overflow-wrap: anywhere;
     }
 
     .random-player-short {
       color: #fff;
+
       font-size: 24px;
       font-weight: 700;
+
       line-height: 1.3;
       letter-spacing: 1px;
     }
 
     .random-player-name {
       margin-top: 5px;
+
       color: #a7a7b0;
+
       font-size: 11px;
       line-height: 1.5;
     }
 
     .random-team-empty {
       grid-column: 1 / -1;
+
       padding: 20px 10px;
+
       color: #666;
+
       font-size: 12px;
       text-align: center;
     }
 
     .randomizer-empty {
       padding: 30px 15px;
+
       border: 1px dashed #37373e;
       border-radius: 12px;
+
       color: #888;
+
       font-size: 13px;
       text-align: center;
     }
+
+    /* ==========================================
+       MOBILE
+    ========================================== */
 
     @media (max-width: 600px) {
       .randomizer-panel {
@@ -308,43 +417,140 @@
       .randomizer-actions button {
         padding: 12px;
       }
+
+      .admin-tools-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 
-<body>
+<body class="dashboard-page">
+
+  <div class="dash-bg-grid"></div>
+  <div class="dash-glow"></div>
+
   <div class="admin-container">
 
-    <header class="admin-header">
-      <div class="brand">
-        <div class="brand-logo">S2N</div>
+    <!-- ======================================
+         HEADER
+    ======================================= -->
+
+    <header class="dash-header">
+
+      <a href="../dashboard.html" class="dash-brand">
+
+        <img
+          src="../assets/images/s2n-logo.png"
+          alt="S2N Clan Logo"
+          class="dash-logo"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        >
+
+        <div class="dash-logo-fallback">S2N</div>
 
         <div class="brand-info">
-          <h1>S2N HUB</h1>
-          <span>ADMIN CONTROL</span>
+          <span class="brand-name">SECOND TO NONE</span>
+          <span class="brand-sub">CLAN HUB / ADMIN</span>
         </div>
+
+      </a>
+
+      <div class="dash-header-right">
+
+        <div class="online-status">
+          <span class="status-dot"></span>
+          CLAN SYSTEM
+        </div>
+
+        <button
+          class="logout-btn"
+          id="logout-btn"
+          type="button"
+        >
+          LOGOUT
+        </button>
+
       </div>
 
-      <a href="../dashboard.html" class="back-btn">
-        ← กลับหน้าหลัก
-      </a>
     </header>
+
+    <!-- ======================================
+         NAVIGATION
+    ======================================= -->
+
+    <nav class="dash-navigation" id="dash-navigation">
+
+      <a href="../dashboard.html" class="dash-nav-link">
+        <span class="material-symbols-rounded">dashboard</span>
+        <span>Dashboard</span>
+      </a>
+
+      <a href="../tournament.html" class="dash-nav-link">
+        <span class="material-symbols-rounded">emoji_events</span>
+        <span>Tournament</span>
+      </a>
+
+      <a href="members.html" class="dash-nav-link">
+        <span class="material-symbols-rounded">groups</span>
+        <span>Members</span>
+      </a>
+
+      <a href="../team/all-teams.html" class="dash-nav-link">
+        <span class="material-symbols-rounded">groups</span>
+        <span>All Teams</span>
+      </a>
+
+      <a href="../team/my-team.html" class="dash-nav-link">
+        <span class="material-symbols-rounded">shield</span>
+        <span>My Teams</span>
+      </a>
+
+      <a href="../profile.html" class="dash-nav-link">
+        <span class="material-symbols-rounded">person</span>
+        <span>Profile</span>
+      </a>
+
+      <a href="index.html" class="dash-nav-link active">
+        <span class="material-symbols-rounded">admin_panel_settings</span>
+        <span>Admin</span>
+      </a>
+
+    </nav>
+
+    <!-- ======================================
+         MAIN CONTENT
+    ======================================= -->
 
     <main class="admin-content">
 
       <!-- PAGE HEADING -->
+
       <section class="page-heading">
+
         <div>
           <span class="eyebrow">ADMIN CONTROL CENTER</span>
+
           <h2>จัดการระบบ</h2>
-          <p>เครื่องมือสำหรับผู้ดูแลระบบ S2N HUB</p>
+
+          <p>
+            เครื่องมือสำหรับผู้ดูแลระบบ S2N HUB
+          </p>
         </div>
+
       </section>
 
-      <!-- ADMIN TOOLS -->
+      <!-- ======================================
+           ADMIN TOOLS
+      ======================================= -->
+
       <section class="admin-tools-grid">
 
-        <a href="tournament-registrations.html" class="admin-tool-card">
+        <a
+          href="tournament-registrations.html"
+          class="admin-tool-card"
+        >
+
           <span class="admin-tool-eyebrow">
             TOURNAMENT MANAGEMENT
           </span>
@@ -360,9 +566,14 @@
           <span class="admin-tool-arrow">
             เปิดหน้าจัดการการแข่งขัน →
           </span>
+
         </a>
 
-        <a href="members.html" class="admin-tool-card">
+        <a
+          href="members.html"
+          class="admin-tool-card"
+        >
+
           <span class="admin-tool-eyebrow">
             MEMBER DIRECTORY
           </span>
@@ -376,9 +587,14 @@
           <span class="admin-tool-arrow">
             เปิดรายชื่อสมาชิก →
           </span>
+
         </a>
 
-        <a href="#team-randomizer" class="admin-tool-card">
+        <a
+          href="#team-randomizer"
+          class="admin-tool-card"
+        >
+
           <span class="admin-tool-eyebrow">
             S2N ESPORT EVENT
           </span>
@@ -394,43 +610,74 @@
           <span class="admin-tool-arrow">
             เปิดระบบสุ่มทีม →
           </span>
+
         </a>
 
       </section>
 
-      <!-- S2N TEAM RANDOMIZER -->
-      <section class="team-randomizer" id="team-randomizer">
+      <!-- ======================================
+           TEAM RANDOMIZER
+      ======================================= -->
+
+      <section
+        class="team-randomizer"
+        id="team-randomizer"
+      >
 
         <div class="page-heading">
+
           <div>
-            <span class="eyebrow">S2N ESPORT RANDOMIZER</span>
+            <span class="eyebrow">
+              S2N ESPORT RANDOMIZER
+            </span>
+
             <h2>สุ่มทีมกิจกรรม</h2>
-            <p>ระบบสุ่มสมาชิกสำหรับกิจกรรมแคลน S2N</p>
+
+            <p>
+              ระบบสุ่มสมาชิกสำหรับกิจกรรมแคลน S2N
+            </p>
           </div>
+
         </div>
 
         <div class="randomizer-panel">
 
           <!-- GAME MODE -->
+
           <div class="randomizer-field">
+
             <label for="random-mode">
               รูปแบบการแข่งขัน
             </label>
 
             <select id="random-mode">
-              <option value="solo">SOLO — 1 คน / ทีม</option>
-              <option value="duo">DUO — 2 คน / ทีม</option>
-              <option value="squad" selected>SQUAD — 4 คน / ทีม</option>
+
+              <option value="solo">
+                SOLO — 1 คน / ทีม
+              </option>
+
+              <option value="duo">
+                DUO — 2 คน / ทีม
+              </option>
+
+              <option value="squad" selected>
+                SQUAD — 4 คน / ทีม
+              </option>
+
             </select>
+
           </div>
 
           <!-- TEAM COUNT -->
+
           <div class="randomizer-field">
+
             <label for="team-count">
               จำนวนทีม
             </label>
 
             <select id="team-count">
+
               <option value="2">2 ทีม</option>
               <option value="3">3 ทีม</option>
               <option value="4" selected>4 ทีม</option>
@@ -446,11 +693,15 @@
               <option value="14">14 ทีม</option>
               <option value="15">15 ทีม</option>
               <option value="16">16 ทีม</option>
+
             </select>
+
           </div>
 
-          <!-- MEMBER INPUT -->
+          <!-- PLAYER INPUT -->
+
           <div class="randomizer-field">
+
             <label for="player-list">
               รายชื่อสมาชิก
             </label>
@@ -467,63 +718,102 @@ ZEN | S2N_ZEN"
             ></textarea>
 
             <p class="randomizer-hint">
-              1 บรรทัดต่อ 1 คน ใช้เครื่องหมาย | คั่นชื่อย่อกับชื่อ PUBG
+              1 บรรทัดต่อ 1 คน ใช้เครื่องหมาย |
+              คั่นชื่อย่อกับชื่อ PUBG
             </p>
+
           </div>
 
           <!-- BUTTONS -->
+
           <div class="randomizer-actions">
 
-            <button type="button" id="randomize-btn">
-               สุ่มทีม
+            <button
+              type="button"
+              id="randomize-btn"
+            >
+              สุ่มทีม
             </button>
 
-            <button type="button" id="reshuffle-btn">
+            <button
+              type="button"
+              id="reshuffle-btn"
+            >
               สุ่มใหม่
             </button>
 
-            <button type="button" id="copy-teams-btn">
+            <button
+              type="button"
+              id="copy-teams-btn"
+            >
               คัดลอกผล
             </button>
 
           </div>
 
-          <div class="randomizer-status" id="randomizer-status">
+          <div
+            class="randomizer-status"
+            id="randomizer-status"
+          >
             กรอกรายชื่อสมาชิกเพื่อเริ่มสุ่มทีม
           </div>
 
           <!-- RESULT -->
-          <div class="random-team-result" id="random-team-result"></div>
+
+          <div
+            class="random-team-result"
+            id="random-team-result"
+          ></div>
 
         </div>
 
       </section>
 
-      <!-- MEMBER DIRECTORY -->
+      <!-- ======================================
+           MEMBER DIRECTORY
+      ======================================= -->
+
       <section class="page-heading" style="padding-top: 8px;">
+
         <div>
           <span class="eyebrow">MEMBER DIRECTORY</span>
+
           <h2>รายชื่อสมาชิก</h2>
-          <p>ตรวจสอบรายชื่อผู้ใช้งานและผู้ดูแลระบบ</p>
+
+          <p>
+            ตรวจสอบรายชื่อผู้ใช้งานและผู้ดูแลระบบ
+          </p>
         </div>
+
       </section>
 
       <!-- USERS -->
+
       <section class="member-section">
 
         <div class="section-header">
+
           <div class="section-title">
+
             <span class="status-dot user-dot"></span>
+
             <h3>ผู้ใช้งาน</h3>
+
           </div>
 
-          <span class="member-count" id="user-count">
+          <span
+            class="member-count"
+            id="user-count"
+          >
             0 คน
           </span>
+
         </div>
 
         <div class="table-wrapper">
+
           <table>
+
             <thead>
               <tr>
                 <th>#</th>
@@ -534,33 +824,48 @@ ZEN | S2N_ZEN"
             </thead>
 
             <tbody id="user-list">
+
               <tr>
                 <td colspan="4" class="loading-message">
                   กำลังโหลดข้อมูล...
                 </td>
               </tr>
+
             </tbody>
+
           </table>
+
         </div>
 
       </section>
 
       <!-- ADMINS -->
+
       <section class="member-section admin-section">
 
         <div class="section-header">
+
           <div class="section-title">
+
             <span class="status-dot admin-dot"></span>
+
             <h3>แอดมิน</h3>
+
           </div>
 
-          <span class="member-count admin-count" id="admin-count">
+          <span
+            class="member-count admin-count"
+            id="admin-count"
+          >
             0 คน
           </span>
+
         </div>
 
         <div class="table-wrapper">
+
           <table>
+
             <thead>
               <tr>
                 <th>#</th>
@@ -571,33 +876,87 @@ ZEN | S2N_ZEN"
             </thead>
 
             <tbody id="admin-list">
+
               <tr>
                 <td colspan="4" class="loading-message">
                   กำลังโหลดข้อมูล...
                 </td>
               </tr>
+
             </tbody>
+
           </table>
+
         </div>
 
       </section>
 
-      <div id="page-message" class="page-message"></div>
+      <div
+        id="page-message"
+        class="page-message"
+      ></div>
 
     </main>
 
+    <!-- ======================================
+         FOOTER
+    ======================================= -->
+
     <footer class="admin-footer">
-      S2N HUB <span>•</span> ADMIN CONTROL
+      SECOND TO NONE
+      <span>•</span>
+      S2N HUB ADMIN CONTROL
     </footer>
 
   </div>
 
-  <!-- SUPABASE -->
+  <!-- ======================================
+       SUPABASE
+  ======================================= -->
+
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="../assets/js/supabase.js"></script>
   <script src="../assets/js/admin.js"></script>
 
-  <!-- TEAM RANDOMIZER SCRIPT -->
+  <!-- ======================================
+       LOGOUT
+  ======================================= -->
+
+  <script>
+    (() => {
+      "use strict";
+
+      const logoutBtn = document.getElementById("logout-btn");
+
+      if (!logoutBtn) return;
+
+      logoutBtn.addEventListener("click", async () => {
+        const supabase = window.supabaseClient;
+
+        if (!supabase) {
+          window.location.replace("../index.html");
+          return;
+        }
+
+        logoutBtn.disabled = true;
+        logoutBtn.textContent = "LOGGING OUT...";
+
+        try {
+          await supabase.auth.signOut();
+        } catch (error) {
+          console.error("[S2N Admin] Logout error:", error);
+        }
+
+        window.location.replace("../index.html");
+      });
+
+    })();
+  </script>
+
+  <!-- ======================================
+       TEAM RANDOMIZER SCRIPT
+  ======================================= -->
+
   <script>
     (() => {
       "use strict";
@@ -711,11 +1070,6 @@ ZEN | S2N_ZEN"
           { length: teamCount },
           () => []
         );
-
-        /*
-          กระจายสมาชิกให้จำนวนใกล้เคียงกันที่สุด
-          ไม่จำเป็นต้องรอสมาชิกครบทีม
-        */
 
         shuffledPlayers.forEach((player, index) => {
           const teamIndex = index % teamCount;
@@ -876,9 +1230,7 @@ ZEN | S2N_ZEN"
       }
 
       randomizeBtn.addEventListener("click", generateTeams);
-
       reshuffleBtn.addEventListener("click", generateTeams);
-
       copyBtn.addEventListener("click", copyResults);
 
       playerListInput.addEventListener("input", () => {

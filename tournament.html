@@ -54,42 +54,44 @@
 
 <!-- NAVIGATION -->
 <nav class="dash-navigation" id="dash-navigation">
-
-  <a href="dashboard.html" class="dash-nav-link">
-    <span class="material-symbols-rounded">dashboard</span>
-    <span>Dashboard</span>
-  </a>
-
-  <a href="tournament.html" class="dash-nav-link active">
-    <span class="material-symbols-rounded">emoji_events</span>
-    <span>Tournament</span>
-  </a>
-
-  <a href="admin/members.html" class="dash-nav-link admin-only hidden">
-    <span class="material-symbols-rounded">groups</span>
-    <span>Members</span>
-  </a>
-
-  <a href="team/all-teams.html" class="dash-nav-link">
-    <span class="material-symbols-rounded">groups</span>
-    <span>All Teams</span>
-  </a>
-
-  <a href="team/my-team.html" class="dash-nav-link">
-    <span class="material-symbols-rounded">shield</span>
-    <span>My Teams</span>
-  </a>
-
-  <a href="profile.html" class="dash-nav-link">
-    <span class="material-symbols-rounded">person</span>
-    <span>Profile</span>
-  </a>
-
-  <a href="admin/index.html" class="dash-nav-link admin-only hidden">
-    <span class="material-symbols-rounded">admin_panel_settings</span>
-    <span>Admin</span>
-  </a>
-
+    
+    <a href="dashboard.html" class="dash-nav-link active">
+        <span class="material-symbols-rounded">dashboard</span>
+        <span>Dashboard</span>
+    </a>
+    
+    <a href="tournament.html" class="dash-nav-link">
+        <span class="material-symbols-rounded">emoji_events</span>
+        <span>Tournament</span>
+    </a>
+    
+    <!-- ADMIN ONLY: Members Management -->
+    <a href="admin/members.html" class="dash-nav-link admin-only hidden">
+        <span class="material-symbols-rounded">groups</span>
+        <span>Members</span>
+    </a>
+    
+    <a href="team/all-teams.html" class="dash-nav-link">
+        <span class="material-symbols-rounded">groups</span>
+        <span>All Teams</span>
+    </a>
+    
+    <a href="team/my-team.html" class="dash-nav-link">
+        <span class="material-symbols-rounded">shield</span>
+        <span>My Teams</span>
+    </a>
+    
+    <a href="profile.html" class="dash-nav-link">
+        <span class="material-symbols-rounded">person</span>
+        <span>Profile</span>
+    </a>
+    
+    <!-- ADMIN ONLY -->
+    <a href="admin/index.html" class="dash-nav-link admin-only hidden">
+        <span class="material-symbols-rounded">admin_panel_settings</span>
+        <span>Admin</span>
+    </a>
+    
 </nav>
 
      
@@ -902,7 +904,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <script src="assets/js/supabase.js"></script>
-
+ <script src="assets/js/dashboard.js"></script>
     <script src="assets/js/tournament.js"></script>
 
 </body>
