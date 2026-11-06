@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#080d18">
+
+    <title>S2N HUB | Tournament Player Slots</title>
+
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/dashboard.css">
+    <link rel="stylesheet" href="../assets/css/admin.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Orbitron:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet">
+
+    <style>
+        :root {
+            --slot-red: #ff303f;
+            --slot-bg: #101015;
+            --slot-card: #17171d;
+            --slot-border: #34343c;
+            --slot-text: #f4f4f5;
+            --slot-muted: #92929d;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Kanit", sans-serif;
+        }
+
+        .slot-page {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .slot-heading {
+            margin: 25px 0;
+        }
+
+        .slot-heading .eyebrow {
+            color: var(--slot-red);
+            font-family: "Orbitron", sans-serif;
+            font-size: 10px;
+            letter-spacing: 2px;
+        }
+
+        .slot-heading h2 {
+            margin: 8px 0;
+            color: var(--slot-text);
+            font-size: 27px;
+            font-weight: 600;
+        }
+
+        .slot-heading p {
+            color: var(--slot-muted);
+            font-size: 13px;
+        }
+
+        .slot-panel {
+            padding: 22px;
+            border: 1px solid var(--slot-border);
+            border-radius: 18px;
+            background: linear-gradient(145deg, #19191f, #101014);
+            margin-bottom: 25px;
+        }
+
+        .slot-panel-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .slot-panel-title .material-symbols-rounded {
+            color: var(--slot-red);
+            font-size: 25px;
+        }
+
+        .slot-panel-title h3 {
+            margin: 0;
+            color: var(--slot-text);
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        .slot-form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .slot-field {
+            min-width: 0;
+        }
+
+        .slot-field.full {
+            grid-column: 1 / -1;
+        }
+
+        .slot-field label {
+            display: block;
+            margin-bottom: 8px;
+            color: #c8c8d0;
+            font-size: 13px;
+        }
+
+        .slot-field input,
+        .slot-field select {
+            width: 100%;
+            padding: 13px 14px;
+            border: 1px solid var(--slot-border);
+            border-radius: 10px;
+            outline: none;
+            background: #101015;
+            color: #fff;
+            font-family: "Kanit", sans-serif;
+            font-size: 13px;
+        }
+
+        .slot-field input:focus,
+        .slot-field select:focus {
+            border-color: var(--slot-red);
+            box-shadow: 0 0 0 3px rgba(255, 48, 63, .08);
+        }
+
+        .slot-field input::placeholder {
+            color: #696974;
+        }
+
+        .slot-player-info {
+            margin-top: 12px;
+            padding: 14px;
+            border: 1px solid rgba(255, 48, 63, .18);
+            border-radius: 10px;
+            background: rgba(255, 48, 63, .04);
+            color: var(--slot-muted);
+            font-size: 12px;
+            line-height: 1.8;
+        }
+
+        .slot-player-info strong {
+            color: #fff;
+        }
+
+        .slot-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 22px;
+        }
+
+        .slot-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-height: 45px;
+            padding: 12px 18px;
+            border: 1px solid var(--slot-border);
+            border-radius: 10px;
+            background: #24242b;
+            color: #fff;
+            font-family: "Kanit", sans-serif;
+            font-size: 13px;
+            cursor: pointer;
+            transition: .2s ease;
+        }
+
+        .slot-btn:hover {
+            border-color: var(--slot-red);
+            transform: translateY(-1px);
+        }
+
+        .slot-btn.primary {
+            border-color: var(--slot-red);
+            background: linear-gradient(135deg, #ff303f, #941d1d);
+            font-weight: 600;
+        }
+
+        .slot-btn:disabled {
+            opacity: .5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .slot-message {
+            margin-top: 16px;
+            padding: 12px 14px;
+            border: 1px solid var(--slot-border);
+            border-radius: 10px;
+            color: var(--slot-muted);
+            font-size: 12px;
+            line-height: 1.8;
+            overflow-wrap: anywhere;
+        }
+
+        .slot-message.success {
+            border-color: rgba(74, 222, 128, .25);
+            color: #4ade80;
+            background: rgba(74, 222, 128, .04);
+        }
+
+        .slot-message.error {
+            border-color: rgba(255, 48, 63, .3);
+            color: #ff6975;
+            background: rgba(255, 48, 63, .04);
+        }
+
+        .slot-summary {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .slot-summary-card {
+            padding: 16px;
+            border: 1px solid var(--slot-border);
+            border-radius: 12px;
+            background: var(--slot-card);
+        }
+
+        .slot-summary-card span {
+            display: block;
+            color: var(--slot-muted);
+            font-size: 11px;
+        }
+
+        .slot-summary-card strong {
+            display: block;
+            margin-top: 5px;
+            color: #fff;
+            font-family: "Orbitron", sans-serif;
+            font-size: 23px;
+        }
+
+        .slot-list {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 15px;
+        }
+
+        .slot-card {
+            overflow: hidden;
+            border: 1px solid var(--slot-border);
+            border-radius: 14px;
+            background: var(--slot-card);
+        }
+
+        .slot-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            padding: 15px;
+            border-bottom: 1px solid var(--slot-border);
+            background: linear-gradient(135deg, rgba(255, 48, 63, .1), #17171d);
+        }
+
+        .slot-card-title {
+            color: var(--slot-red);
+            font-family: "Orbitron", sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .slot-card-count {
+            color: var(--slot-muted);
+            font-size: 11px;
+        }
+
+        .slot-card-body {
+            display: grid;
+            gap: 9px;
+            padding: 12px;
+        }
+
+        .slot-member {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 0;
+            padding: 12px;
+            border: 1px solid #303038;
+            border-radius: 10px;
+            background: #202027;
+        }
+
+        .slot-member-avatar {
+            display: flex;
+            flex-shrink: 0;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            border: 1px solid rgba(255, 48, 63, .3);
+            border-radius: 10px;
+            background: rgba(255, 48, 63, .08);
+            color: var(--slot-red);
+            font-family: "Orbitron", sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .slot-member-details {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .slot-member-name {
+            color: #fff;
+            font-size: 13px;
+            font-weight: 500;
+            overflow-wrap: anywhere;
+        }
+
+        .slot-member-username {
+            margin-top: 2px;
+            color: var(--slot-muted);
+            font-size: 11px;
+            overflow-wrap: anywhere;
+        }
+
+        .slot-member-uid {
+            margin-top: 3px;
+            color: #777782;
+            font-size: 10px;
+            overflow-wrap: anywhere;
+        }
+
+        .slot-empty {
+            padding: 35px 15px;
+            border: 1px dashed var(--slot-border);
+            border-radius: 12px;
+            color: var(--slot-muted);
+            text-align: center;
+            font-size: 13px;
+        }
+
+        .slot-empty .material-symbols-rounded {
+            display: block;
+            margin-bottom: 8px;
+            color: #62626c;
+            font-size: 35px;
+        }
+
+        .slot-refresh {
+            margin-left: auto;
+        }
+
+        @media (max-width: 700px) {
+            .slot-page {
+                padding: 14px;
+            }
+
+            .slot-panel {
+                padding: 15px;
+            }
+
+            .slot-form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .slot-field.full {
+                grid-column: auto;
+            }
+
+            .slot-list {
+                grid-template-columns: 1fr;
+            }
+
+            .slot-summary {
+                grid-template-columns: 1fr;
+            }
+
+            .slot-heading h2 {
+                font-size: 22px;
+            }
+
+            .slot-actions {
+                display: grid;
+                grid-template-columns: 1fr;
+            }
+
+            .slot-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body class="dashboard-page">
+
+    <div class="dash-bg-grid"></div>
+    <div class="dash-glow"></div>
+
+    <div class="admin-container">
+
+        <header class="dash-header">
+
+            <a href="../dashboard.html" class="dash-brand">
+                <img
+                    src="../assets/images/s2n-logo.png"
+                    alt="S2N Clan Logo"
+                    class="dash-logo"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                >
+
+                <div class="dash-logo-fallback">S2N</div>
+
+                <div class="brand-info">
+                    <span class="brand-name">SECOND TO NONE</span>
+                    <span class="brand-sub">CLAN HUB / ADMIN</span>
+                </div>
+            </a>
+
+            <div class="dash-header-right">
+                <div class="online-status">
+                    <span class="status-dot"></span>
+                    CLAN SYSTEM
+                </div>
+
+                <button class="logout-btn" id="logout-btn" type="button">
+                    LOGOUT
+                </button>
+            </div>
+
+        </header>
+
+        <nav class="dash-navigation">
+
+            <a href="../dashboard.html" class="dash-nav-link">
+                <span class="material-symbols-rounded">dashboard</span>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="../tournament.html" class="dash-nav-link">
+                <span class="material-symbols-rounded">emoji_events</span>
+                <span>Tournament</span>
+            </a>
+
+            <a href="members.html" class="dash-nav-link">
+                <span class="material-symbols-rounded">groups</span>
+                <span>Members</span>
+            </a>
+
+            <a href="../team/all-teams.html" class="dash-nav-link">
+                <span class="material-symbols-rounded">groups</span>
+                <span>All Teams</span>
+            </a>
+
+            <a href="../team/my-team.html" class="dash-nav-link">
+                <span class="material-symbols-rounded">shield</span>
+                <span>My Teams</span>
+            </a>
+
+            <a href="../profile.html" class="dash-nav-link">
+                <span class="material-symbols-rounded">person</span>
+                <span>Profile</span>
+            </a>
+
+            <a href="index.html" class="dash-nav-link active">
+                <span class="material-symbols-rounded">admin_panel_settings</span>
+                <span>Admin</span>
+            </a>
+
+        </nav>
+
+        <main class="slot-page">
+
+            <section class="slot-heading">
+                <span class="eyebrow">S2N ESPORT / ADMIN CONTROL</span>
+                <h2>จัดสล็อตผู้เล่น Tournament</h2>
+                <p>เพิ่มสมาชิก กำหนดสล็อต และตรวจสอบเพื่อนร่วมทีม</p>
+            </section>
+
+            <section class="slot-panel">
+
+                <div class="slot-panel-title">
+                    <span class="material-symbols-rounded">person_add</span>
+                    <h3>จัดผู้เล่นเข้าร่วมการแข่งขัน</h3>
+                </div>
+
+                <div class="slot-form-grid">
+
+                    <div class="slot-field full">
+                        <label for="tournament-select">Tournament</label>
+                        <select id="tournament-select">
+                            <option value="">กำลังโหลด Tournament...</option>
+                        </select>
+                    </div>
+
+                    <div class="slot-field full">
+                        <label for="member-select">เลือกสมาชิก</label>
+                        <select id="member-select">
+                            <option value="">กำลังโหลดสมาชิก...</option>
+                        </select>
+                    </div>
+
+                    <div class="slot-field">
+                        <label for="slot-number">Slot Number</label>
+                        <input
+                            type="number"
+                            id="slot-number"
+                            min="1"
+                            step="1"
+                            value="1"
+                            placeholder="เช่น 1"
+                        >
+                    </div>
+
+                    <div class="slot-field">
+                        <label for="slot-name">Slot Name</label>
+                        <input
+                            type="text"
+                            id="slot-name"
+                            value="Slot 1"
+                            maxlength="80"
+                            placeholder="เช่น Slot 1"
+                        >
+                    </div>
+
+                </div>
+
+                <div class="slot-player-info" id="member-info">
+                    เลือกสมาชิกเพื่อดูข้อมูล PUBG
+                </div>
+
+                <div class="slot-actions">
+
+                    <button class="slot-btn primary" id="assign-btn" type="button">
+                        <span class="material-symbols-rounded">group_add</span>
+                        จัดผู้เล่นเข้สล็อต
+                    </button>
+
+                    <button class="slot-btn" id="refresh-btn" type="button">
+                        <span class="material-symbols-rounded">refresh</span>
+                        รีเฟรชข้อมูล
+                    </button>
+
+                </div>
+
+                <div class="slot-message" id="slot-message">
+                    พร้อมใช้งาน
+                </div>
+
+            </section>
+
+            <section class="slot-heading">
+                <span class="eyebrow">TOURNAMENT ROSTER</span>
+                <h2>รายชื่อผู้เล่นในแต่ละสล็อต</h2>
+                <p>ผู้เล่นที่อยู่สล็อตเดียวกันจะถูกแสดงอยู่ในทีมเดียวกัน</p>
+            </section>
+
+            <div class="slot-summary">
+
+                <div class="slot-summary-card">
+                    <span>TOURNAMENT</span>
+                    <strong id="summary-tournament">-</strong>
+                </div>
+
+                <div class="slot-summary-card">
+                    <span>TOTAL PLAYERS</span>
+                    <strong id="summary-players">0</strong>
+                </div>
+
+                <div class="slot-summary-card">
+                    <span>TOTAL SLOTS</span>
+                    <strong id="summary-slots">0</strong>
+                </div>
+
+            </div>
+
+            <section class="slot-list" id="slot-list">
+
+                <div class="slot-empty">
+                    <span class="material-symbols-rounded">groups</span>
+                    กรุณาเลือก Tournament
+                </div>
+
+            </section>
+
+        </main>
+
+        <footer class="admin-footer">
+            SECOND TO NONE
+            <span>•</span>
+            S2N HUB TOURNAMENT SLOTS
+        </footer>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../assets/js/supabase.js"></script>
+
+    <script>
+        (() => {
+            "use strict";
+
+            const supabase = window.supabaseClient;
+
+            const tournamentSelect = document.getElementById("tournament-select");
+            const memberSelect = document.getElementById("member-select");
+            const slotNumberInput = document.getElementById("slot-number");
+            const slotNameInput = document.getElementById("slot-name");
+            const memberInfo = document.getElementById("member-info");
+
+            const assignBtn = document.getElementById("assign-btn");
+            const refreshBtn = document.getElementById("refresh-btn");
+
+            const slotMessage = document.getElementById("slot-message");
+            const slotList = document.getElementById("slot-list");
+
+            const summaryTournament = document.getElementById("summary-tournament");
+            const summaryPlayers = document.getElementById("summary-players");
+            const summarySlots = document.getElementById("summary-slots");
+
+            let members = [];
+            let tournaments = [];
+            let currentSlots = [];
+            let isProcessing = false;
+
+            function escapeHTML(value) {
+                return String(value ?? "").replace(/[&<>"']/g, char => {
+                    const entities = {
+                        "&": "&amp;",
+                        "<": "&lt;",
+                        ">": "&gt;",
+                        '"': "&quot;",
+                        "'": "&#039;"
+                    };
+
+                    return entities[char];
+                });
+            }
+
+            function showMessage(message, type = "") {
+                slotMessage.textContent = message;
+                slotMessage.className = "slot-message";
+
+                if (type) {
+                    slotMessage.classList.add(type);
+                }
+            }
+
+            function getSelectedMember() {
+                const userId = memberSelect.value;
+
+                return members.find(member => {
+                    return member.user_id === userId;
+                }) || null;
+            }
+
+            function getSelectedTournament() {
+                const tournamentId = tournamentSelect.value;
+
+                return tournaments.find(tournament => {
+                    return tournament.id === tournamentId;
+                }) || null;
+            }
+
+            function updateMemberInfo() {
+                const member = getSelectedMember();
+
+                if (!member) {
+                    memberInfo.textContent = "เลือกสมาชิกเพื่อดูข้อมูล PUBG";
+                    return;
+                }
+
+                memberInfo.innerHTML = `
+                    <strong>Username:</strong>
+                    ${escapeHTML(member.username || "-")}
+                    <br>
+                    <strong>PUBG Name:</strong>
+                    ${escapeHTML(member.pubg_name || "ยังไม่ได้ตั้งชื่อในเกม")}
+                    <br>
+                    <strong>PUBG UID:</strong>
+                    ${escapeHTML(member.pubg_uid || "ยังไม่ได้กรอก UID")}
+                    <br>
+                    <strong>Role:</strong>
+                    ${escapeHTML(member.role || "member")}
+                `;
+            }
+
+            async function checkAdmin() {
+                const {
+                    data: { user },
+                    error: authError
+                } = await supabase.auth.getUser();
+
+                if (authError || !user) {
+                    window.location.replace("../index.html");
+                    return false;
+                }
+
+                const { data: profile, error: profileError } = await supabase
+                    .from("s2n_members")
+                    .select("role")
+                    .eq("user_id", user.id)
+                    .maybeSingle();
+
+                if (profileError) {
+                    throw profileError;
+                }
+
+                if (!profile || profile.role !== "admin") {
+                    window.location.replace("../dashboard.html");
+                    return false;
+                }
+
+                return true;
+            }
+
+            async function loadTournaments() {
+                tournamentSelect.innerHTML =
+                    '<option value="">กำลังโหลด Tournament...</option>';
+
+                const { data, error } = await supabase
+                    .from("s2n_tournaments")
+                    .select("id, tournament_name, match_type, status")
+                    .order("created_at", { ascending: false });
+
+                if (error) {
+                    throw error;
+                }
+
+                tournaments = data || [];
+
+                if (tournaments.length === 0) {
+                    tournamentSelect.innerHTML =
+                        '<option value="">ไม่มี Tournament</option>';
+
+                    return;
+                }
+
+                tournamentSelect.innerHTML =
+                    '<option value="">-- เลือก Tournament --</option>';
+
+                tournaments.forEach(tournament => {
+                    const option = document.createElement("option");
+
+                    option.value = tournament.id;
+                    option.textContent =
+                        `${tournament.tournament_name} (${tournament.status || "-"})`;
+
+                    tournamentSelect.appendChild(option);
+                });
+            }
+
+            async function loadMembers() {
+                memberSelect.innerHTML =
+                    '<option value="">กำลังโหลดสมาชิก...</option>';
+
+                const { data, error } = await supabase
+                    .from("s2n_members")
+                    .select(
+                        "user_id, username, display_name, nickname, pubg_name, pubg_uid, role"
+                    )
+                    .order("username", { ascending: true });
+
+                if (error) {
+                    throw error;
+                }
+
+                members = data || [];
+
+                if (members.length === 0) {
+                    memberSelect.innerHTML =
+                        '<option value="">ไม่มีสมาชิก</option>';
+
+                    return;
+                }
+
+                memberSelect.innerHTML =
+                    '<option value="">-- เลือกสมาชิก --</option>';
+
+                members.forEach(member => {
+                    const option = document.createElement("option");
+
+                    option.value = member.user_id;
+
+                    const playerName =
+                        member.pubg_name ||
+                        member.display_name ||
+                        member.username ||
+                        "Unknown";
+
+                    option.textContent =
+                        `${member.username || "-"} | ${playerName}`;
+
+                    memberSelect.appendChild(option);
+                });
+
+                updateMemberInfo();
+            }
+
+            async function loadSlots() {
+                const tournamentId = tournamentSelect.value;
+                const tournament = getSelectedTournament();
+
+                currentSlots = [];
+
+                if (!tournamentId || !tournament) {
+                    slotList.innerHTML = `
+                        <div class="slot-empty">
+                            <span class="material-symbols-rounded">groups</span>
+                            กรุณาเลือก Tournament
+                        </div>
+                    `;
+
+                    summaryTournament.textContent = "-";
+                    summaryPlayers.textContent = "0";
+                    summarySlots.textContent = "0";
+
+                    return;
+                }
+
+                slotList.innerHTML = `
+                    <div class="slot-empty">
+                        <span class="material-symbols-rounded">sync</span>
+                        กำลังโหลดข้อมูลสล็อต...
+                    </div>
+                `;
+
+                const { data, error } = await supabase
+                    .from("s2n_tournament_player_slots")
+                    .select(
+                        "tournament_id, tournament_name, slot_number, slot_name, user_id, username, display_name, nickname, pubg_name, pubg_uid, entry_status, assigned_at"
+                    )
+                    .eq("tournament_id", tournamentId)
+                    .order("slot_number", { ascending: true });
+
+                if (error) {
+                    throw error;
+                }
+
+                currentSlots = data || [];
+
+                renderSlots();
+
+                summaryTournament.textContent =
+                    tournament.tournament_name || "-";
+
+                summaryPlayers.textContent =
+                    String(currentSlots.length);
+
+                const uniqueSlots = new Set(
+                    currentSlots.map(player => player.slot_number)
+                );
+
+                summarySlots.textContent =
+                    String(uniqueSlots.size);
+            }
+
+            function renderSlots() {
+                if (currentSlots.length === 0) {
+                    slotList.innerHTML = `
+                        <div class="slot-empty">
+                            <span class="material-symbols-rounded">person_search</span>
+                            ยังไม่มีผู้เล่นใน Tournament นี้
+                        </div>
+                    `;
+
+                    return;
+                }
+
+                const groups = new Map();
+
+                currentSlots.forEach(player => {
+                    const key = `${player.slot_number}`;
+
+                    if (!groups.has(key)) {
+                        groups.set(key, {
+                            slotNumber: player.slot_number,
+                            slotName: player.slot_name || `Slot ${player.slot_number}`,
+                            members: []
+                        });
+                    }
+
+                    groups.get(key).members.push(player);
+                });
+
+                slotList.innerHTML = Array.from(groups.values())
+                    .map(group => {
+                        const memberHTML = group.members
+                            .map(member => {
+                                const displayName =
+                                    member.pubg_name ||
+                                    member.display_name ||
+                                    member.username ||
+                                    "Unknown";
+
+                                const shortName =
+                                    String(member.username || "S2N")
+                                        .substring(0, 4)
+                                        .toUpperCase();
+
+                                return `
+                                    <div class="slot-member">
+
+                                        <div class="slot-member-avatar">
+                                            ${escapeHTML(shortName)}
+                                        </div>
+
+                                        <div class="slot-member-details">
+
+                                            <div class="slot-member-name">
+                                                ${escapeHTML(displayName)}
+                                            </div>
+
+                                            <div class="slot-member-username">
+                                                @${escapeHTML(member.username || "-")}
+                                                • ${escapeHTML(member.entry_status || "-")}
+                                            </div>
+
+                                            <div class="slot-member-uid">
+                                                UID: ${escapeHTML(member.pubg_uid || "-")}
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                `;
+                            })
+                            .join("");
+
+                        return `
+                            <article class="slot-card">
+
+                                <div class="slot-card-header">
+
+                                    <div class="slot-card-title">
+                                        ${escapeHTML(group.slotName)}
+                                    </div>
+
+                                    <div class="slot-card-count">
+                                        ${group.members.length} PLAYERS
+                                    </div>
+
+                                </div>
+
+                                <div class="slot-card-body">
+                                    ${memberHTML}
+                                </div>
+
+                            </article>
+                        `;
+                    })
+                    .join("");
+            }
+
+            async function assignPlayer() {
+                if (isProcessing) {
+                    return;
+                }
+
+                const tournament = getSelectedTournament();
+                const member = getSelectedMember();
+
+                const slotNumber = Number(slotNumberInput.value);
+                const slotName = slotNameInput.value.trim();
+
+                if (!tournament) {
+                    showMessage("กรุณาเลือก Tournament", "error");
+                    return;
+                }
+
+                if (!member) {
+                    showMessage("กรุณาเลือกสมาชิก", "error");
+                    return;
+                }
+
+                if (!Number.isInteger(slotNumber) || slotNumber < 1) {
+                    showMessage("Slot Number ต้องเป็นจำนวนเต็มตั้งแต่ 1 ขึ้นไป", "error");
+                    return;
+                }
+
+                if (!slotName) {
+                    showMessage("กรุณากรอก Slot Name", "error");
+                    return;
+                }
+
+                isProcessing = true;
+
+                assignBtn.disabled = true;
+                assignBtn.textContent = "กำลังจัดสล็อต...";
+
+                showMessage("กำลังบันทึกข้อมูลผู้เล่น...");
+
+                try {
+                    const { data, error } = await supabase.rpc(
+                        "s2n_admin_assign_player",
+                        {
+                            p_tournament_id: tournament.id,
+                            p_user_id: member.user_id,
+                            p_slot_number: slotNumber,
+                            p_slot_name: slotName
+                        }
+                    );
+
+                    if (error) {
+                        throw error;
+                    }
+
+                    showMessage(
+                        `จัด ${member.username} เข้า ${slotName} สำเร็จ`,
+                        "success"
+                    );
+
+                    await loadSlots();
+
+                } catch (error) {
+                    console.error("[S2N Tournament Slots]", error);
+
+                    showMessage(
+                        error.message || "จัดสล็อตไม่สำเร็จ",
+                        "error"
+                    );
+
+                } finally {
+                    isProcessing = false;
+
+                    assignBtn.disabled = false;
+
+                    assignBtn.innerHTML = `
+                        <span class="material-symbols-rounded">group_add</span>
+                        จัดผู้เล่นเข้สล็อต
+                    `;
+                }
+            }
+
+            async function refreshData() {
+                try {
+                    showMessage("กำลังรีเฟรชข้อมูล...");
+
+                    await loadTournaments();
+                    await loadMembers();
+                    await loadSlots();
+
+                    showMessage("รีเฟรชข้อมูลเรียบร้อย", "success");
+
+                } catch (error) {
+                    console.error(error);
+
+                    showMessage(
+                        error.message || "รีเฟรชข้อมูลไม่สำเร็จ",
+                        "error"
+                    );
+                }
+            }
+
+            tournamentSelect.addEventListener("change", async () => {
+                try {
+                    await loadSlots();
+                    showMessage("โหลดข้อมูล Tournament เรียบร้อย", "success");
+
+                } catch (error) {
+                    showMessage(error.message || "โหลดสล็อตไม่สำเร็จ", "error");
+                }
+            });
+
+            memberSelect.addEventListener("change", updateMemberInfo);
+
+            slotNumberInput.addEventListener("input", () => {
+                const number = Number(slotNumberInput.value);
+
+                if (Number.isInteger(number) && number > 0) {
+                    slotNameInput.value = `Slot ${number}`;
+                }
+            });
+
+            assignBtn.addEventListener("click", assignPlayer);
+            refreshBtn.addEventListener("click", refreshData);
+
+            document.getElementById("logout-btn")
+                .addEventListener("click", async () => {
+                    try {
+                        await supabase.auth.signOut();
+                    } catch (error) {
+                        console.error(error);
+                    }
+
+                    window.location.replace("../index.html");
+                });
+
+            async function init() {
+                if (!supabase) {
+                    showMessage("ไม่พบ Supabase Client", "error");
+                    return;
+                }
+
+                assignBtn.disabled = true;
+
+                try {
+                    const isAdmin = await checkAdmin();
+
+                    if (!isAdmin) {
+                        return;
+                    }
+
+                    await loadTournaments();
+                    await loadMembers();
+
+                    assignBtn.disabled = false;
+
+                    showMessage("เชื่อมต่อระบบเรียบร้อย", "success");
+
+                } catch (error) {
+                    console.error("[S2N Slots Init]", error);
+
+                    showMessage(
+                        error.message || "เริ่มต้นระบบไม่สำเร็จ",
+                        "error"
+                    );
+                }
+            }
+
+            init();
+
+        })();
+    </script>
+
+</body>
+
+</html>

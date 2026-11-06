@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#080808">
+<title>S2N HUB | Tournament Control</title>
+<link rel="stylesheet" href="../assets/css/global.css">
+<link rel="stylesheet" href="../assets/css/dashboard.css">
+<link rel="stylesheet" href="../assets/css/admin-tournament-control.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Orbitron:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet">
+</head>
+<body class="admin-tournament-control-page">
+<header class="dash-header">
+    <a href="../dashboard.html" class="dash-brand">
+        <img
+            src="../assets/images/s2n-logo.png"
+            alt="S2N Clan Logo"
+            class="dash-logo"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        >
+    <div class="dash-logo-fallback">S2N</div>
+    <div class="brand-info">
+        <span class="brand-name">SECOND TO NONE</span>
+        <span class="brand-sub">CLAN HUB / ADMIN CONTROL</span>
+    </div>
+</a>
+<div class="dash-header-right">
+    <div class="online-status">
+        <span class="status-dot"></span>
+        ADMIN SYSTEM
+    </div>
+    <button class="logout-btn" id="logout-btn" type="button">
+        LOGOUT
+    </button>
+</div>
+</header>
+<nav class="dash-navigation" id="dash-navigation">
+    <a href="../dashboard.html" class="dash-nav-link">
+        <span class="material-symbols-rounded">dashboard</span>
+        <span>Dashboard</span>
+    </a>
+<a href="../tournament.html" class="dash-nav-link active">
+    <span class="material-symbols-rounded">emoji_events</span>
+    <span>Tournament</span>
+</a>
+<a href="../team/all-teams.html" class="dash-nav-link">
+    <span class="material-symbols-rounded">groups</span>
+    <span>All Teams</span>
+</a>
+<a href="../team/my-team.html" class="dash-nav-link">
+    <span class="material-symbols-rounded">shield</span>
+    <span>My Teams</span>
+</a>
+<a href="../profile.html" class="dash-nav-link">
+    <span class="material-symbols-rounded">person</span>
+    <span>Profile</span>
+</a>
+<a href="index.html" class="dash-nav-link admin-only hidden">
+    <span class="material-symbols-rounded">admin_panel_settings</span>
+    <span>Admin</span>
+</a>
+</nav>
+<main class="admin-tournament-layout">
+<section class="control-header">
+    <div>
+        <span class="control-eyebrow">S2N HUB / TOURNAMENT MANAGEMENT</span>
+        <h1>TOURNAMENT <span>CONTROL.</span></h1>
+        <p>จัดการสล็อตและรายชื่อผู้เล่นในแต่ละกิจกรรม</p>
+    </div>
+    <a href="../tournament.html" class="control-back-btn">
+        <span class="material-symbols-rounded">arrow_back</span>
+        กลับหน้า Tournament
+    </a>
+</section>
+<section class="control-panel">
+    <div class="control-panel-heading">
+        <div>
+            <span class="control-section-label">EVENT SELECTOR</span>
+            <h2>เลือกรายการแข่งขัน</h2>
+        </div>
+        <button id="control-refresh-btn" class="control-refresh-btn" type="button">
+            <span class="material-symbols-rounded">refresh</span>
+            รีเฟรช
+        </button>
+    </div>
+    <label class="control-select-label" for="control-tournament-select">
+        Tournament
+        <select id="control-tournament-select">
+            <option value="">กำลังโหลดรายการ...</option>
+        </select>
+    </label>
+    <div id="control-tournament-summary" class="control-tournament-summary">
+        <div class="control-summary-empty">
+            กรุณาเลือกรายการแข่งขัน
+        </div>
+    </div>
+</section>
+<section class="control-panel">
+    <div class="control-panel-heading">
+        <div>
+            <span class="control-section-label">SLOT MANAGEMENT</span>
+            <h2>จัดการสล็อตผู้เล่น</h2>
+            <p class="control-panel-description">
+                เลือกสล็อตเพื่อเพิ่มหรือจัดการสมาชิก
+            </p>
+        </div>
+    </div>
+    <div class="control-slot-toolbar">
+        <div class="control-slot-count">
+            <span class="material-symbols-rounded">groups</span>
+            <span id="control-slot-count">0 SLOTS</span>
+        </div>
+        <div class="control-slot-filter">
+            <button type="button" class="control-filter-btn active" data-slot-filter="all">
+                ทั้งหมด
+            </button>
+            <button type="button" class="control-filter-btn" data-slot-filter="available">
+                สล็อตว่าง
+            </button>
+            <button type="button" class="control-filter-btn" data-slot-filter="full">
+                สล็อตเต็ม
+            </button>
+        </div>
+    </div>
+    <div id="control-slot-grid" class="control-slot-grid">
+        <div class="control-empty-state">
+            <span class="material-symbols-rounded">sports_esports</span>
+            <p>เลือกรายการแข่งขันเพื่อแสดงสล็อต</p>
+        </div>
+    </div>
+</section>
+</main>
+<div id="control-player-modal" class="control-modal hidden">
+<div class="control-modal-overlay" data-close="control-player-modal"></div>
+<div class="control-modal-box">
+    <div class="control-modal-header">
+        <div>
+            <span class="control-section-label">SLOT PLAYER MANAGEMENT</span>
+            <h2 id="control-modal-title">จัดการผู้เล่น</h2>
+            <p id="control-modal-subtitle">เลือกสมาชิกเพื่อเพิ่มลงสล็อต</p>
+        </div>
+        <button type="button" class="control-modal-close" data-close="control-player-modal">
+            <span class="material-symbols-rounded">close</span>
+        </button>
+    </div>
+    <div class="control-modal-content">
+        <div class="control-current-players">
+            <h3>
+                <span class="material-symbols-rounded">groups</span>
+                สมาชิกในสล็อตนี้
+            </h3>
+            <div id="control-current-player-list">
+                <p class="control-empty-text">ยังไม่มีสมาชิกในสล็อต</p>
+            </div>
+        </div>
+        <div class="control-add-player-section">
+            <h3>
+                <span class="material-symbols-rounded">person_add</span>
+                เพิ่มสมาชิก
+            </h3>
+            <label for="control-member-search">
+                ค้นหาสมาชิก
+                <input
+                    type="search"
+                    id="control-member-search"
+                    placeholder="ค้นหาชื่อสมาชิกหรือชื่อในเกม..."
+                >
+            </label>
+            <div id="control-member-list" class="control-member-list">
+                <p class="control-empty-text">กำลังโหลดสมาชิก...</p>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div id="control-toast" class="control-toast"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../assets/js/supabase.js"></script>
+<script src="../assets/js/dashboard.js"></script>
+<script src="../assets/js/admin-tournament-control.js"></script>
+</body>
+</html>

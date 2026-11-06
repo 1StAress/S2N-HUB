@@ -1,0 +1,619 @@
+.slot-manager-page {
+min-height: 100vh;
+background: #080808;
+color: #f1f1f1;
+font-family: “Kanit”, sans-serif;
+}
+
+.slot-bg-grid {
+position: fixed;
+inset: 0;
+pointer-events: none;
+z-index: 0;
+
+background-image:
+    linear-gradient(rgba(229, 9, 20, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(229, 9, 20, 0.035) 1px, transparent 1px);
+background-size: 45px 45px;
+
+}
+
+.slot-bg-glow {
+position: fixed;
+top: -220px;
+left: 50%;
+width: 700px;
+height: 500px;
+transform: translateX(-50%);
+pointer-events: none;
+z-index: 0;
+
+background: radial-gradient(
+    circle,
+    rgba(229, 9, 20, 0.13),
+    transparent 70%
+);
+
+}
+
+.slot-manager-container {
+position: relative;
+z-index: 1;
+
+width: min(1200px, 94%);
+margin: 0 auto;
+padding-bottom: 40px;
+
+}
+
+.slot-hero {
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 25px;
+
+padding: 55px 10px 40px;
+
+}
+
+.slot-eyebrow {
+display: inline-block;
+margin-bottom: 15px;
+
+font-size: 11px;
+font-weight: 700;
+letter-spacing: 3px;
+color: #ff3344;
+
+}
+
+.slot-hero h1 {
+font-family: “Orbitron”, “Kanit”, sans-serif;
+font-size: clamp(30px, 5vw, 52px);
+font-weight: 800;
+line-height: 1.3;
+letter-spacing: 1px;
+}
+
+.slot-hero h1 span {
+display: block;
+color: #e50914;
+}
+
+.slot-hero p {
+margin-top: 14px;
+color: #a7a7ad;
+font-size: 14px;
+}
+
+.slot-hero-badge {
+display: flex;
+align-items: center;
+gap: 10px;
+
+padding: 14px 18px;
+border: 1px solid rgba(229, 9, 20, 0.35);
+border-radius: 8px;
+background: rgba(229, 9, 20, 0.06);
+color: #ff3344;
+font-size: 11px;
+font-weight: 700;
+letter-spacing: 1px;
+
+}
+
+.slot-hero-badge .material-symbols-rounded {
+font-size: 23px;
+}
+
+.slot-panel {
+margin-bottom: 25px;
+padding: 28px;
+
+background: rgba(15, 15, 17, 0.94);
+border: 1px solid rgba(191, 195, 200, 0.13);
+border-radius: 12px;
+box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+
+}
+
+.slot-panel-heading {
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 20px;
+
+margin-bottom: 25px;
+
+}
+
+.slot-section-label {
+display: block;
+margin-bottom: 7px;
+
+color: #e50914;
+font-size: 10px;
+font-weight: 700;
+letter-spacing: 2px;
+
+}
+
+.slot-panel-heading h2 {
+font-size: 22px;
+font-weight: 600;
+color: #f1f1f1;
+}
+
+.slot-refresh-btn {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+gap: 8px;
+
+min-height: 42px;
+padding: 0 16px;
+border: 1px solid rgba(191, 195, 200, 0.25);
+border-radius: 7px;
+background: #151515;
+color: #c6c6cb;
+font-family: "Kanit", sans-serif;
+font-size: 12px;
+cursor: pointer;
+transition: 0.25s ease;
+
+}
+
+.slot-refresh-btn:hover {
+border-color: #e50914;
+color: #ffffff;
+background: rgba(229, 9, 20, 0.1);
+}
+
+.slot-form-grid {
+display: grid;
+grid-template-columns: repeat(3, minmax(0, 1fr));
+gap: 20px;
+}
+
+.slot-field {
+display: flex;
+flex-direction: column;
+gap: 9px;
+
+color: #c6c6cb;
+font-size: 13px;
+font-weight: 500;
+
+}
+
+.slot-field input,
+.slot-field select {
+width: 100%;
+min-height: 48px;
+
+padding: 0 14px;
+border: 1px solid rgba(191, 195, 200, 0.18);
+border-radius: 7px;
+background: #090909;
+color: #f1f1f1;
+font-family: "Kanit", sans-serif;
+font-size: 13px;
+outline: none;
+transition: border-color 0.25s ease;
+
+}
+
+.slot-field input:focus,
+.slot-field select:focus {
+border-color: #e50914;
+box-shadow: 0 0 0 3px rgba(229, 9, 20, 0.08);
+}
+
+.slot-field option {
+background: #111111;
+color: #f1f1f1;
+}
+
+.slot-tournament-info {
+grid-column: 1 / -1;
+
+display: grid;
+grid-template-columns: repeat(3, minmax(0, 1fr));
+gap: 15px;
+margin-top: 5px;
+
+}
+
+.slot-tournament-info div {
+display: flex;
+flex-direction: column;
+gap: 6px;
+
+padding: 16px;
+background: #090909;
+border: 1px solid rgba(191, 195, 200, 0.1);
+border-radius: 7px;
+
+}
+
+.slot-tournament-info span {
+color: #77777e;
+font-size: 10px;
+letter-spacing: 1px;
+}
+
+.slot-tournament-info strong {
+color: #e50914;
+font-size: 15px;
+font-weight: 600;
+}
+
+.slot-form-actions {
+display: flex;
+flex-wrap: wrap;
+gap: 12px;
+
+margin-top: 25px;
+
+}
+
+.slot-primary-btn,
+.slot-secondary-btn {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+gap: 10px;
+
+min-height: 48px;
+padding: 0 22px;
+border-radius: 7px;
+font-family: "Kanit", sans-serif;
+font-size: 13px;
+font-weight: 600;
+cursor: pointer;
+transition: 0.25s ease;
+
+}
+
+.slot-primary-btn {
+border: 1px solid #e50914;
+
+background: linear-gradient(
+    135deg,
+    #ff3344,
+    #e50914 55%,
+    #850008
+);
+color: #ffffff;
+box-shadow: 0 5px 20px rgba(229, 9, 20, 0.12);
+
+}
+
+.slot-primary-btn:hover {
+transform: translateY(-2px);
+box-shadow: 0 8px 25px rgba(229, 9, 20, 0.25);
+}
+
+.slot-primary-btn:disabled {
+opacity: 0.55;
+cursor: not-allowed;
+transform: none;
+}
+
+.slot-secondary-btn {
+border: 1px solid rgba(191, 195, 200, 0.22);
+background: #151515;
+color: #c6c6cb;
+}
+
+.slot-secondary-btn:hover {
+border-color: #e50914;
+color: #ffffff;
+}
+
+.slot-message {
+display: none;
+
+margin-top: 18px;
+padding: 12px 15px;
+border-radius: 7px;
+font-size: 12px;
+
+}
+
+.slot-message.success {
+display: block;
+color: #b7f7cb;
+background: rgba(34, 197, 94, 0.08);
+border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+.slot-message.error {
+display: block;
+color: #ffb4b4;
+background: rgba(229, 9, 20, 0.08);
+border: 1px solid rgba(229, 9, 20, 0.25);
+}
+
+.slot-message.info {
+display: block;
+color: #c6c6cb;
+background: rgba(191, 195, 200, 0.05);
+border: 1px solid rgba(191, 195, 200, 0.12);
+}
+
+.slot-roster-count {
+display: flex;
+align-items: center;
+gap: 8px;
+
+color: #77777e;
+font-size: 10px;
+font-weight: 700;
+letter-spacing: 1px;
+
+}
+
+.slot-roster-count span {
+color: #e50914;
+font-family: “Orbitron”, sans-serif;
+font-size: 22px;
+}
+
+.slot-roster-container {
+display: flex;
+flex-direction: column;
+gap: 20px;
+}
+
+.slot-group {
+overflow: hidden;
+
+border: 1px solid rgba(191, 195, 200, 0.13);
+border-radius: 9px;
+background: #090909;
+
+}
+
+.slot-group-header {
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 15px;
+
+padding: 18px 20px;
+border-bottom: 1px solid rgba(191, 195, 200, 0.1);
+background: linear-gradient(
+    90deg,
+    rgba(229, 9, 20, 0.08),
+    transparent
+);
+
+}
+
+.slot-group-title {
+display: flex;
+align-items: center;
+gap: 12px;
+}
+
+.slot-group-title > .material-symbols-rounded {
+color: #e50914;
+font-size: 25px;
+}
+
+.slot-group-title div {
+display: flex;
+flex-direction: column;
+gap: 3px;
+}
+
+.slot-group-title strong {
+color: #f1f1f1;
+font-size: 15px;
+}
+
+.slot-group-title small {
+color: #77777e;
+font-size: 10px;
+letter-spacing: 1px;
+}
+
+.slot-group-count {
+color: #e50914;
+font-size: 10px;
+font-weight: 700;
+letter-spacing: 1px;
+}
+
+.slot-group-players {
+display: grid;
+grid-template-columns: repeat(2, minmax(0, 1fr));
+gap: 12px;
+
+padding: 18px;
+
+}
+
+.slot-player-card {
+display: flex;
+align-items: center;
+gap: 13px;
+
+min-width: 0;
+padding: 15px;
+border: 1px solid rgba(191, 195, 200, 0.1);
+border-radius: 7px;
+background: #111111;
+
+}
+
+.slot-player-avatar {
+display: flex;
+align-items: center;
+justify-content: center;
+
+flex-shrink: 0;
+width: 44px;
+height: 44px;
+border: 1px solid rgba(229, 9, 20, 0.4);
+border-radius: 7px;
+background: rgba(229, 9, 20, 0.08);
+color: #ff3344;
+font-family: "Orbitron", sans-serif;
+font-size: 12px;
+font-weight: 700;
+
+}
+
+.slot-player-info {
+display: flex;
+flex-direction: column;
+gap: 3px;
+
+min-width: 0;
+flex: 1;
+
+}
+
+.slot-player-info strong {
+overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap;
+
+color: #f1f1f1;
+font-size: 13px;
+font-weight: 600;
+
+}
+
+.slot-player-info span {
+color: #99999f;
+font-size: 11px;
+}
+
+.slot-player-info small {
+color: #66666d;
+font-size: 10px;
+}
+
+.slot-player-status {
+flex-shrink: 0;
+
+padding: 5px 8px;
+border: 1px solid rgba(34, 197, 94, 0.2);
+border-radius: 5px;
+background: rgba(34, 197, 94, 0.05);
+color: #86efac;
+font-size: 9px;
+font-weight: 700;
+
+}
+
+.slot-empty-state {
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+gap: 12px;
+
+min-height: 180px;
+padding: 30px;
+border: 1px dashed rgba(191, 195, 200, 0.15);
+border-radius: 9px;
+color: #77777e;
+text-align: center;
+
+}
+
+.slot-empty-state .material-symbols-rounded {
+color: #e50914;
+font-size: 35px;
+}
+
+.slot-empty-state p {
+font-size: 13px;
+}
+
+.slot-footer {
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 15px;
+
+padding: 25px 10px;
+color: #66666d;
+font-size: 10px;
+letter-spacing: 1px;
+
+}
+
+@media (max-width: 768px) {
+.slot-hero {
+flex-direction: column;
+align-items: flex-start;
+
+    padding: 35px 5px 25px;
+}
+.slot-hero-badge {
+    align-self: flex-start;
+}
+.slot-panel {
+    padding: 20px 16px;
+}
+.slot-panel-heading h2 {
+    font-size: 18px;
+}
+.slot-form-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
+.slot-tournament-info {
+    grid-template-columns: 1fr;
+}
+.slot-group-players {
+    grid-template-columns: 1fr;
+    padding: 12px;
+}
+.slot-group-header {
+    padding: 15px;
+}
+.slot-player-card {
+    padding: 12px;
+}
+.slot-player-status {
+    display: none;
+}
+.slot-form-actions {
+    flex-direction: column;
+}
+.slot-primary-btn,
+.slot-secondary-btn {
+    width: 100%;
+}
+.slot-footer {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+}
+
+@media (max-width: 420px) {
+.slot-hero h1 {
+font-size: 28px;
+}
+
+.slot-panel-heading {
+    align-items: flex-start;
+}
+.slot-refresh-btn {
+    min-height: 38px;
+    padding: 0 10px;
+    font-size: 11px;
+}
+.slot-group-title strong {
+    font-size: 13px;
+}
+
+}

@@ -7,155 +7,241 @@
 
     <title>S2N HUB | Tournament</title>
 
-    <!-- SHARED THEME -->
     <link rel="stylesheet" href="assets/css/global.css">
     <link rel="stylesheet" href="assets/css/dashboard.css">
     <link rel="stylesheet" href="assets/css/tournament.css">
 
-    <!-- GOOGLE FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Orbitron:wght@500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- MATERIAL SYMBOLS -->
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet">
 </head>
 
 <body class="tournament-page">
 
- <!-- HEADER -->
 <header class="dash-header">
-  <a href="dashboard.html" class="dash-brand">
-    <img
-      src="./assets/images/s2n-logo.png"
-      alt="S2N Clan Logo"
-      class="dash-logo"
-      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-    >
+    <a href="dashboard.html" class="dash-brand">
+        <img
+            src="./assets/images/s2n-logo.png"
+            alt="S2N Clan Logo"
+            class="dash-logo"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+        >
 
-    <div class="dash-logo-fallback">S2N</div>
+        <div class="dash-logo-fallback">S2N</div>
 
-    <div class="brand-info">
-      <span class="brand-name">SECOND TO NONE</span>
-      <span class="brand-sub">CLAN HUB / HOME</span>
+        <div class="brand-info">
+            <span class="brand-name">SECOND TO NONE</span>
+            <span class="brand-sub">CLAN HUB / HOME</span>
+        </div>
+    </a>
+
+    <div class="dash-header-right">
+        <div class="online-status">
+            <span class="status-dot"></span>
+            CLAN SYSTEM
+        </div>
+
+        <button class="logout-btn" id="logout-btn" type="button">
+            LOGOUT
+        </button>
     </div>
-  </a>
-
-  <div class="dash-header-right">
-    <div class="online-status">
-      <span class="status-dot"></span>
-      CLAN SYSTEM
-    </div>
-
-    <button class="logout-btn" id="logout-btn" type="button">
-      LOGOUT
-    </button>
-  </div>
 </header>
 
-<!-- NAVIGATION -->
 <nav class="dash-navigation" id="dash-navigation">
-    
-    <a href="dashboard.html" class="dash-nav-link active">
+
+    <a href="dashboard.html" class="dash-nav-link">
         <span class="material-symbols-rounded">dashboard</span>
         <span>Dashboard</span>
     </a>
-    
-    <a href="tournament.html" class="dash-nav-link">
+
+    <a href="tournament.html" class="dash-nav-link active">
         <span class="material-symbols-rounded">emoji_events</span>
         <span>Tournament</span>
     </a>
-    
-    <!-- ADMIN ONLY: Members Management -->
+
     <a href="admin/members.html" class="dash-nav-link admin-only hidden">
         <span class="material-symbols-rounded">groups</span>
         <span>Members</span>
     </a>
-    
+
     <a href="team/all-teams.html" class="dash-nav-link">
         <span class="material-symbols-rounded">groups</span>
         <span>All Teams</span>
     </a>
-    
+
     <a href="team/my-team.html" class="dash-nav-link">
         <span class="material-symbols-rounded">shield</span>
         <span>My Teams</span>
     </a>
-    
+
     <a href="profile.html" class="dash-nav-link">
         <span class="material-symbols-rounded">person</span>
         <span>Profile</span>
     </a>
-    
-    <!-- ADMIN ONLY -->
+
     <a href="admin/index.html" class="dash-nav-link admin-only hidden">
         <span class="material-symbols-rounded">admin_panel_settings</span>
         <span>Admin</span>
     </a>
-    
+
 </nav>
 
-     
-
-<!-- ==========================================
-     TOURNAMENT PAGE
-========================================== -->
-
 <div class="tournament-layout">
-    
+
     <main class="tournament-main">
-        
 
-            <!-- TOURNAMENT HEADER -->
+        <header class="tournament-header">
 
-            <header class="tournament-header">
+            <div>
+                <span class="tournament-eyebrow">
+                    S2N HUB / COMPETITIVE
+                </span>
+
+                <h1>
+                    TOURNAMENT<span>.</span>
+                </h1>
+
+                <p>
+                    สนามแข่งขัน PUBG Mobile ของเหล่านักรบ S2N
+                </p>
+            </div>
+
+            <div class="header-actions">
+
+                <span id="user-role-badge" class="role-badge">
+                    MEMBER
+                </span>
+
+                <button
+                    id="create-tournament-btn"
+                    class="btn-primary hidden"
+                    type="button"
+                >
+                    <span class="material-symbols-rounded">add</span>
+                    Create Tournament
+                </button>
+
+                <button
+                    id="refresh-btn"
+                    class="btn-refresh"
+                    type="button"
+                >
+                    <span class="material-symbols-rounded refresh-icon">
+                        refresh
+                    </span>
+
+                    <span class="refresh-text">
+                        รีเฟรช
+                    </span>
+                </button>
+
+            </div>
+
+        </header>
+
+        <section class="tournament-stats">
+
+            <article class="stat-card">
+                <span class="material-symbols-rounded">emoji_events</span>
 
                 <div>
+                    <small>รายการแข่งขัน</small>
+                    <strong id="stat-tournaments">0</strong>
+                </div>
+            </article>
 
-                    <span class="tournament-eyebrow">
-                        S2N HUB / COMPETITIVE
+            <article class="stat-card">
+                <span class="material-symbols-rounded">groups</span>
+
+                <div>
+                    <small>ผู้เล่นที่เข้าร่วม</small>
+                    <strong id="stat-teams">0</strong>
+                </div>
+            </article>
+
+            <article class="stat-card">
+                <span class="material-symbols-rounded">payments</span>
+
+                <div>
+                    <small>เงินรางวัลล่าสุด</small>
+                    <strong id="stat-prize">฿0</strong>
+                </div>
+            </article>
+
+        </section>
+
+        <section class="tournament-content">
+
+            <div class="tournament-section-header">
+
+                <div>
+                    <span class="section-label">
+                        COMPETITIVE EVENTS
                     </span>
 
-                    <h1>
-                        TOURNAMENT<span>.</span>
-                    </h1>
-
-                    <p>
-                        สนามแข่งขันของเหล่านักรบ S2N
-                    </p>
-
+                    <h2>รายการแข่งขัน</h2>
                 </div>
 
-                <div class="header-actions">
+            </div>
 
-                    <span
-                        id="user-role-badge"
-                        class="role-badge"
-                    >
-                        MEMBER
-                    </span>
+            <div class="tournament-filters">
 
-                    <!-- REFRESH -->
+                <button
+                    class="filter-btn active"
+                    data-filter="all"
+                    type="button"
+                >
+                    ทั้งหมด
+                </button>
 
-                    <button
-                        id="refresh-btn"
-                        class="btn-refresh"
-                        type="button"
-                    >
+                <button
+                    class="filter-btn"
+                    data-filter="upcoming"
+                    type="button"
+                >
+                    Upcoming
+                </button>
 
-                        <span class="material-symbols-rounded refresh-icon">
-                            refresh
-                        </span>
+                <button
+                    class="filter-btn"
+                    data-filter="registration"
+                    type="button"
+                >
+                    Registration
+                </button>
 
-                        <span class="refresh-text">
-                            รีเฟรช
-                        </span>
+                <button
+                    class="filter-btn"
+                    data-filter="ongoing"
+                    type="button"
+                >
+                    Ongoing
+                </button>
 
-                    </button>
+                <button
+                    class="filter-btn"
+                    data-filter="completed"
+                    type="button"
+                >
+                    Completed
+                </button>
 
-                    <!-- ==========================================
-     CREATE TOURNAMENT MODAL
-     S2N HUB | ADMIN CONTROL
-========================================== -->
+            </div>
+
+            <div id="tournament-list" class="tournament-grid">
+
+                <div class="empty-state">
+                    กำลังโหลดรายการแข่งขัน...
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
 
 <div id="create-modal" class="modal hidden">
 
@@ -165,8 +251,6 @@
     ></div>
 
     <div class="modal-box">
-
-        <!-- HEADER -->
 
         <div class="modal-header">
 
@@ -178,7 +262,7 @@
                 <h2>Create Tournament</h2>
 
                 <p class="form-note">
-                    สร้างรายการและกำหนดรูปแบบการแข่งขัน
+                    สร้างรายการแข่งขันและกำหนดจำนวนสล็อต
                 </p>
             </div>
 
@@ -188,21 +272,14 @@
                 data-close="create-modal"
                 aria-label="ปิดหน้าต่าง"
             >
-                <span class="material-symbols-rounded">
-                    close
-                </span>
+                <span class="material-symbols-rounded">close</span>
             </button>
 
         </div>
 
-        <!-- FORM -->
-
         <form id="create-tournament-form">
 
-            <!-- TOURNAMENT NAME -->
-
             <label for="tournament-name">
-
                 ชื่อรายการแข่งขัน
 
                 <input
@@ -210,21 +287,14 @@
                     id="tournament-name"
                     required
                     maxlength="100"
-                    placeholder="S2N CHAMPIONSHIP"
+                    placeholder="S2N PUBG CUSTOM EVENT"
                 >
-
             </label>
 
-            <!-- MATCH TYPE -->
-
             <label for="tournament-match-type">
-
                 รูปแบบการแข่งขัน
 
-                <select
-                    id="tournament-match-type"
-                    required
-                >
+                <select id="tournament-match-type" required>
 
                     <option value="solo">
                         SOLO — ผู้เล่นเดี่ยว
@@ -234,24 +304,20 @@
                         DUO — ทีม 2 คน
                     </option>
 
-                    <option value="squad">
+                    <option value="squad" selected>
                         SQUAD — ทีม 4 คน
                     </option>
 
                 </select>
-
             </label>
-
-            <!-- SLOT CONFIGURATION -->
 
             <div class="form-group">
 
-                <div class="section-label">
+                <span class="section-label">
                     SLOT CONFIGURATION
-                </div>
+                </span>
 
                 <label for="tournament-max-teams">
-
                     จำนวนสล็อตทั้งหมด
 
                     <input
@@ -263,82 +329,37 @@
                         step="1"
                         required
                     >
-
                 </label>
 
                 <p class="form-note">
-                    แอดมินจะเป็นผู้กำหนดรายชื่อสมาชิก
-                    และจัดผู้เล่นลงสล็อตด้วยตนเอง
+                    ผู้เล่นจะถูกเพิ่มและจัดสล็อตโดย Admin เท่านั้น
                 </p>
 
             </div>
 
-            <!-- MAP -->
-
             <label for="tournament-map">
-
                 แผนที่แข่งขัน
 
-                <select
-                    id="tournament-map"
-                    required
-                >
-
-                    <option value="Erangel">
-                        Erangel
-                    </option>
-
-                    <option value="Miramar">
-                        Miramar
-                    </option>
-
-                    <option value="Sanhok">
-                        Sanhok
-                    </option>
-
-                    <option value="Vikendi">
-                        Vikendi
-                    </option>
-
-                    <option value="Livik">
-                        Livik
-                    </option>
-
-                    <option value="Rondo">
-                        Rondo
-                    </option>
-
+                <select id="tournament-map" required>
+                    <option value="Erangel">Erangel</option>
+                    <option value="Miramar">Miramar</option>
+                    <option value="Sanhok">Sanhok</option>
+                    <option value="Vikendi">Vikendi</option>
+                    <option value="Livik">Livik</option>
+                    <option value="Rondo">Rondo</option>
                 </select>
-
             </label>
-
-            <!-- MODE -->
 
             <label for="tournament-mode">
-
                 MODE
 
-                <select
-                    id="tournament-mode"
-                    required
-                >
-
-                    <option value="normal">
-                        แข่งขันแบบปกติ
-                    </option>
-
-                    <option value="wow">
-                        แบบ WOW
-                    </option>
-
+                <select id="tournament-mode" required>
+                    <option value="normal">แข่งขันแบบปกติ</option>
+                    <option value="wow">แบบ WOW</option>
                 </select>
-
             </label>
 
-            <!-- DESCRIPTION -->
-
             <label for="tournament-description">
-
                 รายละเอียดการแข่งขัน
 
                 <textarea
@@ -347,13 +368,9 @@
                     maxlength="2000"
                     placeholder="รายละเอียดการแข่งขัน"
                 ></textarea>
-
             </label>
 
-            <!-- RULES -->
-
             <label for="tournament-rules">
-
                 กติกาการแข่งขัน
 
                 <textarea
@@ -362,13 +379,9 @@
                     maxlength="5000"
                     placeholder="กติกาการแข่งขัน"
                 ></textarea>
-
             </label>
 
-            <!-- PRIZE -->
-
             <label for="tournament-prize">
-
                 เงินรางวัล (บาท)
 
                 <input
@@ -379,23 +392,16 @@
                     value="0"
                     required
                 >
-
             </label>
 
-            <!-- TOURNAMENT START -->
-
             <label for="tournament-start">
-
                 วันและเวลาเริ่มแข่งขัน
 
                 <input
                     type="datetime-local"
                     id="tournament-start"
                 >
-
             </label>
-
-            <!-- ACTIONS -->
 
             <div class="modal-actions">
 
@@ -412,13 +418,8 @@
                     class="btn-primary"
                     id="save-tournament-btn"
                 >
-
-                    <span class="material-symbols-rounded">
-                        add
-                    </span>
-
+                    <span class="material-symbols-rounded">add</span>
                     Create Tournament
-
                 </button>
 
             </div>
@@ -429,164 +430,10 @@
 
 </div>
 
-    <!-- ==========================================
-         TEAM / RANDOM REGISTRATION MODAL
-    ========================================== -->
-
-    <div
-        id="register-modal"
-        class="modal hidden"
-    >
-
-        <div
-            class="modal-overlay"
-            data-close="register-modal"
-        ></div>
-
-        <div class="modal-box">
-
-            <div class="modal-header">
-
-                <div>
-
-                    <span class="section-label">
-                        COMPETITION REGISTRATION
-                    </span>
-
-                    <h2>
-                        สมัครแข่งขัน
-                    </h2>
-
-                </div>
-
-                <button
-                    type="button"
-                    class="modal-close"
-                    data-close="register-modal"
-                >
-
-                    <span class="material-symbols-rounded">
-                        close
-                    </span>
-
-                </button>
-
-            </div>
-
-            <form id="register-team-form">
-
-                <input
-                    type="hidden"
-                    id="register-tournament-id"
-                >
-
-                <!-- TOURNAMENT INFO -->
-
-                <div
-                    id="register-tournament-info"
-                    class="register-info"
-                ></div>
-
-                <!-- TEAM REGISTRATION -->
-
-                <div id="register-team-field">
-
-                    <label for="register-team-select">
-
-                        เลือกทีมของคุณ
-
-                        <select
-                            id="register-team-select"
-                            required
-                        >
-
-                            <option value="">
-                                กำลังโหลดทีม...
-                            </option>
-
-                        </select>
-
-                    </label>
-
-                </div>
-
-                <!-- RANDOM REGISTRATION -->
-
-                <div
-                    id="register-random-info"
-                    class="form-group hidden"
-                >
-
-                    <div class="section-label">
-                        RANDOM TEAM
-                    </div>
-
-                    <h3>
-                        สมัครเข้าร่วมแบบสุ่มทีม
-                    </h3>
-
-                    <p>
-
-                        คุณจะสมัครในฐานะผู้เล่นเดี่ยว
-                        ระบบจะนำคุณเข้าสู่การสุ่มทีม
-                        หลังจาก Admin อนุมัติ
-
-                    </p>
-
-                    <p class="form-note">
-
-                        ไม่ต้องเลือกทีม
-                        และไม่สามารถเลือกเพื่อนร่วมทีมได้
-
-                    </p>
-
-                </div>
-
-                <!-- REGISTRATION STATUS -->
-
-                <p class="form-note">
-
-                    การสมัครจะมีสถานะ Pending
-                    จนกว่า Admin จะอนุมัติ
-
-                </p>
-
-                <!-- ACTIONS -->
-
-                <div class="modal-actions">
-
-                    <button
-                        type="button"
-                        class="btn-outline"
-                        data-close="register-modal"
-                    >
-                        ยกเลิก
-                    </button>
-
-                    <button
-                        type="submit"
-                        class="btn-primary"
-                    >
-                        สมัครแข่งขัน
-                    </button>
-
-                </div>
-
-            </form>
-
-        </div>
-
-    </div>
-
-    <!-- ==========================================
-         SUPABASE
-    ========================================== -->
-
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-    <script src="assets/js/supabase.js"></script>
- <script src="assets/js/dashboard.js"></script>
-    <script src="assets/js/tournament.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/js/supabase.js"></script>
+<script src="assets/js/dashboard.js"></script>
+<script src="assets/js/tournament.js"></script>
 
 </body>
 </html>
