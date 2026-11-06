@@ -399,9 +399,8 @@ body.dashboard-page .dash-glow {
 }
 
 @keyframes s2nStatusPulse {
-  0%, 100% {
-    opacity: 1;
-  }
+  0%, 100% 
+  
 
   50% {
     opacity: 0.4;
@@ -758,52 +757,52 @@ body.dashboard-page .dash-glow {
   transform: translateY(-2px);
 }
 
-/* Poster */
+/* FIX POSTER IMAGE ONLY */
 
 .s2n-event-poster {
-  position: relative;
-  z-index: 1;
-
-  width: 100%;
-  min-width: 0;
-  min-height: 0;
-
   overflow: hidden;
-  isolation: isolate;
-
-  background: rgba(10, 10, 15, 0.5);
-
-  border: 1px solid rgba(255, 255, 255, 0.075);
-  border-radius: 19px;
-
-  box-shadow:
-    0 10px 28px rgba(0, 0, 0, 0.35),
-    0 0 22px rgba(255, 48, 79, 0.05);
 }
 
 .s2n-event-poster img {
   display: block;
-
-  position: relative;
-  z-index: 0;
-
+  
   width: 100%;
   height: 100%;
-
+  
   min-height: 300px;
   max-height: 430px;
-
+  
   object-fit: cover;
   object-position: center;
-
-  transition:
-    transform 0.55s ease,
-    filter 0.55s ease;
 }
 
-.s2n-event-card:hover .s2n-event-poster img {
-  transform: scale(1.025);
-  filter: brightness(1.04);
+/* TABLET */
+@media (max-width: 900px) {
+  .s2n-event-poster img {
+    width: 100%;
+    height: 100%;
+    
+    min-height: 0;
+    max-height: 380px;
+    aspect-ratio: auto;
+    object-fit: cover;
+    object-position: center;
+    
+  }
+}
+
+/* MOBILE */
+@media (max-width: 700px) {
+  .s2n-event-poster img {
+    width: 100%;
+    height: 100%;
+    
+    min-height: 0;
+    max-height: 250px;
+    object-fit: cover;
+    object-position: center;
+    
+  }
 }
 
 /* Poster lighting */
@@ -2444,4 +2443,42 @@ body.dashboard-page .dash-glow {
 
     transition-duration: 0.01ms !important;
   }
+}
+
+/* =========================================
+   S2N EVENT — FULL WIDTH LANDSCAPE POSTER
+========================================= */
+
+.s2n-event-feature>.s2n-event-card {
+  grid-template-columns: minmax(0, 1fr) !important;
+  gap: 18px;
+}
+
+/* Poster container */
+.s2n-event-poster {
+  width: 100%;
+  max-height: none !important;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 0 !important;
+}
+
+/* Poster image */
+.s2n-event-poster img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 0 !important;
+  max-height: none !important;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 0 !important;
+}
+
+/* Event details */
+.s2n-event-content {
+  width: 100%;
+  min-width: 0;
 }
