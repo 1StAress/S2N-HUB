@@ -1846,3 +1846,1482 @@ body.dashboard-page {
     color: #fff;
     background: #850008;
 }
+
+/
+/* ==========================================
+   S2N HUB | EVENT ANNOUNCEMENT
+   BLACK PREMIUM + RED FRAME LIGHT
+========================================== */
+
+/* MAIN EVENT */
+
+.s2n-event-feature {
+    width: 100%;
+    margin: 0 0 28px;
+    position: relative;
+}
+
+.s2n-event-card {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+
+    width: 100%;
+    min-width: 0;
+
+    background: #050505;
+
+    border: 1px solid rgba(255, 40, 55, 0.25);
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 10px 35px rgba(0, 0, 0, 0.65),
+        0 0 25px rgba(255, 0, 25, 0.06);
+
+    transition: 0.35s ease;
+}
+
+.s2n-event-card:hover {
+    border-color: rgba(255, 40, 55, 0.5);
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.7),
+        0 0 30px rgba(255, 0, 25, 0.12);
+
+    transform: translateY(-2px);
+}
+
+/* ==========================================
+   POSTER
+========================================== */
+
+.s2n-event-poster {
+    position: relative;
+
+    width: 100%;
+    min-width: 0;
+    min-height: 280px;
+
+    overflow: hidden;
+
+    background: #000000;
+
+    isolation: isolate;
+}
+
+.s2n-event-poster img {
+    display: block;
+
+    position: relative;
+    z-index: 0;
+
+    width: 100%;
+    height: 100%;
+    min-height: 280px;
+
+    object-fit: cover;
+    object-position: center;
+
+    transition: transform 0.6s ease;
+}
+
+.s2n-event-card:hover .s2n-event-poster img {
+    transform: scale(1.025);
+}
+
+/* ==========================================
+   ANIMATED RED FRAME LIGHT
+========================================== */
+
+@property --s2n-event-angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+.s2n-event-poster::before {
+    content: "";
+
+    position: absolute;
+    z-index: 3;
+
+    inset: 0;
+
+    padding: 2px;
+
+    border-radius: 0;
+
+    background: conic-gradient(
+        from var(--s2n-event-angle),
+        transparent 0deg,
+        transparent 220deg,
+        #7a0008 250deg,
+        #ff2638 285deg,
+        #ffffff 300deg,
+        #ff2638 315deg,
+        #7a0008 335deg,
+        transparent 360deg
+    );
+
+    animation: s2nEventFrameLight 4s linear infinite;
+
+    pointer-events: none;
+
+    -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+
+    -webkit-mask-composite: xor;
+
+    mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+
+    mask-composite: exclude;
+}
+
+/* RED GLOW AROUND POSTER */
+
+.s2n-event-poster::after {
+    content: "";
+
+    position: absolute;
+    z-index: 2;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    box-shadow:
+        inset 0 0 18px rgba(255, 0, 25, 0.12),
+        inset 0 0 45px rgba(255, 0, 25, 0.05);
+
+    animation: s2nEventPosterGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes s2nEventFrameLight {
+    from {
+        --s2n-event-angle: 0deg;
+    }
+
+    to {
+        --s2n-event-angle: 360deg;
+    }
+}
+
+@keyframes s2nEventPosterGlow {
+    from {
+        box-shadow:
+            inset 0 0 12px rgba(255, 0, 25, 0.08),
+            inset 0 0 30px rgba(255, 0, 25, 0.03);
+    }
+
+    to {
+        box-shadow:
+            inset 0 0 25px rgba(255, 0, 25, 0.2),
+            inset 0 0 55px rgba(255, 0, 25, 0.08);
+    }
+}
+
+/* ==========================================
+   BADGE
+========================================== */
+
+.s2n-event-live-badge {
+    position: absolute;
+    z-index: 5;
+
+    top: 16px;
+    left: 16px;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 8px 12px;
+
+    background: rgba(0, 0, 0, 0.88);
+
+    border: 1px solid rgba(255, 40, 55, 0.45);
+    border-radius: 7px;
+
+    color: #ffffff;
+
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.s2n-event-live-dot {
+    width: 7px;
+    height: 7px;
+
+    flex-shrink: 0;
+
+    background: #ff2638;
+    border-radius: 50%;
+
+    box-shadow: 0 0 10px rgba(255, 38, 56, 0.8);
+
+    animation: s2nEventDotPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes s2nEventDotPulse {
+    0%, 100% {
+        opacity: 1;
+        box-shadow: 0 0 10px #ff2638;
+    }
+
+    50% {
+        opacity: 0.45;
+        box-shadow: 0 0 3px #ff2638;
+    }
+}
+
+/* ==========================================
+   CONTENT
+========================================== */
+
+.s2n-event-content {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    min-width: 0;
+
+    padding: 30px;
+
+    background:
+        radial-gradient(
+            circle at 100% 0%,
+            rgba(255, 0, 25, 0.08),
+            transparent 45%
+        ),
+        #050505;
+}
+
+.s2n-event-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    margin-bottom: 12px;
+
+    color: #ff3548;
+
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.s2n-event-label .material-symbols-rounded {
+    font-size: 18px;
+}
+
+.s2n-event-title {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: 1px;
+}
+
+.s2n-event-title span {
+    color: #ff2638;
+
+    text-shadow:
+        0 0 15px rgba(255, 38, 56, 0.3),
+        0 0 35px rgba(255, 38, 56, 0.1);
+}
+
+/* DATE */
+
+.s2n-event-date {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    width: fit-content;
+
+    margin-top: 18px;
+    padding: 10px 14px;
+
+    background: rgba(255, 35, 50, 0.07);
+
+    border: 1px solid rgba(255, 35, 50, 0.25);
+    border-radius: 8px;
+
+    color: #ff4655;
+
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.s2n-event-date .material-symbols-rounded {
+    font-size: 19px;
+}
+
+/* DESCRIPTION */
+
+.s2n-event-description {
+    margin: 18px 0 0;
+
+    color: #b8b8b8;
+
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+/* DIVIDER */
+
+.s2n-event-divider {
+    width: 100%;
+    height: 1px;
+
+    margin: 22px 0;
+
+    background: linear-gradient(
+        90deg,
+        rgba(255, 40, 55, 0.55),
+        rgba(255, 40, 55, 0.02)
+    );
+}
+
+/* FOOTER */
+
+.s2n-event-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    gap: 12px;
+}
+
+.s2n-event-footer-text {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    color: #d0d0d0;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.s2n-event-footer-text .material-symbols-rounded {
+    color: #ff3548;
+    font-size: 20px;
+}
+
+.s2n-event-footer-tag {
+    padding: 6px 10px;
+
+    background: rgba(255, 38, 56, 0.08);
+
+    border: 1px solid rgba(255, 38, 56, 0.25);
+    border-radius: 6px;
+
+    color: #ff4655;
+
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+}
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media (max-width: 900px) {
+    .s2n-event-card {
+        grid-template-columns: 1fr;
+    }
+
+    .s2n-event-poster {
+        min-height: 0;
+        aspect-ratio: 16 / 9;
+    }
+
+    .s2n-event-poster img {
+        min-height: 0;
+    }
+
+    .s2n-event-content {
+        padding: 24px;
+    }
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 480px) {
+    .s2n-event-feature {
+        margin-bottom: 20px;
+    }
+
+    .s2n-event-card {
+        border-radius: 14px;
+    }
+
+    .s2n-event-poster {
+        aspect-ratio: 4 / 3;
+    }
+
+    .s2n-event-content {
+        padding: 20px 16px;
+    }
+
+    .s2n-event-title {
+        font-size: 30px;
+    }
+
+    .s2n-event-description {
+        font-size: 12px;
+    }
+
+    .s2n-event-live-badge {
+        top: 10px;
+        left: 10px;
+
+        padding: 6px 9px;
+
+        font-size: 9px;
+    }
+
+    .s2n-event-footer {
+        align-items: flex-start;
+    }
+}
+
+/* ==========================================
+   REDUCE MOTION
+========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    .s2n-event-card,
+    .s2n-event-poster img {
+        transition: none;
+    }
+
+    .s2n-event-poster::before,
+    .s2n-event-poster::after,
+    .s2n-event-live-dot {
+        animation: none;
+    }
+}
+
+
+
+/* ==========================================
+   S2N EVENT — COMPACT PREMIUM CARD
+========================================== */
+
+.s2n-event-feature {
+    margin-bottom: 22px;
+}
+
+.s2n-event-card {
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    border-radius: 14px;
+    background: #050505;
+}
+
+/* POSTER SMALLER */
+
+.s2n-event-poster {
+    min-height: 0;
+    height: 100%;
+    aspect-ratio: 4 / 5;
+    max-height: 340px;
+}
+
+.s2n-event-poster img {
+    min-height: 0;
+    height: 100%;
+    object-fit: contain;
+    background: #000;
+}
+
+/* CONTENT */
+
+.s2n-event-content {
+    padding: 22px 24px;
+    justify-content: flex-start;
+}
+
+.s2n-event-label {
+    margin-bottom: 8px;
+    font-size: 10px;
+}
+
+.s2n-event-title {
+    font-size: clamp(23px, 2.6vw, 32px);
+    line-height: 1.25;
+}
+
+.s2n-event-date {
+    margin-top: 12px;
+    padding: 8px 11px;
+    font-size: 11px;
+}
+
+.s2n-event-description {
+    margin-top: 12px;
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.s2n-event-divider {
+    margin: 14px 0;
+}
+
+.s2n-event-footer {
+    gap: 8px;
+}
+
+.s2n-event-footer-text {
+    font-size: 11px;
+}
+
+/* TABLET */
+
+@media (max-width: 900px) {
+    .s2n-event-card {
+        grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    }
+
+    .s2n-event-poster {
+        aspect-ratio: 3 / 4;
+        max-height: 300px;
+    }
+
+    .s2n-event-content {
+        padding: 18px;
+    }
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+    .s2n-event-card {
+        grid-template-columns: 1fr;
+    }
+
+    .s2n-event-poster {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        max-height: 190px;
+    }
+
+    .s2n-event-poster img {
+        object-fit: cover;
+        object-position: center;
+    }
+
+    .s2n-event-content {
+        padding: 16px;
+    }
+
+    .s2n-event-title {
+        font-size: 25px;
+    }
+
+    .s2n-event-description {
+        font-size: 11px;
+        line-height: 1.75;
+    }
+}
+
+
+/* ==========================================
+   S2N HUB | FEATURED EVENT ANNOUNCEMENT
+   BLACK / RED ESPORTS THEME
+========================================== */
+
+.s2n-event-feature {
+    width: 100%;
+    margin: 0 0 28px;
+    position: relative;
+    overflow: hidden;
+}
+
+.s2n-event-card {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+
+    width: 100%;
+    min-width: 0;
+
+    background:
+        radial-gradient(
+            circle at 90% 10%,
+            rgba(190, 20, 35, 0.16),
+            transparent 40%
+        ),
+        linear-gradient(
+            135deg,
+            #111111 0%,
+            #090909 65%,
+            #160708 100%
+        );
+
+    border: 1px solid rgba(255, 45, 60, 0.25);
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.35),
+        0 0 20px rgba(255, 0, 30, 0.05);
+
+    transition:
+        border-color 0.3s ease,
+        box-shadow 0.3s ease,
+        transform 0.3s ease;
+}
+
+.s2n-event-card:hover {
+    border-color: rgba(255, 45, 60, 0.55);
+
+    box-shadow:
+        0 12px 35px rgba(0, 0, 0, 0.45),
+        0 0 25px rgba(255, 0, 30, 0.12);
+
+    transform: translateY(-2px);
+}
+
+/* POSTER */
+
+.s2n-event-poster {
+    position: relative;
+    width: 100%;
+    min-width: 0;
+    min-height: 280px;
+
+    overflow: hidden;
+    background: #080808;
+}
+
+.s2n-event-poster img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    min-height: 280px;
+
+    object-fit: cover;
+    object-position: center;
+
+    transition: transform 0.5s ease;
+}
+
+.s2n-event-card:hover .s2n-event-poster img {
+    transform: scale(1.025);
+}
+
+.s2n-event-poster-overlay {
+    position: absolute;
+    inset: 0;
+
+    background: linear-gradient(
+        90deg,
+        transparent 60%,
+        rgba(10, 10, 10, 0.15) 100%
+    );
+
+    pointer-events: none;
+}
+
+/* OFFICIAL EVENT BADGE */
+
+.s2n-event-live-badge {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 8px 12px;
+
+    background: rgba(10, 10, 10, 0.85);
+    border: 1px solid rgba(255, 50, 60, 0.45);
+    border-radius: 8px;
+
+    color: #ffffff;
+
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.s2n-event-live-dot {
+    width: 7px;
+    height: 7px;
+
+    background: #ff2638;
+    border-radius: 50%;
+
+    box-shadow: 0 0 10px rgba(255, 38, 56, 0.8);
+
+    animation: s2n-event-pulse 1.5s infinite;
+}
+
+/* CONTENT */
+
+.s2n-event-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    min-width: 0;
+
+    padding: 30px;
+}
+
+.s2n-event-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    color: #ff3548;
+
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+
+    margin-bottom: 12px;
+}
+
+.s2n-event-label .material-symbols-rounded {
+    font-size: 18px;
+}
+
+.s2n-event-title {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: 1px;
+}
+
+.s2n-event-title span {
+    color: #ff2638;
+
+    text-shadow:
+        0 0 15px rgba(255, 38, 56, 0.25);
+}
+
+/* DATE */
+
+.s2n-event-date {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    width: fit-content;
+
+    margin-top: 18px;
+    padding: 10px 14px;
+
+    background: rgba(255, 35, 50, 0.08);
+    border: 1px solid rgba(255, 35, 50, 0.2);
+    border-radius: 8px;
+
+    color: #ff4655;
+
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.s2n-event-date .material-symbols-rounded {
+    font-size: 19px;
+}
+
+/* DESCRIPTION */
+
+.s2n-event-description {
+    margin: 18px 0 0;
+
+    color: #b8b8b8;
+
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+/* DIVIDER */
+
+.s2n-event-divider {
+    width: 100%;
+    height: 1px;
+
+    margin: 22px 0;
+
+    background: linear-gradient(
+        90deg,
+        rgba(255, 40, 55, 0.5),
+        rgba(255, 40, 55, 0.05)
+    );
+}
+
+/* FOOTER */
+
+.s2n-event-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    gap: 12px;
+}
+
+.s2n-event-footer-text {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    color: #d0d0d0;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.s2n-event-footer-text .material-symbols-rounded {
+    color: #ff3548;
+    font-size: 20px;
+}
+
+.s2n-event-footer-tag {
+    padding: 6px 10px;
+
+    background: rgba(255, 38, 56, 0.1);
+    border: 1px solid rgba(255, 38, 56, 0.25);
+    border-radius: 6px;
+
+    color: #ff4655;
+
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+}
+
+/* ANIMATION */
+
+@keyframes s2n-event-pulse {
+    0% {
+        opacity: 1;
+        box-shadow: 0 0 10px rgba(255, 38, 56, 0.8);
+    }
+
+    50% {
+        opacity: 0.45;
+        box-shadow: 0 0 3px rgba(255, 38, 56, 0.3);
+    }
+
+    100% {
+        opacity: 1;
+        box-shadow: 0 0 10px rgba(255, 38, 56, 0.8);
+    }
+}
+
+/* TABLET */
+
+@media (max-width: 900px) {
+    .s2n-event-card {
+        grid-template-columns: 1fr;
+    }
+
+    .s2n-event-poster {
+        min-height: 0;
+        aspect-ratio: 16 / 9;
+    }
+
+    .s2n-event-poster img {
+        min-height: 0;
+    }
+
+    .s2n-event-content {
+        padding: 24px;
+    }
+}
+
+/* MOBILE */
+
+@media (max-width: 480px) {
+    .s2n-event-feature {
+        margin-bottom: 20px;
+    }
+
+    .s2n-event-card {
+        border-radius: 14px;
+    }
+
+    .s2n-event-content {
+        padding: 20px 16px;
+    }
+
+    .s2n-event-title {
+        font-size: 30px;
+    }
+
+    .s2n-event-description {
+        font-size: 12px;
+    }
+
+    .s2n-event-live-badge {
+        top: 10px;
+        left: 10px;
+
+        padding: 6px 9px;
+
+        font-size: 9px;
+    }
+
+    .s2n-event-footer {
+        align-items: flex-start;
+    }
+}
+
+/* REDUCE MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+    .s2n-event-card,
+    .s2n-event-poster img {
+        transition: none;
+    }
+
+    .s2n-event-live-dot {
+        animation: none;
+    }
+}
+
+
+/* =========================================================
+   S2N HUB — FUTURISTIC EVENT CARD
+   CRIMSON CYBER HUD / PREMIUM ESPORTS
+========================================================= */
+
+.s2n-event-feature {
+    position: relative;
+    margin: 20px 0 30px;
+    isolation: isolate;
+}
+
+/* Main Event Card */
+.s2n-event-feature > .s2n-event-card {
+    position: relative;
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 20px;
+
+    padding: 18px;
+
+    background:
+        radial-gradient(
+            circle at 0% 0%,
+            rgba(255, 48, 63, 0.13),
+            transparent 38%
+        ),
+        radial-gradient(
+            circle at 100% 100%,
+            rgba(130, 15, 30, 0.15),
+            transparent 42%
+        ),
+        linear-gradient(
+            145deg,
+            #111115 0%,
+            #09090c 55%,
+            #140b0e 100%
+        );
+
+    border: 1px solid rgba(255, 48, 63, 0.24);
+    border-radius: 22px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 12px 40px rgba(0, 0, 0, 0.5),
+        0 0 24px rgba(255, 30, 50, 0.07),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+
+    transition:
+        border-color 0.3s ease,
+        box-shadow 0.3s ease,
+        transform 0.3s ease;
+}
+
+.s2n-event-feature > .s2n-event-card:hover {
+    border-color: rgba(255, 48, 63, 0.48);
+
+    box-shadow:
+        0 16px 45px rgba(0, 0, 0, 0.55),
+        0 0 30px rgba(255, 48, 63, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+
+    transform: translateY(-2px);
+}
+
+/* Cyber Background Decoration */
+.s2n-event-feature > .s2n-event-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent 49.8%,
+            rgba(255, 48, 63, 0.035) 50%,
+            transparent 50.2%
+        ),
+        linear-gradient(
+            0deg,
+            transparent 49.8%,
+            rgba(255, 48, 63, 0.025) 50%,
+            transparent 50.2%
+        );
+
+    background-size: 36px 36px;
+    pointer-events: none;
+    opacity: 0.55;
+}
+
+/* Poster */
+.s2n-event-poster {
+    position: relative;
+    min-width: 0;
+    min-height: 0;
+
+    border-radius: 17px;
+    overflow: hidden;
+
+    background: #08080b;
+
+    border: 1px solid rgba(255, 255, 255, 0.07);
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.4),
+        0 0 18px rgba(255, 48, 63, 0.06);
+}
+
+.s2n-event-poster img {
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    min-height: 280px;
+    max-height: 390px;
+
+    object-fit: cover;
+    object-position: center;
+
+    transition:
+        transform 0.5s ease,
+        filter 0.5s ease;
+}
+
+.s2n-event-card:hover .s2n-event-poster img {
+    transform: scale(1.025);
+    filter: brightness(1.04);
+}
+
+/* Poster Overlay */
+.s2n-event-poster::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.04) 0%,
+            transparent 42%,
+            rgba(0, 0, 0, 0.45) 100%
+        );
+
+    pointer-events: none;
+}
+
+/* Official Event Label — Move Away From Poster */
+.s2n-event-feature .s2n-event-label {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    margin-bottom: 12px;
+    padding: 7px 13px;
+
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+
+    color: #ff6975;
+
+    background:
+        linear-gradient(
+            110deg,
+            rgba(255, 48, 63, 0.12),
+            rgba(255, 48, 63, 0.035)
+        );
+
+    border: 1px solid rgba(255, 48, 63, 0.24);
+    border-radius: 30px;
+
+    box-shadow:
+        0 0 15px rgba(255, 48, 63, 0.06),
+        inset 0 0 10px rgba(255, 48, 63, 0.04);
+}
+
+/* Event Content */
+.s2n-event-content {
+    position: relative;
+    z-index: 1;
+
+    display: flex;
+    flex-direction: column;
+
+    min-width: 0;
+    padding: 5px 4px;
+}
+
+/* Event Title */
+.s2n-event-content .s2n-event-title {
+    margin: 0 0 16px;
+
+    font-size: clamp(25px, 2.2vw, 32px);
+    font-weight: 900;
+    line-height: 1.25;
+    letter-spacing: -0.5px;
+
+    color: #ffffff;
+
+    text-shadow:
+        0 0 18px rgba(255, 48, 63, 0.12);
+}
+
+/* Event Details */
+.s2n-event-section {
+    position: relative;
+
+    margin-bottom: 12px;
+    padding: 13px 15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.035),
+            rgba(255, 255, 255, 0.012)
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.055);
+    border-radius: 14px;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.025);
+}
+
+/* Section Heading */
+.s2n-event-section h3,
+.s2n-event-section h4 {
+    margin: 0 0 10px;
+
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 0.4px;
+
+    color: #ff5968;
+}
+
+/* Detail Text */
+.s2n-event-section p,
+.s2n-event-section li {
+    font-size: 13.5px;
+    line-height: 1.75;
+
+    color: #d2d2d8;
+}
+
+/* Prize Rows */
+.s2n-event-prize,
+.s2n-event-bounty {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+
+    padding: 7px 0;
+
+    font-size: 14px;
+    line-height: 1.5;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.045);
+}
+
+.s2n-event-prize:last-child,
+.s2n-event-bounty:last-child {
+    border-bottom: none;
+}
+
+.s2n-event-prize strong,
+.s2n-event-bounty strong {
+    color: #ffffff;
+    font-weight: 800;
+}
+
+.s2n-event-prize span,
+.s2n-event-bounty span {
+    color: #ff6975;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+/* Total Prize Pool */
+.s2n-event-total {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+
+    margin-top: 10px;
+    padding: 12px 15px;
+
+    background:
+        linear-gradient(
+            110deg,
+            rgba(255, 48, 63, 0.15),
+            rgba(130, 15, 30, 0.08)
+        );
+
+    border: 1px solid rgba(255, 48, 63, 0.22);
+    border-radius: 12px;
+}
+
+.s2n-event-total strong {
+    font-size: 14px;
+    color: #ffffff;
+}
+
+.s2n-event-total span {
+    font-size: 20px;
+    font-weight: 900;
+
+    color: #ff5968;
+
+    text-shadow:
+        0 0 15px rgba(255, 48, 63, 0.2);
+}
+
+/* Notices */
+.s2n-event-notice {
+    margin-top: 8px;
+    padding: 11px 14px;
+
+    font-size: 13px;
+    line-height: 1.65;
+
+    color: #c7c7ce;
+
+    background: rgba(255, 48, 63, 0.045);
+
+    border-left: 2px solid rgba(255, 48, 63, 0.55);
+    border-radius: 0 10px 10px 0;
+}
+
+/* Event Date & Time */
+.s2n-event-time {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    margin-top: 12px;
+    padding: 13px 15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 48, 63, 0.1),
+            rgba(255, 255, 255, 0.02)
+        );
+
+    border: 1px solid rgba(255, 48, 63, 0.16);
+    border-radius: 13px;
+
+    font-size: 14px;
+    font-weight: 800;
+
+    color: #ffffff;
+}
+
+/* Live Badge */
+.s2n-event-poster .s2n-event-live {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    z-index: 3;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+
+    padding: 7px 12px;
+
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+
+    color: #ffffff;
+
+    background: rgba(10, 10, 13, 0.82);
+
+    border: 1px solid rgba(255, 48, 63, 0.4);
+    border-radius: 30px;
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    box-shadow:
+        0 0 18px rgba(255, 48, 63, 0.1);
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+    .s2n-event-feature > .s2n-event-card {
+        grid-template-columns: 1fr;
+        gap: 16px;
+
+        padding: 15px;
+        border-radius: 19px;
+    }
+
+    .s2n-event-poster img {
+        width: 100%;
+        height: auto;
+
+        min-height: 0;
+        max-height: 340px;
+
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
+    }
+
+    .s2n-event-content {
+        padding: 2px;
+    }
+
+    .s2n-event-content .s2n-event-title {
+        font-size: 27px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 520px) {
+    .s2n-event-feature {
+        margin: 15px 0 22px;
+    }
+
+    .s2n-event-feature > .s2n-event-card {
+        padding: 11px;
+        gap: 13px;
+
+        border-radius: 17px;
+    }
+
+    .s2n-event-poster {
+        border-radius: 13px;
+    }
+
+    .s2n-event-poster img {
+        aspect-ratio: 16 / 9;
+        max-height: 230px;
+    }
+
+    .s2n-event-content .s2n-event-title {
+        font-size: 24px;
+        line-height: 1.3;
+        margin-bottom: 12px;
+    }
+
+    .s2n-event-feature .s2n-event-label {
+        font-size: 10px;
+        letter-spacing: 1.5px;
+        padding: 6px 11px;
+        margin-bottom: 10px;
+    }
+
+    .s2n-event-section {
+        padding: 11px 12px;
+        margin-bottom: 9px;
+        border-radius: 12px;
+    }
+
+    .s2n-event-section h3,
+    .s2n-event-section h4 {
+        font-size: 13px;
+    }
+
+    .s2n-event-section p,
+    .s2n-event-section li {
+        font-size: 13px;
+    }
+
+    .s2n-event-prize,
+    .s2n-event-bounty {
+        font-size: 13px;
+    }
+
+    .s2n-event-total {
+        padding: 11px 12px;
+    }
+
+    .s2n-event-total span {
+        font-size: 18px;
+    }
+
+    .s2n-event-notice {
+        font-size: 12px;
+        padding: 10px 12px;
+    }
+
+    .s2n-event-time {
+        font-size: 13px;
+        padding: 11px 12px;
+    }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    .s2n-event-feature > .s2n-event-card,
+    .s2n-event-poster img {
+        transition: none;
+    }
+}

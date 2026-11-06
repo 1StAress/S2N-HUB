@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,10 +8,11 @@
 
   <title>S2N HUB | Dashboard</title>
 
- <link rel="stylesheet" href="assets/css/global.css">
-<link rel="stylesheet" href="assets/css/dashboard.css">
-  
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="stylesheet" href="assets/css/dashboard.css">
 
+  <!-- FONTS -->
   <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Orbitron:wght@500;600;700;800&display=swap" rel="stylesheet">
 
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet">
@@ -18,90 +20,100 @@
 
 <body class="dashboard-page">
 
+  <!-- BACKGROUND -->
   <div class="dash-bg-grid"></div>
   <div class="dash-glow"></div>
 
   <main class="dashboard-container">
 
-<!-- HEADER -->
-<header class="dash-header">
+    <!-- ==========================================
+         HEADER
+    ========================================== -->
 
-  <a href="dashboard.html" class="dash-brand">
+    <header class="dash-header">
 
-    <img
-      src="./assets/images/s2n-logo.png"
-      alt="S2N Clan Logo"
-      class="dash-logo"
-      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-    >
+      <a href="dashboard.html" class="dash-brand">
 
-   <div class="dash-logo-fallback">S2N</div>
+        <img
+          src="./assets/images/s2n-logo.png"
+          alt="S2N Clan Logo"
+          class="dash-logo"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        >
 
-    <div class="brand-info">
-      <span class="brand-name">SECOND TO NONE</span>
-      <span class="brand-sub">CLAN HUB / HOME</span>
-    </div>
+        <div class="dash-logo-fallback">S2N</div>
 
-  </a>
+        <div class="brand-info">
+          <span class="brand-name">SECOND TO NONE</span>
+          <span class="brand-sub">CLAN HUB / HOME</span>
+        </div>
 
-  <div class="dash-header-right">
+      </a>
 
-    <div class="online-status">
-      <span class="status-dot"></span>
-      CLAN SYSTEM
-    </div>
+      <div class="dash-header-right">
 
-    <button class="logout-btn" id="logout-btn" type="button">
-      LOGOUT
-    </button>
+        <div class="online-status">
+          <span class="status-dot"></span>
+          CLAN SYSTEM
+        </div>
 
-  </div>
+        <button class="logout-btn" id="logout-btn" type="button">
+          LOGOUT
+        </button>
 
-</header>
+      </div>
 
-<!-- NAVIGATION -->
-<nav class="dash-navigation" id="dash-navigation">
-  
-  <a href="dashboard.html" class="dash-nav-link active">
-    <span class="material-symbols-rounded">dashboard</span>
-    <span>Dashboard</span>
-  </a>
-  
-  <a href="tournament.html" class="dash-nav-link">
-    <span class="material-symbols-rounded">emoji_events</span>
-    <span>Tournament</span>
-  </a>
-  
-  <!-- ADMIN ONLY: Members Management -->
-  <a href="admin/members.html" class="dash-nav-link admin-only hidden">
-    <span class="material-symbols-rounded">groups</span>
-    <span>Members</span>
-  </a>
-  
-<a href="team/all-teams.html" class="dash-nav-link">
-  <span class="material-symbols-rounded">groups</span>
-  <span>All Teams</span>
-</a>
+    </header>
 
-<a href="team/my-team.html" class="dash-nav-link">
-  <span class="material-symbols-rounded">shield</span>
-  <span>My Teams</span>
-</a>
-  
-  <a href="profile.html" class="dash-nav-link">
-    <span class="material-symbols-rounded">person</span>
-    <span>Profile</span>
-  </a>
-  
-  <!-- ADMIN ONLY -->
-  <a href="admin/index.html" class="dash-nav-link admin-only hidden">
-    <span class="material-symbols-rounded">admin_panel_settings</span>
-    <span>Admin</span>
-  </a>
-  
-</nav>
 
-    <!-- WELCOME -->
+    <!-- ==========================================
+         NAVIGATION
+    ========================================== -->
+
+    <nav class="dash-navigation" id="dash-navigation">
+
+      <a href="dashboard.html" class="dash-nav-link active">
+        <span class="material-symbols-rounded">dashboard</span>
+        <span>Dashboard</span>
+      </a>
+
+      <a href="tournament.html" class="dash-nav-link">
+        <span class="material-symbols-rounded">emoji_events</span>
+        <span>Tournament</span>
+      </a>
+
+      <a href="admin/members.html" class="dash-nav-link admin-only hidden">
+        <span class="material-symbols-rounded">groups</span>
+        <span>Members</span>
+      </a>
+
+      <a href="team/all-teams.html" class="dash-nav-link">
+        <span class="material-symbols-rounded">groups</span>
+        <span>All Teams</span>
+      </a>
+
+      <a href="team/my-team.html" class="dash-nav-link">
+        <span class="material-symbols-rounded">shield</span>
+        <span>My Teams</span>
+      </a>
+
+      <a href="profile.html" class="dash-nav-link">
+        <span class="material-symbols-rounded">person</span>
+        <span>Profile</span>
+      </a>
+
+      <a href="admin/index.html" class="dash-nav-link admin-only hidden">
+        <span class="material-symbols-rounded">admin_panel_settings</span>
+        <span>Admin</span>
+      </a>
+
+    </nav>
+
+
+    <!-- ==========================================
+         WELCOME
+    ========================================== -->
+
     <section class="welcome-section">
 
       <div class="welcome-content">
@@ -138,72 +150,252 @@
 
     </section>
 
-  <!-- PROFILE -->
-<section class="profile-panel">
 
-  <div class="profile-left">
+    <!-- ==========================================
+         FEATURED EVENT ANNOUNCEMENT
+         CYBER GLASS / CRIMSON HUD
+    ========================================== -->
 
-<!-- PLAYER AVATAR -->
-<div class="profile-avatar">
+    <section class="s2n-event-feature">
 
-  <div
-    class="profile-avatar-initials"
-    id="profile-avatar-initials"
-  >
-    S2N
-  </div>
+      <div class="s2n-event-card">
 
-  <span class="avatar-online"></span>
+        <!-- EVENT POSTER -->
 
-</div>
+        <div class="s2n-event-poster">
 
-    <!-- PLAYER INFO -->
-    <div class="profile-info">
+          <img
+            src="assets/images/s2n-event-161126.jpeg"
+            alt="S2N HUB Event Announcement"
+            loading="eager"
+            fetchpriority="high"
+          >
 
-      <div class="profile-role">
-        <span class="role-dot"></span>
-        <span id="profile-role">MEMBER</span>
+          <div class="s2n-event-poster-overlay"></div>
+
+        </div>
+
+
+        <!-- EVENT CONTENT -->
+
+        <div class="s2n-event-content">
+
+          <!-- OFFICIAL BADGE -->
+          <!-- ย้ายออกจากโปสเตอร์แล้ว -->
+
+          <div class="s2n-event-topline">
+
+            <span class="s2n-event-live-badge">
+
+              <span class="s2n-event-live-dot"></span>
+
+              S2N OFFICIAL EVENT
+
+            </span>
+
+          </div>
+
+
+          <!-- EVENT TITLE -->
+
+          <h2 class="s2n-event-title">
+            กิจกรรมแคลน S2N Esport
+          </h2>
+
+
+          <!-- ======================================
+               PRIZE POOL
+          ====================================== -->
+
+          <div class="s2n-event-section">
+
+            <h3>🏆 PRIZE POOL (เงินรางวัล)</h3>
+
+            <div class="s2n-event-prize">
+              <span>ที่ 1</span>
+              <strong>500 บาท</strong>
+            </div>
+
+            <div class="s2n-event-prize">
+              <span>ที่ 2</span>
+              <strong>300 บาท</strong>
+            </div>
+
+            <div class="s2n-event-prize">
+              <span>ที่ 3</span>
+              <strong>100 บาท</strong>
+            </div>
+
+            <div class="s2n-event-prize">
+              <span>Kill เยอะที่สุด</span>
+              <strong>RP 50 (แพต 4.7)</strong>
+            </div>
+
+            <div class="s2n-event-bounty">
+              <span>ค่าหัว</span>
+              <mark>S2N • IRIN シ</mark>
+              <strong>300 บาท</strong>
+            </div>
+
+            <div class="s2n-event-total">
+              <span>มูลค่ารวมทั้งหมด</span>
+              <strong>1,500 บาท</strong>
+            </div>
+
+          </div>
+
+
+          <!-- ======================================
+               RULES
+          ====================================== -->
+
+          <div class="s2n-event-section">
+
+            <h3>📜 กติกาและรายละเอียดกิจกรรม</h3>
+
+            <p>
+              <strong>กติกา:</strong>
+              ห้ามใช้โปรแกรมช่วยเล่นโดยเด็ดขาด!
+            </p>
+
+            <p>
+              <strong>ระบบสุ่มคู่:</strong>
+              ทางเราจะทำการสุ่มรายชื่อจับคู่ให้
+            </p>
+
+            <p>
+              <strong>แมพที่ใช้:</strong>
+              ERANGEL
+            </p>
+
+            <p>
+              <strong>โหมด:</strong>
+              Duo / ทีม 2 คน
+            </p>
+
+          </div>
+
+
+          <!-- ======================================
+               SCHEDULE
+          ====================================== -->
+
+          <div class="s2n-event-section">
+
+            <h3>📅 กำหนดการ</h3>
+
+            <p>
+              วันที่
+              <strong>16/11/2569</strong>
+              เวลา
+              <strong class="s2n-event-time">20:00 น.</strong>
+            </p>
+
+            <p class="s2n-event-notice">
+              ขอให้ทุกท่านเข้าร่วมกิจกรรมให้ครบทุกคน
+            </p>
+
+          </div>
+
+        </div>
+
       </div>
 
-      <h2 id="profile-username">
-        PLAYER NAME
-      </h2>
+    </section>
 
-      <div class="pubg-name">
-        PUBG NAME:
-        <span id="profile-pubg-name">
-          PUBG PLAYER
-        </span>
+
+    <!-- ==========================================
+         PLAYER PROFILE
+    ========================================== -->
+
+    <section class="profile-panel">
+
+      <div class="profile-left">
+
+        <!-- PLAYER AVATAR -->
+
+        <div class="profile-avatar">
+
+          <div
+            class="profile-avatar-initials"
+            id="profile-avatar-initials"
+          >
+            S2N
+          </div>
+
+          <span class="avatar-online"></span>
+
+        </div>
+
+
+        <!-- PLAYER INFO -->
+
+        <div class="profile-info">
+
+          <div class="profile-role">
+
+            <span class="role-dot"></span>
+
+            <span id="profile-role">MEMBER</span>
+
+          </div>
+
+          <h2 id="profile-username">
+            PLAYER NAME
+          </h2>
+
+          <div class="pubg-name">
+
+            PUBG NAME:
+
+            <span id="profile-pubg-name">
+              PUBG PLAYER
+            </span>
+
+          </div>
+
+        </div>
+
       </div>
 
-    </div>
 
-  </div>
+      <!-- PROFILE STATS -->
 
-  <!-- PROFILE STATS -->
-  <div class="profile-right">
+      <div class="profile-right">
 
-    <div class="profile-stat">
-      <span class="stat-label">CLAN</span>
-      <strong>S2N</strong>
-    </div>
+        <div class="profile-stat">
 
-    <div class="profile-stat">
-      <span class="stat-label">STATUS</span>
-      <strong class="stat-active">ACTIVE</strong>
-    </div>
+          <span class="stat-label">CLAN</span>
 
-  </div>
+          <strong>S2N</strong>
 
-</section>
+        </div>
 
-    <!-- TOURNAMENT ANNOUNCEMENT -->
+        <div class="profile-stat">
+
+          <span class="stat-label">STATUS</span>
+
+          <strong class="stat-active">ACTIVE</strong>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ==========================================
+         TOURNAMENT ANNOUNCEMENT
+    ========================================== -->
+
     <section class="announcement-panel tournament-announcement">
 
       <div class="announcement-icon">
+
         <span class="material-symbols-rounded">
           emoji_events
         </span>
+
       </div>
 
       <div class="announcement-content">
@@ -233,6 +425,7 @@
         </div>
 
         <div class="announcement-meta" id="announcement-meta">
+
           <span id="announcement-status">
             ---
           </span>
@@ -240,16 +433,19 @@
           <span id="announcement-date">
             ---
           </span>
+
         </div>
 
         <div class="announcement-actions">
 
           <a href="tournament.html" class="announcement-button">
+
             <span class="material-symbols-rounded">
               arrow_forward
             </span>
 
             ดูรายการแข่งขัน
+
           </a>
 
           <a
@@ -257,11 +453,13 @@
             class="announcement-button admin-only hidden"
             id="admin-create-tournament"
           >
+
             <span class="material-symbols-rounded">
               add
             </span>
 
             สร้างรายการแข่งขัน
+
           </a>
 
         </div>
@@ -270,7 +468,11 @@
 
     </section>
 
-    <!-- CLAN ANNOUNCEMENT -->
+
+    <!-- ==========================================
+         CLAN ANNOUNCEMENT
+    ========================================== -->
+
     <section class="announcement-panel clan-announcement">
 
       <div class="announcement-icon">
@@ -304,7 +506,11 @@
 
     </section>
 
-    <!-- ROSTER -->
+
+    <!-- ==========================================
+         CLAN ROSTER
+    ========================================== -->
+
     <section class="roster-section">
 
       <div class="section-heading">
@@ -312,8 +518,11 @@
         <div>
 
           <div class="section-label">
+
             <span class="label-line"></span>
+
             CLAN ROSTER
+
           </div>
 
           <h2>
@@ -334,11 +543,15 @@
 
       </div>
 
+
+      <!-- ROSTER TABLE -->
+
       <div class="roster-table-wrap">
 
         <table class="roster-table">
 
           <thead>
+
             <tr>
               <th>#</th>
               <th>PLAYER</th>
@@ -346,6 +559,7 @@
               <th>ROLE</th>
               <th>STATUS</th>
             </tr>
+
           </thead>
 
           <tbody id="roster-body">
@@ -362,6 +576,7 @@
 
       </div>
 
+
       <div class="roster-footer">
 
         <span>
@@ -376,7 +591,11 @@
 
     </section>
 
-    <!-- FOOTER -->
+
+    <!-- ==========================================
+         FOOTER
+    ========================================== -->
+
     <footer class="dash-footer">
 
       <span>
@@ -391,12 +610,22 @@
 
   </main>
 
+
+  <!-- ==========================================
+       JAVASCRIPT
+  ========================================== -->
+
   <!-- SUPABASE -->
+
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <script src="assets/js/supabase.js"></script>
 
+
+  <!-- DASHBOARD -->
+
   <script src="assets/js/dashboard.js"></script>
 
 </body>
+
 </html>
