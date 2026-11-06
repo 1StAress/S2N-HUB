@@ -19,8 +19,6 @@
 <link rel="stylesheet" href="assets/css/global.css">
 <link rel="stylesheet" href="assets/css/dashboard.css">
 
-<!-- PROFILE CSS -->
-<link rel="stylesheet" href="assets/css/profile.css">
     <!-- MATERIAL SYMBOLS -->
     <link
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded"
@@ -132,6 +130,52 @@
 
         </section>
 
+<!-- ==================================
+     ADMIN MEMBER SELECTOR
+================================== -->
+
+<section id="admin-member-panel" class="profile-panel hidden">
+
+    <div class="panel-header">
+        <div>
+            <span class="panel-label">ADMIN CONTROL</span>
+            <h2>จัดการข้อมูลสมาชิก</h2>
+        </div>
+
+        <span class="material-symbols-rounded panel-icon">
+            manage_accounts
+        </span>
+    </div>
+
+    <div class="form-group">
+        <label for="admin-member-search">
+            ค้นหาสมาชิก
+        </label>
+
+        <input
+            type="search"
+            id="admin-member-search"
+            placeholder="ค้นหาชื่อสมาชิก / ชื่อในเกม / UID"
+            autocomplete="off">
+    </div>
+
+    <div class="form-group">
+        <label for="admin-member-select">
+            เลือกสมาชิกที่ต้องการจัดการ
+        </label>
+
+        <select id="admin-member-select">
+            <option value="">
+                -- เลือกสมาชิก --
+            </option>
+        </select>
+    </div>
+
+    <p class="panel-label">
+        ADMIN สามารถเลือกสมาชิกคนอื่นเพื่อแก้ไขข้อมูลได้
+    </p>
+
+</section>
 
         <!-- ==================================
              PROFILE HERO
@@ -606,6 +650,64 @@
                         autocomplete="name">
 
                 </div>
+
+<!-- NICKNAME -->
+<div class="form-group">
+
+    <label for="edit-nickname">
+        ชื่อเล่น
+    </label>
+
+    <input
+        id="edit-nickname"
+        type="text"
+        maxlength="40"
+        placeholder="ชื่อเล่น">
+</div>
+
+<!-- AGE -->
+<div class="form-group">
+
+    <label for="edit-age">
+        อายุ
+    </label>
+
+    <input
+        id="edit-age"
+        type="number"
+        min="1"
+        max="100"
+        inputmode="numeric"
+        placeholder="อายุ">
+</div>
+
+<!-- GENDER -->
+<div class="form-group">
+
+    <label for="edit-gender">
+        เพศ
+    </label>
+
+    <select id="edit-gender">
+
+        <option value="">
+            -- ไม่ระบุ --
+        </option>
+
+        <option value="male">
+            ชาย
+        </option>
+
+        <option value="female">
+            หญิง
+        </option>
+
+        <option value="other">
+            อื่น ๆ
+        </option>
+
+    </select>
+</div>
 
                 <!-- PUBG NAME -->
                 <div class="form-group">
