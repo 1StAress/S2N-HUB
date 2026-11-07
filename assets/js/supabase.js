@@ -38,4 +38,3 @@ if (!window.supabase) {
   
   console.log("S2N HUB Supabase connected");
 }
-
